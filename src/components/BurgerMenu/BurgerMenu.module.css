@@ -1,0 +1,31 @@
+.burgerMenu {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 4px;
+    width: 32px;
+  }
+  
+  .burgerLineWite {
+    height: 4px;
+    background-color: #000;
+    background-color:  #fff;;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  .burgerLineWite.open:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background-color: #000;
+  }
+  
+  .burgerLineWite.open:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burgerLineWite.open:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background-color: #000;
+  }
+  

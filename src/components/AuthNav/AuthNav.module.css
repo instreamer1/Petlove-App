@@ -1,0 +1,39 @@
+.loginLink {
+  border-radius: 30px;
+  padding: 12px 67px;
+  width: 178px;
+  height: 42px;
+  background: #f6b83d;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* .loginLink:hover {
+    background: #e6a92f; 
+    color: #ffffff;
+  } */
+
+  .registerLink {
+    border-radius: 30px;
+    padding: 12px 41px;
+    width: 178px;
+    height: 42px;
+    background: #fff4df;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #f6b83d;
+}
+
+/* .registerLink:hover {
+    background: #ffe6b3; 
+    color: #e6a92f;
+  } */
