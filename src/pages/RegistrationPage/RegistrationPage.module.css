@@ -1,0 +1,133 @@
+.register {
+  padding-top: 26px;
+  padding-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.imageWrapper {
+  /* width: 100%; */
+  /* height: 280px; */
+  border-radius: 30px;
+  /* background-color: #f6b83d; */
+  margin-bottom: 10px;
+  background: url("../../assets/images/image_bg_mob.png") center center / cover no-repeat;
+}
+
+/* .image, */
+.img {
+  width: 100%;
+  /* width: auto; */
+  height: auto;
+  object-fit: cover;
+}
+
+.wrapper {
+  width: 320px;
+  height: 100%;
+}
+
+.registerTitle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  width: 100%;
+  color: #121417;
+}
+
+.registerDesc {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.37;
+  margin-bottom: 40px;
+  color: rgba(18, 20, 23, 0.8);
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.registerInput {
+  border-radius: 12px;
+  width: 100%;
+  height: 54px;
+  padding-left: 18px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+}
+
+.registerInput::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.37;
+  color: #121417;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}
+
+.eyeIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.error {
+  color: red;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.56;
+}
+
+.btnWrapper {
+  margin-top: 40px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .imageWrapper {
+   
+    /* height: 302px; */
+    border-radius: 30px;
+    margin-bottom: 10px;
+    background: url("../../assets/images/image_bg_tab.png") center center / cover no-repeat;
+    background-size: auto;
+    /* background: url("../../assets/images/image_bg_desk.png") center center / cover no-repeat; */
+  
+  }
+  .wrapper {
+    width: 438px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .imageWrapper {
+    /* width: 100%;
+    height: 280px;
+    border-radius: 30px;
+    margin-bottom: 10px; */
+    background: url("../../assets/images/image_bg_desk.png") center center / cover no-repeat;
+  
+  }
+}

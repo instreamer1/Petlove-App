@@ -1,15 +1,17 @@
 import Header from '../Header/Header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 import css from './Layout.module.css';
 import Loader from '../Loader/Loader';
 
 const Layout = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/home"; 
   return (
     <>
       <header className={css.header}>
         <div className={css.container}>
-          <Header />
+          <Header isHomePage={isHomePage}/>
           <Loader />
         </div>
       </header>

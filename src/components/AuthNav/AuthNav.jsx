@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import css from './AuthNav.module.css';
 
-const AuthNav = () => {
+const AuthNav = ({ closeSidebar }) => {
   return (
-    <div>
-      <NavLink className={css.loginLink} to="/login">
+    <div className={css.authNavWrapper} >
+      <NavLink className={css.loginLink} to="/login" onClick={closeSidebar}>
         Log In
       </NavLink>
-      <NavLink className={css.registerLink} to="/register">
+      <NavLink className={css.registerLink} to="/register" onClick={closeSidebar}>
         Registration
       </NavLink>
     </div>

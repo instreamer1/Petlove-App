@@ -1,10 +1,11 @@
 import css from './Logo.module.css'
 import iconSprite from '../../assets/sprite.svg'
 
-const Logo =() =>{
+const Logo =({isHomePage}) =>{
+
     return (
         <a href="/" className={css.logoWrapper}>
-              <p className={css.text} >petl<svg className={css.icon}>
+              <p className={`${isHomePage ? css.text : css.otherPage}`} >petl<svg className={`${isHomePage ? css.iconHome : css.icon}`}>
             <use href={`${iconSprite}#heart`}></use>
           </svg>ve</p>
         </a>

@@ -39,9 +39,8 @@ const HomePage = () => {
             />
 
         
-            <img
-              src={homeDesktop1x}
-              srcSet={`${imageHome} 2x`}
+            <img className={css.img}
+              src={imageHome}
               alt='Woman with dog'
               loading='lazy'
             />

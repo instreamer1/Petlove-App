@@ -1,0 +1,19 @@
+.btn {
+  border-radius: 30px;
+  padding: 12px 99px;
+  width: 295px;
+  height: 42px;
+  background: #f6b83d;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: #fbe7c1;
+}

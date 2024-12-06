@@ -2,11 +2,11 @@ import LogOutBtn from '../LogOutBtn/LogOutBtn';
 import UserBar from '../UserBar/UserBar';
 import css from './UserNav.module.css';
 
-const UserNav = () => {
+const UserNav = ({closeSidebar}) => {
   return (
     <div>
-      <UserBar />
-      <LogOutBtn />
+      {/* <UserBar /> */}
+      <LogOutBtn closeSidebar={closeSidebar}/>
     </div>
   );
 };

@@ -2,27 +2,27 @@ import { NavLink } from 'react-router-dom';
 import css from './Nav.module.css';
 
 const Nav = () => {
-
   const buildLinkClass = ({ isActive }) => {
     return `${css.link} ${isActive ? css.active : ''}`;
   };
 
-  return <div>
-       <NavLink className={buildLinkClass} to='/news'>
-       News
+  return (
+    <div className={css.navWrapper} >
+      <NavLink className={buildLinkClass} to='/news'>
+        News
       </NavLink>
       <NavLink className={buildLinkClass} to='/notices'>
-      Find pet
+        Find pet
       </NavLink>
       <NavLink className={buildLinkClass} to='/friends'>
-      
-      Our friends
+        Our friends
       </NavLink>
-  </div>;
+    </div>
+  );
 };
 
 export default Nav;
-// "Nav є блоком навігації з наступними маршрутами: 
+// "Nav є блоком навігації з наступними маршрутами:
 //   - /news - публічний-необмежений, переадресує на сторінку News page
 //   - /notices - публічний-необмежений, переадресує на сторінку Notices page
 //   - /friends - публічний-необмежений, переадресує на сторінку Our friends page

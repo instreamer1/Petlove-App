@@ -1,9 +1,9 @@
 import css from './LogOutBtn.module.css';
 
-const LogOutBtn = ()=> {
+const LogOutBtn = ({closeSidebar})=> {
     return (
         <div>
-            <button type="button">LogOutBtn</button>
+            <button type="button" onClick={closeSidebar}>LogOutBtn</button>
         </div>
     );
 }
