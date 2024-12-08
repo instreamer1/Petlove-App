@@ -17,7 +17,6 @@
   min-height: 390px;
   background: #f6b83d;
   padding: 118px 20px 50px;
-  z-index: -1;
 }
 
 .title {
@@ -49,7 +48,7 @@
 .img {
   width: 100%;
   height: auto;
-  /* border-radius: 30px; */
+  border-radius: 30px;
 }
 
 @media screen and (min-width: 768px) {
@@ -80,7 +79,8 @@
     padding-left: 417px;
   }
 
-  .image {
+  .image,
+.img {
     border-radius: 60px;
   }
 }

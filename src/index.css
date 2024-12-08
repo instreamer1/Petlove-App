@@ -24,13 +24,15 @@
     min-width: 320px;
     max-width: 375px;
     margin: 0 auto;
- 
+    background: #f9f9f9;
+    padding-top: 28px;
   }
 
 
 @media screen and (min-width: 768px) {
   #root {
     min-width: 768px;
+    padding-top: 32px;
   }
 }
 

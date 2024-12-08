@@ -1,0 +1,14 @@
+.button {
+  border-radius: 30px;
+  padding: 12px 30px;
+  width: 178px;
+  height: 42px;
+  background: #fff4df;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #f6b83d;
+}

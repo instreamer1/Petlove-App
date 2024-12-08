@@ -1,0 +1,133 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.inputGroup {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.form .inputGroup:nth-of-type(4) {
+  margin-bottom: 24px;
+}
+
+.input {
+  outline: none;
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+  padding: 12px 12px 12px 12px;
+  width: 100%;
+  height: 42px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: #262626;
+  transition: border-color 0.3s ease;
+}
+.input:hover {
+  border-color: #f6b83d;
+}
+
+.input::placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: rgba(38, 38, 38, 0.5);
+}
+
+.input.inputError {
+  border-color: #ef2447;
+}
+
+.input.inputValid {
+  border: 1px solid #08aa83;
+}
+
+.input .inputTyping {
+  border-color: #f6b83d;
+}
+
+.iconError {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 0;
+  right: 15px;
+  transform: translateY(50%);
+  padding: 3px;
+}
+
+.iconValid {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 0;
+  right: 15px;
+  transform: translateY(50%);
+  fill: none;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 12px;
+  top: 20px;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+}
+
+.eyeIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+}
+
+.error {
+  color: #ef2447;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submitButton {
+  background-color: #f6b83d;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    margin-bottom: 16px;
+  }
+  .input {
+    /* width: 424px; */
+    height: 52px;
+    padding: 16px 16px 16px 16px;
+  }
+
+  .inputGroup {
+    margin-bottom: 16px;
+  }
+
+  .form .inputGroup:nth-of-type(4) {
+    margin-bottom: 32px;
+  }
+
+  .eyeButton {
+    right: 16px;
+    top: 26px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+}

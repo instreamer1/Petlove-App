@@ -4,9 +4,8 @@
   gap: 8px;
 }
 
-.loginLink {
-  border-radius: 30px;
-  padding: 12px 66px;
+.link {  border-radius: 30px;
+  padding: 12px 64px;
   width: 178px;
   height: 42px;
   background: #f6b83d;
@@ -16,13 +15,23 @@
   line-height: 129%;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #fff;
+  color: #fff;}
+
+  .link.loginLinkHome {
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* .loginLink:hover {
-    background: #e6a92f; 
-    color: #ffffff;
-  } */
+.link:hover,
+.link:focus{
+  background: #e6a92f; 
+}
+
+.link.loginLinkHome:hover,
+.link.loginLinkHome:focus {
+   
+  color: #f6b83d;
+    background: #fff4df;
+  }
 
   .registerLink {
     border-radius: 30px;
@@ -37,9 +46,10 @@
     letter-spacing: -0.03em;
     text-transform: uppercase;
     color: #f6b83d;
+    
 }
 
-/* .registerLink:hover {
-    background: #ffe6b3; 
-    color: #e6a92f;
-  } */
+.registerLink:hover,
+.registerLink:focus {
+  background: #fbe7c1;
+  }

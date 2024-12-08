@@ -1,0 +1,31 @@
+.profile {
+    padding-top: 26px;
+    padding-bottom: 20px;
+  }
+  
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+ 
+  }
+
+  @media screen and (min-width: 768px) {
+    .profile {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+    .container {
+      padding-right: 32px;
+      padding-left: 32px;
+    }
+  
+ 
+  
+  }
+  
+  @media screen and (min-width: 1280px) {
+    .container {
+
+    }
+
+  }

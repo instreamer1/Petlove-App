@@ -48,8 +48,12 @@
   <path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 3H3.75c-.82843 0-1.5.67157-1.5 1.5V15c0 .8284.67157 1.5 1.5 1.5h10.5c.8284 0 1.5-.6716 1.5-1.5V4.5c0-.82843-.6716-1.5-1.5-1.5ZM12 1.5v3m-6-3v3m-3.75 3h13.5"/>
 </symbol>
 
-<symbol id="check" viewBox="0 0 18 18">
-  <path stroke="#08AA83" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 5.25 6.75008 13.5 3 9.75"/>
+<symbol id="check" viewBox="0 0 18 13">
+<path d="M16.3337 1.41666L6.25042 11.5L1.66699 6.91666" stroke="#08AA83" style="stroke:#08AA83;stroke:color(display-p3 0.0328 0.6674 0.5151);stroke-opacity:1;" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+</symbol>
+
+<symbol id="shape" viewBox="0 0 16 16">
+   <path d="M14.4163 1.58334L1.58301 14.4167M1.58305 1.58334L14.4163 14.4167" stroke="#EF2447" style="stroke:#EF2447;stroke:color(display-p3 0.9390 0.1403 0.2771);stroke-opacity:1;" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>
 
 <symbol id="cloud" viewBox="0 0 16 16">
@@ -78,13 +82,13 @@
 </symbol>
 
 <symbol id="eye" viewBox="0 0 22 22">
-  <g stroke="#F6B83D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" clip-path="url(#a)">
-    <path d="M.916016 11S4.58268 3.66667 10.9993 3.66667C17.416 3.66667 21.0827 11 21.0827 11s-3.6667 7.3333-10.0834 7.3333C4.58268 18.3333.916016 11 .916016 11Z"/>
-    <path d="M11 13.75c1.5188 0 2.75-1.2312 2.75-2.75 0-1.51878-1.2312-2.75-2.75-2.75-1.51878 0-2.75 1.23122-2.75 2.75 0 1.5188 1.23122 2.75 2.75 2.75Z"/>
+  <g clip-path="url(#clip0_55848_2020)">
+    <path d="M0.916016 11C0.916016 11 4.58268 3.66667 10.9993 3.66667C17.416 3.66667 21.0827 11 21.0827 11C21.0827 11 17.416 18.3333 10.9993 18.3333C4.58268 18.3333 0.916016 11 0.916016 11Z" stroke="#F6B83D" style="stroke:#F6B83D;stroke:color(display-p3 0.9647 0.7216 0.2392);stroke-opacity:1;" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M11 13.75C12.5188 13.75 13.75 12.5188 13.75 11C13.75 9.48122 12.5188 8.25 11 8.25C9.48122 8.25 8.25 9.48122 8.25 11C8.25 12.5188 9.48122 13.75 11 13.75Z" stroke="#F6B83D" style="stroke:#F6B83D;stroke:color(display-p3 0.9647 0.7216 0.2392);stroke-opacity:1;" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
   </g>
   <defs>
-    <clipPath id="a">
-      <path fill="#fff" d="M0 0h22v22H0z"/>
+    <clipPath id="clip0_55848_2020">
+      <rect width="22" height="22" fill="white" style="fill:white;fill-opacity:1;" />
     </clipPath>
   </defs>
 </symbol>

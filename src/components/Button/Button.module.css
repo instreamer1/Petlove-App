@@ -17,3 +17,14 @@
 .btn:hover {
   background: #fbe7c1;
 }
+
+@media screen and (min-width: 768px) {
+  .btn {
+  
+    padding: 16px 157px;
+    width: 424px;
+    height: 52px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
