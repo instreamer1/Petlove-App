@@ -1,0 +1,46 @@
+.modal {
+  padding: 32px;
+  margin: 80px auto auto;
+  position: relative;
+  border-radius: 30px;
+  background-color: #ffffff;
+}
+
+
+.overlay {
+  position: fixed;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  background-color: rgba(47, 47, 47, 0.6);
+  animation: fadeIn 0.2s ease-in-out forwards;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.closeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 64px;
+
+  }
+  
+}

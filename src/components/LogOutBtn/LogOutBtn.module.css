@@ -1,9 +1,12 @@
+.logOutBtn{
+
+}
+
 .button {
   border-radius: 30px;
   padding: 12px 30px;
   width: 178px;
   height: 42px;
-  background: #fff4df;
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 14px;
@@ -11,4 +14,51 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: #f6b83d;
+  background: #fff4df;
+}
+.buttonHome{
+ 
+  color: #f6b83d;
+  background: #fff4df;
+}
+.buttonHeader{ 
+  background: #f6b83d;
+    color: #fff;
+}
+
+
+@media screen and (min-width: 768px) {
+  /* .logOutBtn{
+    display: block;
+  } */
+  .button {
+    border-radius: 30px;
+    padding: 15px 15px;
+    width: 136px;
+    height: 50px;
+  
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .button.buttonHeader{
+
+ 
+    background: #f6b83d;
+    color: #fff;
+    /* color: #f6b83d;
+    background: #fff4df; */
+  }
+
+  .button.buttonHome{
+    background: #f6b83d;
+    color: #fff;
+       color: #f6b83d;
+    background: #fff4df;
+  }
+  
 }

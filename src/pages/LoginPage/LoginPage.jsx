@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import PetBlock from '../../components/PetBlock/PetBlock';
 import Title from '../../components/Title/Title';
-import { logIn } from '../../redux/auth/operations';
+import { logIn } from '../../redux/users/operations';
 import css from './LoginPage.module.css';
 import login from '../../assets/images/login_img.png';
 import loginMobile2x from '../../assets/images/login_img2x.png';
@@ -15,16 +15,12 @@ const LoginPage = () => {
   const handleFormSubmit = data => {
     console.log(data);
     const { email, password } = data;
-    // try {
-    //   await
+
     dispatch(logIn({ email, password }));
-    // .unwrap();
-    // toast.success('User registered successfully!');
-    // reset();
-    // } catch (error) {
-    //   toast.error(error);
-    // }
   };
+
+
+  
   return (
     <section className={css.register}>
       <div className={css.container}>

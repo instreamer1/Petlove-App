@@ -1,8 +1,31 @@
-
 .userBar{
 
 }
 
-.icon{
 
+.userIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: #fff4df;
+  width: 40px;
+  height: 40px;;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.nameUser{
+  
+}
+
+
+@media screen and (min-width: 768px) {
+  .userIcon {
+    height: 50px;
+    width: 50px;
+  }
 }

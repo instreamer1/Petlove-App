@@ -11,9 +11,10 @@ import registrationDesktop2x from '../../assets/images/img_register_desk2x.png';
 
 
 import registration from '../../assets/images/img_register_tab.png';
-import { register } from '../../redux/auth/operations';
+
 import { useDispatch } from 'react-redux';
 import PetBlock from '../../components/PetBlock/PetBlock';
+import { register } from '../../redux/users/operations';
 
 const RegistrationPage = () => {
 const dispatch = useDispatch()

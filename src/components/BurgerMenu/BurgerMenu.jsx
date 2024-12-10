@@ -1,7 +1,7 @@
 import css from './BurgerMenu.module.css';
 
 const BurgerMenu = ({ isOpen, onClick, isHomePage }) => {
-  console.log(isHomePage);
+ 
   return (
     <div className={css.burgerMenu} onClick={onClick}>
       <div

@@ -1,10 +1,13 @@
-.authNavWrapper{
+.authNavWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  /* display: none; */
+ 
 }
 
-.link {  border-radius: 30px;
+.link {
+  border-radius: 30px;
   padding: 12px 64px;
   width: 178px;
   height: 42px;
@@ -15,41 +18,65 @@
   line-height: 129%;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: #fff;}
+  color: #fff;
+}
 
-  .link.loginLinkHome {
+.link.loginLinkHome {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .link:hover,
-.link:focus{
-  background: #e6a92f; 
+.link:focus {
+  background: #e6a92f;
 }
 
 .link.loginLinkHome:hover,
 .link.loginLinkHome:focus {
-   
   color: #f6b83d;
-    background: #fff4df;
-  }
+  background: #fff4df;
+}
 
-  .registerLink {
-    border-radius: 30px;
-    padding: 12px 41px;
-    width: 178px;
-    height: 42px;
-    background: #fff4df;
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 129%;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: #f6b83d;
-    
+.registerLink {
+  border-radius: 30px;
+  padding: 12px 41px;
+  width: 178px;
+  height: 42px;
+  background: #fff4df;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #f6b83d;
 }
 
 .registerLink:hover,
 .registerLink:focus {
   background: #fbe7c1;
+}
+
+@media screen and (min-width: 768px) {
+  .authNavWrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 276px;
+    height: 50px;
+ 
   }
+
+  .link {
+    border-radius: 30px;
+    padding: 15px 35px;
+    width: 119px;
+    height: 50px;
+  }
+
+  .registerLink {
+    border-radius: 30px;
+    padding: 16px 22px;
+    width: 149px;
+    height: 50px;
+  }
+}
