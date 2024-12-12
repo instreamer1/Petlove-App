@@ -22,7 +22,6 @@ const registrationSchema = yup.object().shape({
 
 const LoginForm = ({ onSubmit }) => {
   const [showPassword, setShowPassword] = useState(false);
-//   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const {
     register,
@@ -41,15 +40,6 @@ const LoginForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className={css.form}>
-      {/* <div className={css.inputGroup}>
-        <input
-          type='text'
-          placeholder='Name'
-          {...register('name')}
-          className={css.input}
-        />
-        {errors.name && <p className={css.error}>{errors.name.message}</p>}
-      </div> */}
       <div className={css.inputGroup}>
         <input
           type='email'
@@ -115,37 +105,6 @@ const LoginForm = ({ onSubmit }) => {
           <p className={css.error}>{errors.password.message}</p>
         )}
       </div>
-      {/* <div className={css.inputGroup}>
-        <input
-          type={showConfirmPassword ? 'text' : 'password'}
-          placeholder='Confirm Password'
-          {...register('confirmPassword')}
-          className={`${css.input} ${
-            errors.confirmPassword
-              ? css.inputError
-              : watch('confirmPassword')?.length >= 7
-              ? css.inputValid
-              : ''
-          }`}
-        />
-        <button
-          type='button'
-          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-          className={css.eyeButton}>
-          {showConfirmPassword ? (
-            <svg className={css.eyeIcon}>
-              <use href={`${iconSprite}#eye`}></use>
-            </svg>
-          ) : (
-            <svg className={css.eyeIcon}>
-              <use href={`${iconSprite}#eyeOff`}></use>
-            </svg>
-          )}
-        </button>
-        {errors.confirmPassword && (
-          <p className={css.error}>{errors.confirmPassword.message}</p>
-        )}
-      </div> */}
       <div className={css.btnWrapper}>
         <Button description='log in' variant='modal' type='submit' />
       </div>

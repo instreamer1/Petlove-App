@@ -8,19 +8,21 @@ import loginMobile2x from '../../assets/images/login_img2x.png';
 import loginDesktop from '../../assets/images/loginDesktop.png';
 import loginDesktop2x from '../../assets/images/loginDesktop2x.png';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
 
-  const handleFormSubmit = data => {
-    console.log(data);
+  const handleFormSubmit = async data => {
     const { email, password } = data;
-
-    dispatch(logIn({ email, password }));
+    try {
+      await dispatch(logIn({ email, password })).unwrap();
+      toast.success('User registered successfully!');
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
-
-  
   return (
     <section className={css.register}>
       <div className={css.container}>

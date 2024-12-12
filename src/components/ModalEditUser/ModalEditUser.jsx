@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./ModalEditUser.module.css";
+import Modal from "../Modal/Modal";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -16,7 +17,10 @@ const validationSchema = Yup.object().shape({
     .required("Phone number is required"),
 });
 
-const ModalEditUser = ({ onClose }) => {
+const ModalEditUser = ({
+  isOpen,
+  onClose
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,11 +31,13 @@ const ModalEditUser = ({ onClose }) => {
 
   const onSubmit = (data) => {
     console.log(data);
-    onClose();
+  
   };
 
   return (
-    <div className={styles.modalBackdrop} onClick={onClose}>
+
+    <Modal isOpen={isOpen} onClose={onClose}>
+    {/* <div className={styles.modalBackdrop} onClick={onClose}> */}
       <div
         className={styles.modalContent}
         onClick={(e) => e.stopPropagation()} 
@@ -68,7 +74,8 @@ const ModalEditUser = ({ onClose }) => {
           </div>
         </form>
       </div>
-    </div>
+    {/* </div> */}
+    </Modal>
   );
 };
 

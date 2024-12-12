@@ -16,17 +16,16 @@ const Header = ({ isHomePage }) => {
   const [isTablet, setIsTablet] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-    // Определяем тип устройства
-    useEffect(() => {
-      const handleResize = () => {
-        const width = window.innerWidth;
-        setIsMobile(width < 768); // Мобильная версия
-        setIsTablet(width >= 768 && width < 1280); // Планшетная версия
-      };
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1280);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
@@ -46,7 +45,6 @@ const Header = ({ isHomePage }) => {
             {isLoggedIn ? (
               <UserNav isHomePage={isHomePage} />
             ) : (
-              // В планшетной или десктопной версии отображаем AuthNav
               (isTablet || !isMobile) && <AuthNav />
             )}
           </div>

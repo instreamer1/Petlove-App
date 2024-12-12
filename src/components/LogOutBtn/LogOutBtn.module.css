@@ -28,9 +28,6 @@
 
 
 @media screen and (min-width: 768px) {
-  /* .logOutBtn{
-    display: block;
-  } */
   .button {
     border-radius: 30px;
     padding: 15px 15px;
@@ -50,8 +47,7 @@
  
     background: #f6b83d;
     color: #fff;
-    /* color: #f6b83d;
-    background: #fff4df; */
+
   }
 
   .button.buttonHome{

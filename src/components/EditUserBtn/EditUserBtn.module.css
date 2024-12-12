@@ -1,13 +1,26 @@
+
 .editButton {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
+  border-radius: 30px;
+  padding: 10px;
+  width: 38px;
+  height: 38px;
+  background: #fff4df;
+}
+
+.icon{
+  stroke-width: 1.50px;
+  stroke: #f6b83d;
+  fill: none;
+  width: 18px;
+  height: 18px;
+}
+
+
+
+
+
+
+
   .editButton:hover {
     background-color: #0056b3;
   }

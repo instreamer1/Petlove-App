@@ -1,6 +1,6 @@
 .titleWrapper {
   text-align: left;
-  margin-bottom: 20px;
+
 }
 
 .title {
@@ -24,7 +24,7 @@
 
 @media screen and (min-width: 768px) {
   .titleWrapper {
-    margin-bottom: 32px;
+ 
   }
   .title {
     font-size: 54px;

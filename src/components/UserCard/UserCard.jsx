@@ -1,13 +1,16 @@
 import EditUserBtn from '../EditUserBtn/EditUserBtn';
+import LogOutBtn from '../LogOutBtn/LogOutBtn';
+
+import UserBlock from '../UserBlock/UserBlock';
 import css from './UserCard.module.css';
 
 const UserCard = props => {
   return (
     <div>
       <EditUserBtn />
-      {/* <UserBlock />
+      <UserBlock />
       <PetsBlock />
-      <LogOutBtn /> */}
+      <LogOutBtn />
     </div>
   );
 };

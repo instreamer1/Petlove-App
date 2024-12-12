@@ -8,15 +8,14 @@ import PrivateRoute from './pages/PrivateRoute';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectIsLoggedIn } from './redux/users/selectors';
-import { checkAuth} from './redux/users/operations';
+import { checkAuth } from './redux/users/operations';
 import { Toaster } from 'react-hot-toast';
+import NewsPage from './pages/NewsPage/NewsPage';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 
-
-const App = ()=> {
-
+const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
@@ -30,11 +29,6 @@ const App = ()=> {
     return <p>Loading...</p>; // Показать индикатор загрузки
   }
 
-
-
-  
- 
-
   // return isRefreshing ? (
   //   <div
   //     style={{
@@ -46,9 +40,6 @@ const App = ()=> {
   //     <Spinner />
   //   </div>
   // ) : (
-
-
-
 
   return (
     <Suspense fallback={<div className='loading'>Loading...</div>}>
@@ -83,6 +74,15 @@ const App = ()=> {
             }
           />
 
+          <Route
+            path='/news'
+            element={
+              <RestrictedRoute redirectTo='/news'>
+                <NewsPage />
+              </RestrictedRoute>
+            }
+          />
+
           <Route path='*' element={<Navigate to='/' />} />
         </Route>
       </Routes>
@@ -90,6 +90,6 @@ const App = ()=> {
       <Toaster />
     </Suspense>
   );
-}
+};
 
 export default App;

@@ -11,7 +11,7 @@ const PetBlock = ({
 }) => {
   return (
     <picture className={css.picture}>
-      <source
+      {/* <source
         srcSet={`${imageSrcDesk1x} 1x, ${imageSrcDesk2x} 2x`}
         media='(min-width: 1280px)'
       />
@@ -24,14 +24,16 @@ const PetBlock = ({
         srcSet={`${imageSrc1x} 1x, ${imageSrc2x} 2x`}
         media='(min-width: 320px)'
       />
-      <img className={css.image} src={imageSrc} alt={altText} loading='lazy' />
+      <img className={css.image} src={imageSrc} alt={altText} loading='lazy' /> */}
     </picture>
   );
 };
 
+
+export default PetBlock;
 PetBlock.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   altText: PropTypes.string.isRequired,
 };
 
-export default PetBlock;
+

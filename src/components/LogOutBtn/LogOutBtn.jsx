@@ -50,8 +50,8 @@ const LogOutBtn = ({ closeSidebar, isHomePage }) => {
         isOpen={isModalOpen}
         onConfirm={handleConfirm}
         onCancel={closeModal}
-        title="Are you sure you want to log out?"
-        description="You will need to log in again to access your account."
+        title="Already leaving?"
+        description=""
       />
     </>
   );

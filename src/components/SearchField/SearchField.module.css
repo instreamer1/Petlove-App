@@ -1,0 +1,79 @@
+.form {
+  height: 42px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.input {
+  outline: none;
+  border: 1px solid rgba(38, 38, 38, 0.15);
+  border-radius: 30px;
+  padding: 12px 12px 12px 12px;
+  width: 100%;
+  height: 42px;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: #262626;
+  transition: border-color 0.3s ease;
+}
+.input:hover {
+  border-color: #f6b83d;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+}
+
+.input::placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: rgba(38, 38, 38, 0.5);
+}
+
+.buttonGroup {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  color: #fff;
+  padding-right: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.clearButton {
+  margin-right: 4px;
+}
+
+.button {
+  width: 18px;
+  height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    height: 48px;
+  }
+
+  .inputGroup {
+    width: 230px;
+  }
+
+  .input {
+    height: 52px;
+    padding: 16px 16px 16px 16px;
+  }
+}
