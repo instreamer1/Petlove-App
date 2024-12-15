@@ -19,7 +19,6 @@ import { setPage, setSearchQuery } from '../../redux/news/slice';
 const NewsPage = () => {
   const dispatch = useDispatch();
 
- 
   const news = useSelector(selectNews);
   const searchQuery = useSelector(selectSearchQuery);
   const currentPage = useSelector(selectCurrentPage);
@@ -50,9 +49,9 @@ const NewsPage = () => {
   return (
     <section className={css.news}>
       <div className={css.container}>
-        <div className = {css.newsWrapper} >
-        <Title title='News' />
-        <SearchField onSearch={handleSearch} />
+        <div className={css.newsWrapper}>
+          <Title title='News' />
+          <SearchField onSearch={handleSearch} />
         </div>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}

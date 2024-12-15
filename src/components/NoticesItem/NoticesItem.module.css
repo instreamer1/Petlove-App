@@ -1,0 +1,179 @@
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: 100%;
+  border-radius: 16px;
+  padding: 24px;
+  /* width: 335px; */
+  /* min-height: 454px; */
+}
+
+.image {
+  border-radius: 15px;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+.cardContent {
+}
+
+.cardContentWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2b2b2a;
+  text-align: left;
+}
+
+.starIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  margin-left: auto;
+}
+
+.cardRating {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #2b2b2a;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 204px;
+}
+
+.cardInfoWrapper {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+.cardInfo {
+}
+
+.cardInfoText {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  color: rgba(38, 38, 38, 0.5);
+  margin-bottom: 2px;
+}
+
+.cardInfoValue {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #262626;
+}
+
+.cardDescription {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: #2b2b2a;
+  padding-bottom: 16px;
+  text-align: left;
+  /* margin-bottom: 16px; */
+}
+
+.cardFooter {
+  margin-top: auto;
+}
+
+.cardPrice {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2b2b2a;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.learnMoreBtn {
+  border-radius: 30px;
+  padding: 14px 14px;
+  width: 231px;
+  height: 46px;
+  background: #f6b83d;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.favoriteBtn {
+  border-radius: 30px;
+  padding: 14px;
+  width: 46px;
+  height: 46px;
+  background: #fff4df;
+}
+/* .favoriteActive {
+  background: #fbe7c1;
+} */
+
+.icon {
+  height: 18px;
+  width: 18px;
+  fill: none;
+  stroke-width: 1.5px;
+  stroke: #f6b83d;
+}
+
+@media screen and (min-width: 768px) {
+  .cardItem {
+    width: 342px;
+  }
+
+  .learnMoreBtn {
+    padding: 14px 14px;
+    width: 236px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .cardItem {
+    width: 363px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .cardPrice {
+    font-size: 18px;
+    line-height: 133%;
+  }
+}

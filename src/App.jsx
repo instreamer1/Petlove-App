@@ -11,6 +11,8 @@ import { selectIsLoading, selectIsLoggedIn } from './redux/users/selectors';
 import { checkAuth } from './redux/users/operations';
 import { Toaster } from 'react-hot-toast';
 import NewsPage from './pages/NewsPage/NewsPage';
+import NoticesPage from './pages/NoticesPage/NoticesPage';
+import FriendsPage from './pages/FriendsPage/FriendsPage';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -82,6 +84,9 @@ const App = () => {
               </RestrictedRoute>
             }
           />
+
+          <Route path='/notices' element={<NoticesPage />} />
+          <Route path='/friends' element={< FriendsPage/>} />
 
           <Route path='*' element={<Navigate to='/' />} />
         </Route>

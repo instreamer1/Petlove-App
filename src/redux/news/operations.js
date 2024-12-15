@@ -12,9 +12,9 @@ export const fetchNews = createAsyncThunk(
         console.log(limit);
       try {
         const response = await axios.get('/news'
-        //     , {
-        //   params: { keyword, page, limit }, 
-        // }
+            , {
+          params: { keyword, page, limit }, 
+        }
     );
         console.log('Fetched data:', response.data);
         return response.data;

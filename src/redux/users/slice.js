@@ -11,6 +11,7 @@ const initialState = {
     isRefreshing: false,
     isLoading: false,
     error: null, 
+    favorites: [],
   };
 
 const usersSlice = createSlice({
@@ -64,6 +65,7 @@ const usersSlice = createSlice({
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.token = action.payload.token;
+        state.favorites = action.payload.noticesFavorites;
         state.isLoggedIn = true;
         state.isLoading = false;
       })

@@ -62,7 +62,7 @@ const Header = ({ isHomePage }) => {
           isSidebarOpen ? css.open : ''
         }`}>
         <div className={css.navWrapper}>
-          <Nav isHomePage={isHomePage} />
+          <Nav closeSidebar={closeSidebar} isHomePage={isHomePage} />
           {isLoggedIn ? (
             <LogOutBtn closeSidebar={closeSidebar} isHomePage={isHomePage} />
           ) : (
