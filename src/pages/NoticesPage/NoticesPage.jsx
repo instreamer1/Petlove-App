@@ -55,16 +55,16 @@ const NoticesPage = () => {
       <div className={css.container}>
         <div className={css.noticesWrapper}>
           <Title title='Find your favorite pet' />
-          {/* <NoticesFilters /> */}
+          <NoticesFilters />
           </div>
           <NoticesList notices={notices} />
-          {/* {totalPages > 1 && (
+          {totalPages > 1 && (
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
-          )} */}
+          )}
        
       </div>
     </section>

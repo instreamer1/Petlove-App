@@ -60,8 +60,6 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
-
-        console.log(action.payload);
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.token = action.payload.token;

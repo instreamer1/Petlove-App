@@ -59,3 +59,27 @@ export const fetchNoticeById = createAsyncThunk('notices/fetchNoticeById', async
     return data;
   }, thunkAPI);
 });
+
+
+
+export const fetchFavorites = createAsyncThunk(
+  'users/checkAuth',
+  async (_, thunkAPI) => {
+    // const token = localStorage.getItem('authToken');
+    // if (!token || token === 'undefined' || token === '') {
+    //   return thunkAPI.rejectWithValue('Token is missing or invalid');
+    // }
+    // setAuthHeader(token);
+
+    try {
+      const response = await axios.get('/users/current');
+      console.log(response.data);
+      return response.data;
+     
+    } catch (error) {
+      // clearAuthHeader();
+      localStorage.removeItem('authToken');
+      return thunkAPI.rejectWithValue(error.response?.data.message || 'Authorization failed');
+    }
+  }
+);

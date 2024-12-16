@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import css from './Header.module.css';
+import useResponsive from "../hooks/useResponsive.js"
 
 import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
@@ -12,20 +13,24 @@ import LogOutBtn from '../LogOutBtn/LogOutBtn';
 
 const Header = ({ isHomePage }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width < 768);
-      setIsTablet(width >= 768 && width < 1280);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const { isMobile, isTablet } = useResponsive();
+
+  // const [isMobile, setIsMobile] = useState(false);
+  // const [isTablet, setIsTablet] = useState(false);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const width = window.innerWidth;
+  //     setIsMobile(width < 768);
+  //     setIsTablet(width >= 768 && width < 1280);
+  //   };
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);

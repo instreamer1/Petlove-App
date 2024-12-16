@@ -62,15 +62,14 @@ const NoticesFilters = ({
 
   return (
     <div className={css.filtersForm}>
-      {/* Поисковая строка */}
       <div className={css.filtersFormField}>
         <SearchField onSearch={handleSearch} />
       </div>
 
       {/* Выпадающий список для категорий */}
-      <div className={css.filtersFormField}>
+      <div className={css.frame}>
         <select
-          className={css.filtersFormSelect}
+          className={css.frameFormSelect}
           value={filters.category}
           onChange={e => handleChange('category', e.target.value)}>
           <option value=''>Category</option>
@@ -80,12 +79,9 @@ const NoticesFilters = ({
             </option>
           ))}
         </select>
-      </div>
 
-      {/* Выпадающий список для пола */}
-      <div className={css.filtersFormField}>
         <select
-          className={css.filtersFormSelect}
+          className={css.frameFormSelect}
           value={filters.gender}
           onChange={e => handleChange('gender', e.target.value)}>
           <option value=''>By gender</option>
@@ -100,7 +96,7 @@ const NoticesFilters = ({
       {/* Выпадающий список для типа питомца */}
       <div className={css.filtersFormField}>
         <select
-          className={css.filtersFormSelect}
+          className={css.typeFormSelect}
           value={filters.type}
           onChange={e => handleChange('type', e.target.value)}>
           <option value=''>By type</option>
@@ -112,8 +108,8 @@ const NoticesFilters = ({
         </select>
       </div>
 
-      {/* Выпадающий список для местоположений */}
-      <div className={css.filtersFormField}>
+      
+      <div className={css.locationFormField}>
         <Select
           className={css.filtersFormLocationSelect}
           options={locations}

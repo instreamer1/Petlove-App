@@ -7,8 +7,9 @@ import {
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites } from '../../redux/notices/operations';
 
-const ModalNotice = ({ isOpen, onClose, notice, isFavorite }) => {
+const ModalNotice = ({ isOpen, onClose, notice, isFavorite, handleFavoriteClick }) => {
   const dispatch = useDispatch();
   const loading = useSelector(selectNoticesLoading);
   const error = useSelector(selectNoticesError);
@@ -33,14 +34,14 @@ const ModalNotice = ({ isOpen, onClose, notice, isFavorite }) => {
     updatedAt,
   } = notice;
 
-  const handleFavoriteInModal = async () => {
-    const action = isFavorite ? removeFromFavorites : addToFavorites;
-    try {
-      await dispatch(action(notice._id)).unwrap();
-    } catch (error) {
-      console.error('Ошибка изменения избранного в модальном окне:', error);
-    }
-  };
+  // const handleFavoriteInModal = async () => {
+  //   const action = isFavorite ? removeFromFavorites : addToFavorites;
+  //   try {
+  //     await dispatch(action(notice._id)).unwrap();
+  //   } catch (error) {
+  //     console.error('Ошибка изменения избранного в модальном окне:', error);
+  //   }
+  // };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -108,7 +109,7 @@ const ModalNotice = ({ isOpen, onClose, notice, isFavorite }) => {
                 <button
                   type='button'
                   className={css.addToBtn}
-                  onClick={handleFavoriteInModal}>
+                  onClick={handleFavoriteClick}>
                   {isFavorite ? 'Remove from ' : 'Add to '}
 
                   <svg className={css.icon}>
