@@ -1,69 +1,27 @@
 // import PropTypes from 'prop-types';
 import css from './NoticesFilters.module.css';
 
-import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
-import { useSelector } from 'react-redux';
-import {
-  selectCategories,
-  selectLocations,
-  selectSexOptions,
-  selectSpeciesOptions,
-} from '../../redux/notices/selectors';
 import SearchField from '../SearchField/SearchField';
 
 const NoticesFilters = ({
-  //   categories,
-  //   sexOptions,
-  //   speciesOptions,
-  //   locations,
-  onFilterChange,
-  onResetFilters,
+  filters, // текущее состояние фильтров из Redux или родителя
+  onFilterChange, // коллбек на изменения фильтров
+  onResetFilters, // коллбек на сброс фильтров
+  categories,
+  sexOptions,
+  speciesOptions,
+  locations,
 }) => {
-  const categories = useSelector(selectCategories);
-
-  const sexOptions = useSelector(selectSexOptions);
-  const speciesOptions = useSelector(selectSpeciesOptions);
-  const locations = useSelector(selectLocations);
-  //   const onFilterChange = useSelector(selectSpeciesOptions)
-  //   const onResetFilters = useSelector(selectSpeciesOptions)
-
-  const [filters, setFilters] = useState({
-    search: '',
-    category: '',
-    gender: '',
-    type: '',
-    location: '',
-    sortBy: 'popular',
-  });
-
-  const handleChange = (key, value) => {
-    const updatedFilters = { ...filters, [key]: value };
-    setFilters(updatedFilters);
-    onFilterChange(updatedFilters);
-  };
-  const handleSearch = query => {
-    // dispatch(setSearchQuery(query));
-  };
-
-  const handleReset = () => {
-    const defaultFilters = {
-      search: '',
-      category: '',
-      gender: '',
-      type: '',
-      location: '',
-      sortBy: 'popular',
-    };
-    setFilters(defaultFilters);
-    onResetFilters(defaultFilters);
+  const handleInputChange = (key, value) => {
+    onFilterChange({ ...filters, [key]: value });
   };
 
   return (
     <div className={css.filtersForm}>
       <div className={css.filtersFormField}>
-        <SearchField onSearch={handleSearch} />
+        <SearchField onSearch={value => handleInputChange('keyword', value)} />
       </div>
 
       {/* Выпадающий список для категорий */}
@@ -71,10 +29,10 @@ const NoticesFilters = ({
         <select
           className={css.frameFormSelect}
           value={filters.category}
-          onChange={e => handleChange('category', e.target.value)}>
+          onChange={e => handleInputChange('category', e.target.value)}>
           <option value=''>Category</option>
           {categories.map(category => (
-            <option key={category.id} value={category.id}>
+            <option key={category} value={category}>
               {category.name}
             </option>
           ))}
@@ -83,7 +41,7 @@ const NoticesFilters = ({
         <select
           className={css.frameFormSelect}
           value={filters.gender}
-          onChange={e => handleChange('gender', e.target.value)}>
+          onChange={e => handleInputChange('gender', e.target.value)}>
           <option value=''>By gender</option>
           {sexOptions.map(option => (
             <option key={option.id} value={option.id}>
@@ -98,7 +56,7 @@ const NoticesFilters = ({
         <select
           className={css.typeFormSelect}
           value={filters.type}
-          onChange={e => handleChange('type', e.target.value)}>
+          onChange={e => handleInputChange('type', e.target.value)}>
           <option value=''>By type</option>
           {speciesOptions.map(option => (
             <option key={option.id} value={option.id}>
@@ -108,17 +66,14 @@ const NoticesFilters = ({
         </select>
       </div>
 
-      
       <div className={css.locationFormField}>
         <Select
-          className={css.filtersFormLocationSelect}
-          options={locations}
-          value={locations.find(loc => loc.value === filters.location)}
-          onChange={selectedOption =>
-            handleChange('location', selectedOption?.value || '')
-          }
-          placeholder='Location'
-          isClearable
+          // className={css.filtersFormLocationSelect}
+          // options={locations}
+          // value={locations.find(loc => loc.value === filters.location)}
+          // onChange={e => handleInputChange('location', e.target.value)}
+          // placeholder='Location'
+          // isClearable
         />
       </div>
 
@@ -131,7 +86,7 @@ const NoticesFilters = ({
               name='sortBy'
               value={sortOption}
               checked={filters.sortBy === sortOption}
-              onChange={e => handleChange('sortBy', e.target.value)}
+              onChange={e => handleInputChange('sortBy', e.target.value)}
             />
             {sortOption.charAt(0).toUpperCase() + sortOption.slice(1)}
           </label>
@@ -142,7 +97,7 @@ const NoticesFilters = ({
       <button
         type='button'
         className={css.filtersFormReset}
-        onClick={handleReset}>
+        onClick={onResetFilters}>
         Reset
       </button>
     </div>

@@ -1,11 +1,9 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from './SearchField.module.css';
 import { useState } from 'react';
 import iconSprite from '../../assets/sprite.svg';
 
 const SearchField = ({ onSearch }) => {
-
-  
   const [value, setValue] = useState('');
 
   const handleInputChange = e => setValue(e.target.value);
@@ -21,7 +19,8 @@ const SearchField = ({ onSearch }) => {
   };
 
   return (
-    <div onSubmit={handleSubmit} className={css.form}>
+
+    <form onSubmit={handleSubmit} className={css.form}>
       <div className={css.inputGroup}>
         <input
           type='text'
@@ -49,15 +48,12 @@ const SearchField = ({ onSearch }) => {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
 export default SearchField;
 
-// SearchField.propTypes = {
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   placeholder: PropTypes.string,
-//   className: PropTypes.string,
-// };
+SearchField.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};

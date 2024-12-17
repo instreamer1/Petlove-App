@@ -11,9 +11,11 @@ const handleAsyncThunkError = async (callback, thunkAPI) => {
   }
 };
 
-export const fetchNotices = createAsyncThunk('notices/fetchNotices', async (params, thunkAPI) => {
+export const fetchNotices = createAsyncThunk('notices/fetchNotices', async (filters, thunkAPI) => {
   return handleAsyncThunkError(async () => {
-    const { data } = await axios.get('/notices', { params });
+    const { data } = await axios.get('/notices', {   params: {
+      ...filters, 
+    }, });
     return data;
   }, thunkAPI);
 });

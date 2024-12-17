@@ -5,7 +5,7 @@ const NewsList = ({ news }) => {
   return (
     <ul className={css.list}>
       {news.map(item => (
-        <NewsItem key={item.id} item={item} />
+        <NewsItem key={item._id} item={item} />
       ))}
     </ul>
   );

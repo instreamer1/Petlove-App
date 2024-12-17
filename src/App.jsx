@@ -76,17 +76,10 @@ const App = () => {
             }
           />
 
-          <Route
-            path='/news'
-            element={
-              <RestrictedRoute redirectTo='/news'>
-                <NewsPage />
-              </RestrictedRoute>
-            }
-          />
+          <Route path='/news' element={<NewsPage />} />
 
           <Route path='/notices' element={<NoticesPage />} />
-          <Route path='/friends' element={< FriendsPage/>} />
+          <Route path='/friends' element={<FriendsPage />} />
 
           <Route path='*' element={<Navigate to='/' />} />
         </Route>

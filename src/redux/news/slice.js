@@ -16,8 +16,8 @@ const newsSlice = createSlice({
   initialState,
   reducers: {
     setSearchQuery: (state, action) => {
-      state.searchQuery = action.payload.trim(); // Удаляем лишние пробелы
-      state.currentPage = 1; // Сбрасываем на первую страницу
+      state.searchQuery = action.payload.trim();
+      state.currentPage = 1;
     },
     setPage: (state, action) => {
       if (action.payload > 0 && action.payload <= state.totalPages) {
@@ -25,21 +25,21 @@ const newsSlice = createSlice({
       }
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchNews.pending, (state) => {
+      .addCase(fetchNews.pending, state => {
         state.loading = true;
-        state.error = null; // Очищаем ошибку при новом запросе
+        state.error = null;
       })
       .addCase(fetchNews.fulfilled, (state, action) => {
-        state.news = action.payload.results ;
+        state.news = action.payload.results;
         state.totalPages = action.payload.totalPages || 0;
         state.page = action.payload.page;
         state.loading = false;
       })
       .addCase(fetchNews.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || 'Не удалось загрузить новости.';
+        state.error = action.payload;
       });
   },
 });
@@ -47,6 +47,3 @@ const newsSlice = createSlice({
 export const { setSearchQuery, setPage } = newsSlice.actions;
 
 export const newsReducer = newsSlice.reducer;
-
-
-

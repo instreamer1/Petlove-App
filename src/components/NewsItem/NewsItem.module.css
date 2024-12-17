@@ -72,11 +72,6 @@
    
    
    @media screen and (min-width: 768px) {
-     /* .list {
-       display: grid;
-       grid-template-columns: repeat(2, 1fr);
-       gap: 24px;
-     } */
    
      .item {
        width: 100%;
@@ -114,11 +109,7 @@
      }
    }
    
-   /* @media screen and (min-width: 1280px) {
-     .list {
-       display: grid;
-       grid-template-columns: repeat(3, 1fr);
-       gap: 35px;
-     }
+   @media screen and (min-width: 1280px) {
+ 
    }
-    */
+   

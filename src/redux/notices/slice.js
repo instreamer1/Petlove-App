@@ -11,16 +11,24 @@ import {
 
 const initialState = {
   notices: [],
+  filters: {
+    keyword: '',
+    category: '',
+    sex: '',
+    species: '',
+    locationId: '',
+    byDate: true,
+    byPrice: null,
+    byPopularity: true,
+  },
   categories: [],
   sexOptions: [],
   speciesOptions: [],
-  locations: [],
-  searchQuery: '',
   currentNotice: null,
   favorites: [],
+  totalPages: 0,
   currentPage: 1,
   page: null,
-  totalPages: 0,
   loading: false,
   error: null,
 };
@@ -29,10 +37,14 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState,
   reducers: {
-    setNoticesSearchQuery: (state, action) => {
-      state.searchQuery = action.payload.trim(); // Удаляем лишние пробелы
-      state.currentPage = 1; // Сбрасываем на первую страницу
+    setNoticesFilters(state, action) {
+      state.filters = action.payload;
+      state.currentPage = 1;
     },
+    // setNoticesSearchQuery(state, action) {
+    //   state.filters.search = action.payload;
+    //   state.currentPage = 1;
+    // },
     setNoticesPage: (state, action) => {
       if (action.payload > 0 && action.payload <= state.totalPages) {
         state.currentPage = action.payload;
@@ -48,9 +60,8 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, (state, action) => {
         state.loading = false;
         state.notices = action.payload.results;
-        state.totalPages = action.payload.totalPages || 0;
-        // state.page = action.payload.page;
-        state.currentPage = action.payload.page;
+        state.totalPages = action.payload.totalPages || 1;
+        state.page = action.payload.page;
       })
       .addCase(fetchNotices.rejected, (state, action) => {
         state.loading = false;
@@ -61,6 +72,7 @@ const noticesSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
+        console.log('categories', action.payload);
         state.categories = action.payload;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
@@ -70,8 +82,10 @@ const noticesSlice = createSlice({
 
       .addCase(fetchSexOptions.fulfilled, (state, action) => {
         state.sexOptions = action.payload;
+        console.log('sexOptions', action.payload);
       })
       .addCase(fetchSpeciesOptions.fulfilled, (state, action) => {
+        console.log('speciesOptions', action.payload);
         state.speciesOptions = action.payload;
       })
       .addCase(addToFavorites.pending, state => {
@@ -107,6 +121,6 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { setNoticesSearchQuery, setNoticesPage } = noticesSlice.actions;
+export const { setNoticesFilters, setNoticesPage } = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

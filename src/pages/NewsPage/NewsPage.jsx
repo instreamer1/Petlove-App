@@ -27,7 +27,6 @@ const NewsPage = () => {
   const error = useSelector(selectError);
 
   const itemsPerPage = 6;
-  console.log(news);
   useEffect(() => {
     dispatch(
       fetchNews({
@@ -40,6 +39,7 @@ const NewsPage = () => {
 
   const handleSearch = query => {
     dispatch(setSearchQuery(query));
+    dispatch(setPage(1));
   };
 
   const handlePageChange = page => {
@@ -55,6 +55,7 @@ const NewsPage = () => {
         </div>
         {loading && <p>Loading...</p>}
         {error && <p>Error: {error}</p>}
+        {!loading && !error && news.length === 0 && <p>No news found.</p>}
         <NewsList news={news} />
         {totalPages > 1 && (
           <Pagination
