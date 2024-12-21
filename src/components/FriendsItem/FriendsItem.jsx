@@ -1,84 +1,72 @@
+import { truncateString } from '../constants';
 import css from './FriendsItem.module.css';
 
 const FriendsItem = ({ friend }) => {
-  
   const {
     _id,
     title,
-    //     "url": "https://lico.vet/",
-    //     "addressUrl": "https://goo.gl/maps/sub8u9TAAvLJRE9j9",
+    url,
     imageUrl,
-    //     "address": "77 Drugetiv Street, Uzhhorod, Transcarpathian region, 88003",
-    //     "workDays": [
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd35",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd36",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd37",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd38",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd39",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd3a",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         },
-    //         {
-    //             "_id": "675ca4a00a0375f38dc5bd3b",
-    //             "isOpen": true,
-    //             "from": "09:00",
-    //             "to": "20:00"
-    //         }
-    //     ],
-    //     "phone": null,
-    //     "email": null
-    // },
+    address,
+    phone,
+    workDays,
+    //   "workDays": [
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faea",
+    //         "isOpen": false
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faeb",
+    //         "isOpen": false
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faec",
+    //         "isOpen": false
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faed",
+    //         "isOpen": false
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faee",
+    //         "isOpen": false
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faef",
+    //         "isOpen": true,
+    //         "from": "11:00",
+    //         "to": "16:00"
+    //     },
+    //     {
+    //         "_id": "67670e6b0a0375f38dc5faf0",
+    //         "isOpen": true,
+    //         "from": "11:00",
+    //         "to": "16:00"
+    //     }
+    // ],
   } = friend;
 
   return (
     <li className={css.listItem}>
       <img src={imageUrl} alt={name} className={css.image} />
       <div className={css.cardContent}>
-        <h3 className={css.cardTitle}>{title}</h3>
-        {/* <div className={css.footer}>
-          <div className={css.cardInfo}>
-            <p className={css.cardInfoItem}>Birthday: {birthday}</p>
-            <p className={css.cardInfoItem}>Sex: {sex}</p>
-            <p className={css.cardInfoItem}>Species: {species}</p>
-            <p className={css.cardInfoItem}>Category: {category}</p>
+        <div className={css.time}>
+          {/* <p className={css.cardTime}>Category: {workDays.from}</p> */}
+        </div>
+        <div className={css.cardWrapper}>
+          <h3 className={css.cardTitle}>{title}</h3>
+          <div className={css.footer}>
+            <p className={css.cardInfoItem}>
+              Email: <span>{truncateString(url, 29)}</span>
+            </p>
+            <p className={css.cardInfoItem}>
+              Address: <span>{address}</span>
+            </p>
+            <p className={css.cardInfoItem}>
+              Phone: <span>{phone}</span>
+            </p>
           </div>
-          <p className={css.cardDescription}>{comment}</p>
-          <div className={css.cardFooter}>
-            <span className={css.cardPrice}>${price}</span>
-            <button className={css.cardButton}>Learn more</button>
-            <span className={css.cardRating}>
-              <i className={css.starIcon}>⭐</i> {popularity}
-            </span>
-          </div>
-        </div>*/}
+        </div>
       </div>
     </li>
   );

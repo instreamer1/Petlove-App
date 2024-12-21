@@ -1,0 +1,20 @@
+.buttonGroup{
+  padding-right: 15px ;
+  padding-left: 0;
+}
+
+.button {
+  /* position: absolute; */
+  /* top: 50%;
+  right: 10px; */
+  /* transform: translateY(-50%);
+  background: none;
+  border: none; */
+  cursor: pointer;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill:none
+}

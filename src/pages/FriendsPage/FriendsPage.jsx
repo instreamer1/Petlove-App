@@ -4,17 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import Title from '../../components/Title/Title';
 import FriendsList from '../../components/FriendsList/FriendsList';
 import { fetchFriends } from '../../redux/friends/operations';
+import { selectError, selectFriends, selectLoading } from '../../redux/friends/selectors';
 
 const FriendsPage = () => {
   const dispatch = useDispatch();
 
-  //   const friends = useSelector(selectNotices);
+  const friends = useSelector(selectFriends);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
-  //   const loading = useSelector(selectNoticesLoading);
-  //   const error = useSelector(selectNoticesError);
 
-  const { friends, loading, error } = useSelector(state => state.friends);
-  console.log(friends);
 
   useEffect(() => {
     dispatch(fetchFriends());
@@ -27,7 +26,7 @@ const FriendsPage = () => {
     <section className={css.friends}>
       <div className={css.container}>
         <div className={css.friendsWrapper}>
-          <Title title='Find your favorite pet' />
+          <Title title='Our friends' />
         </div>
         <FriendsList friends={friends} />
       </div>

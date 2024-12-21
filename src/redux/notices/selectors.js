@@ -6,7 +6,6 @@ export const selectSearchQuery = (state) => state.notices.searchQuery;
 export const selectCategories = (state) => state.notices.categories;
 export const selectSexOptions = (state) => state.notices.sexOptions;
 export const selectSpeciesOptions = (state) => state.notices.speciesOptions;
-export const selectLocations  = (state) => state.notices.locations
 export const selectCurrentNotice = state => state.notices.currentNotice;
 export const selectFavorites = state => state.notices.favorites;
 export const selectNoticesCurrentPage = state => state.notices.currentPage;
@@ -17,5 +16,5 @@ export const selectNoticesError = state => state.notices.error;
 
 export const selectFilteredCategories = createSelector(
     [selectCategories],
-    categories => categories.filter(category => category.active)
+    categoriesState =>  categoriesState.categoriesList.filter(category => category.active)
   );

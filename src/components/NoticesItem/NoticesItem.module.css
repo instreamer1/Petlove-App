@@ -5,8 +5,6 @@
   height: 100%;
   border-radius: 16px;
   padding: 24px;
-  /* width: 335px; */
-  /* min-height: 454px; */
 }
 
 .image {
@@ -58,9 +56,9 @@
 }
 
 .cardInfoWrapper {
-  display: flex;
-  gap: 13px;
+  display: flex;;
   margin-bottom: 16px;
+  justify-content: space-between;
 }
 .cardInfo {
 }
@@ -160,6 +158,11 @@
     font-size: 16px;
     line-height: 125%;
   }
+  .cardInfoWrapper {
+    justify-content:flex-start;
+    gap: 13px;
+  }
+
 }
 
 @media screen and (min-width: 768px) {

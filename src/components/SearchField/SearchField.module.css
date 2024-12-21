@@ -8,7 +8,8 @@
 
 .input {
   outline: none;
-  border: 1px solid rgba(38, 38, 38, 0.15);
+  /* border: 1px solid rgba(38, 38, 38, 0.15); */
+  border: none;
   border-radius: 30px;
   padding: 12px 12px 12px 12px;
   width: 100%;
@@ -21,6 +22,7 @@
   letter-spacing: -0.03em;
   color: #262626;
   transition: border-color 0.3s ease;
+  cursor: pointer;
 }
 .input:hover {
   border-color: #f6b83d;
@@ -38,7 +40,8 @@
   font-size: 16px;
   line-height: 125%;
   letter-spacing: -0.03em;
-  color: rgba(38, 38, 38, 0.5);
+  /* color: rgba(38, 38, 38, 0.5); */
+  color: #262626;
 }
 
 .buttonGroup {
@@ -66,14 +69,16 @@
 @media screen and (min-width: 768px) {
   .form {
     height: 48px;
+    
   }
 
   .inputGroup {
     width: 230px;
+    width: 265px;
   }
 
   .input {
-    height: 52px;
+    height: 48px;
     padding: 16px 16px 16px 16px;
   }
 }

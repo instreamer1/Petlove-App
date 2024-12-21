@@ -8,20 +8,31 @@
   padding: 20px;
 }
 
-.frame {
+.filtersFormWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  /* width: 335px;
+    height: 378px; */
+}
+.filtersFormFrame {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 8px;
-
+  gap: 8px;
   margin-bottom: 12px;
+}
+.frame {
+  max-width: 143px;
+  height: 42px;
+  border-radius: 30px;
+  position: relative;
 }
 
 .frameFormSelect {
   border-radius: 30px;
-
   padding: 0 12px;
-  width: 143px;
-  height: 42px;
+  width: 100%;
+  height: 100%;
   background: #fff;
   font-family: var(--font-family);
   font-weight: 500;
@@ -29,6 +40,36 @@
   line-height: 129%;
   letter-spacing: -0.03em;
   color: #262626;
+  outline: none;
+  border: none;
+  appearance: none; /* Скрывает стандартную стрелку */
+  -webkit-appearance: none; /* Для Safari */
+  -moz-appearance: none; /* Для Firefox */
+  padding-right: 30px; /* Место для собственной стрелки */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.frameFormSelect:hover {
+  border: 1px solid #f6b83d;
+}
+
+.icon {
+  position: absolute;
+  right: 12px; /* Размещение стрелки справа */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Стрелка не блокирует клик по селекту */
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke-width: 1.5px;
+  stroke: #262626;
+}
+
+.frameType {
+  position: relative;
+  max-width: 295px;
+  height: 42px;
 }
 
 .filtersFormField {
@@ -38,8 +79,10 @@
 .typeFormSelect {
   border-radius: 30px;
   padding: 10px 20px 10px 12px;
-  width: 295px;
-  height: 42px;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
   background: #fff;
   font-family: var(--font-family);
   font-weight: 500;
@@ -47,69 +90,167 @@
   line-height: 129%;
   letter-spacing: -0.03em;
   color: #262626;
+  outline: none;
+  border: none;
+  appearance: none; /* Скрывает стандартную стрелку */
+  -webkit-appearance: none; /* Для Safari */
+  -moz-appearance: none; /* Для Firefox */
+  padding-right: 30px; /* Место для собственной стрелки */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
+.filtersFormLocationSelect {
+  height: 40px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
+
+.typeFormSelect:hover {
+  border: 1px solid #f6b83d;
+}
 
 .locationFormField {
-  /* border-radius: 30px;
-padding: 12px 22px 12px 12px;
-width: 295px;
-height: 42px;
-background: #fff; */
-margin-bottom: 40px;
+  height: 42px;
+  border-radius: 30px;
 }
 
-.filtersFormLocationSelect{
+.horizontalLine {
+  border: none;
+  border-top: 2px solid rgba(38, 38, 38, 0.1);
+  margin: 20px 0;
+}
+
+.filtersRadioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* .input {
+  display: none;
+}
+
+
+.input:checked + .popular {
+  background-color: #f6b83d;
+  color: white;
+} */
+
+/* .inputLabel {
+  cursor: pointer;
   border-radius: 30px;
-  /* padding: 12px 22px 12px 12px;
-  width: 295px;
+  padding: 12px;
+  width: 90px;
   height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #fff;
-  border-radius: 30px;
-  padding: 12px 228px 12px 12px;
-  width: 295px;
-  height: 42px;
-  background: #fff; */
-}
-
-/* .filtersFormLocationSelect::placeholder {
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
-  line-height: 129%;
+  line-height: 125%;
   letter-spacing: -0.03em;
   color: #262626;
 } */
+/*  */
 
 
-
-/* .filtersFormSelect,
-.filtersFormLocationSelect {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-} */
-
-/* .filtersFormRadioGroup {
+.sort-options {
   display: flex;
-  gap: 0.5rem;
-} */
-
-/* .filtersFormRadio {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  gap: 10px;
 }
 
-.filtersFormReset {
-  padding: 0.5rem 1rem;
-  background-color: #f00;
-  color: #fff;
-  border: none;
+.sort-option {
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
-.filtersFormReset:hover {
-  background-color: #c00;
-} */
+.sort-option.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.clear-button {
+  margin-left: 10px;
+  cursor: pointer;
+  color: red;
+}
+
+.clear-button:hover {
+  color: darkred;
+}
+
+/*  */
+
+
+@media screen and (min-width: 768px) {
+  .filtersForm {
+    padding: 40px 32px;
+  }
+
+  .filtersFormWrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .frameFormSelect {
+    font-size: 16px;
+  }
+  .typeFormSelect {
+    font-size: 16px;
+  }
+
+  .filtersFormLocationSelect {
+    font-size: 16px;
+  }
+
+  .frame {
+    max-width: 170px;
+    width: 170px;
+    height: 48px;
+    border-radius: 30px;
+    position: relative;
+  }
+
+  .filtersFormFrame {
+    gap: 16px;
+  }
+
+  .frameType {
+    max-width: 195px;
+    width: 195px;
+    height: 48px;
+  }
+
+  .filtersFormLocationSelect {
+    height: 48px;
+    width: 227px;
+  }
+
+  .input {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .filtersForm {
+    padding: 40px;
+  }
+
+  .frame {
+    max-width: 190px;
+    width: 190px;
+  }
+}
