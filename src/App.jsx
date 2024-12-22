@@ -8,11 +8,18 @@ import PrivateRoute from './pages/PrivateRoute';
 import LoginPage from './pages/LoginPage/LoginPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectIsLoggedIn } from './redux/users/selectors';
-import { checkAuth } from './redux/users/operations';
+import { checkAuth, getCurrentUserFullInfo } from './redux/users/operations';
 import { Toaster } from 'react-hot-toast';
 import NewsPage from './pages/NewsPage/NewsPage';
 import NoticesPage from './pages/NoticesPage/NoticesPage';
 import FriendsPage from './pages/FriendsPage/FriendsPage';
+import AddPetPage from './pages/AddPetPage/AddPetPage';
+import {
+  fetchCategories,
+  fetchSexOptions,
+  fetchSpeciesOptions,
+} from './redux/notices/operations';
+import { fetchCitiesWithLocations } from './redux/cities/operations';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -23,12 +30,19 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Вызываем checkAuth при загрузке приложения
     dispatch(checkAuth());
+    dispatch(fetchCategories());
+    dispatch(fetchSexOptions());
+    dispatch(fetchSpeciesOptions());
+    dispatch(fetchCitiesWithLocations());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getCurrentUserFullInfo());
   }, [dispatch]);
 
   if (isLoading) {
-    return <p>Loading...</p>; // Показать индикатор загрузки
+    return <p>Loading...</p>;
   }
 
   // return isRefreshing ? (
@@ -73,6 +87,15 @@ const App = () => {
               <RestrictedRoute redirectTo='/profile'>
                 <LoginPage />
               </RestrictedRoute>
+            }
+          />
+
+          <Route
+            path='/add-pet'
+            element={
+              <PrivateRoute redirectTo='/register'>
+                <AddPetPage />
+              </PrivateRoute>
             }
           />
 

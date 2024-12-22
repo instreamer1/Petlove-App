@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import css from './Header.module.css';
 import useResponsive from "../hooks/useResponsive.js"
 

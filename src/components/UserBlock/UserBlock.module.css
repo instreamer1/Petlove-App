@@ -1,0 +1,39 @@
+.userTitle {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2b2b2a;
+  margin-bottom: 20px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+.userName,
+.userEmail,
+.userPhone {
+  border: 1px solid #f6b83d;
+  border-radius: 30px;
+  padding: 12px 12px 12px 12px;
+  width: 295px;
+  height: 42px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
+.userName:disabled,
+.userEmail:disabled,
+.userPhone:disabled{
+    background: #fff;
+}
+
+
+.userName,
+.userEmail {
+  margin-bottom: 10px;
+}

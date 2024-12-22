@@ -12,7 +12,6 @@ const citiesSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      // Fetch cities by keyword
       .addCase(fetchCitiesByKeyword.pending, state => {
         state.loading = true;
         state.error = null;
@@ -25,7 +24,6 @@ const citiesSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Fetch cities with locations
       .addCase(fetchCitiesWithLocations.pending, state => {
         state.loading = true;
         state.error = null;
@@ -33,7 +31,6 @@ const citiesSlice = createSlice({
       .addCase(fetchCitiesWithLocations.fulfilled, (state, action) => {
         state.loading = false;
         state.locationsList = action.payload;
-        console.log(action.payload);
       })
       .addCase(fetchCitiesWithLocations.rejected, (state, action) => {
         state.loading = false;

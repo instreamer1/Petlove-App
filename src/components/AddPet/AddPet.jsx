@@ -1,16 +1,15 @@
-import css from "./AddPet.module.css"
+import { Link } from 'react-router-dom';
+import css from './AddPet.module.css';
 
+const AddPet = () => {
+  return (
+    <div className={css.addPet}>
+      <h3 className={css.addPetTitle}>My pets</h3>
+      <Link to='/add-pet' className={css.addPetLink}>
+        Add pet +
+      </Link>
+    </div>
+  );
+};
 
-
-const AddPet = ({ onAddPet }) => {
-    return (
-      <div className="add-pet-container">
-        <button className="add-pet-btn" onClick={onAddPet}>
-          Add pet +
-        </button>
-      </div>
-    );
-  };
-  
-  export default AddPet;
-  
+export default AddPet;

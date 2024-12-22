@@ -8,8 +8,6 @@ import registrationMobile2x from '../../assets/images/img_register_tab2x.png';
 import registrationDesktop from '../../assets/images/img_register_desk.png';
 import registrationDesktop2x from '../../assets/images/img_register_desk2x.png';
 
-
-
 import registration from '../../assets/images/img_register_tab.png';
 
 import { useDispatch } from 'react-redux';
@@ -18,19 +16,17 @@ import { register } from '../../redux/users/operations';
 import toast from 'react-hot-toast';
 
 const RegistrationPage = () => {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const  handleFormSubmit = async (data) => {
+  const handleFormSubmit = async data => {
     console.log(data);
     const { name, email, password } = data;
-        try {
-          await 
-          dispatch(register({ name, email, password }))
-          .unwrap();
-          toast.success('User registered successfully!');
-        } catch (error) {
-          toast.error(error);
-        }
+    try {
+      await dispatch(register({ name, email, password })).unwrap();
+      toast.success('User registered successfully!');
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   return (
@@ -49,11 +45,17 @@ const dispatch = useDispatch()
         <div className={css.formWrapper}>
           <Title
             title='Registration'
-            description='Thank you for your interest in our platform.'
+            // description='Thank you for your interest in our platform.'
           />
+          <p className={css.description}>
+            Thank you for your interest in our platform.
+          </p>
           <RegistrationForm onSubmit={handleFormSubmit} />
           <p className={css.textLink}>
-            Already have an account? <a className={css.loginLink}href='/login'>Login</a>
+            Already have an account?{' '}
+            <a className={css.loginLink} href='/login'>
+              Login
+            </a>
           </p>
         </div>
       </div>
@@ -62,4 +64,3 @@ const dispatch = useDispatch()
 };
 
 export default RegistrationPage;
-

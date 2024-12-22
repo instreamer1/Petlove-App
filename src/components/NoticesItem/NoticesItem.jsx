@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsFavorite,
+  selectIsLoading,
   selectIsLoggedIn,
 } from '../../redux/users/selectors';
 import {
@@ -30,6 +31,7 @@ const NoticesItem = ({ notice }) => {
   const currentNotice = useSelector(selectCurrentNotice);
 
   const loading = useSelector(selectNoticesLoading);
+  const loadingProfile = useSelector(selectIsLoading);
   const error = useSelector(selectNoticesError);
 
   const {
@@ -78,9 +80,7 @@ const NoticesItem = ({ notice }) => {
       console.error(error);
     }
   };
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
   return (
     <>
       <li className={css.cardItem}>
@@ -147,13 +147,8 @@ const NoticesItem = ({ notice }) => {
                   type='button'
                   className={css.favoriteBtn}
                   onClick={handleFavoriteClick}
-                  disabled={loading} // блокируем кнопку во время загрузки
-                >
-                  {loading ? (
-                    <svg className={css.spinnerIcon}>
-                      {/* Здесь можно добавить иконку спиннера */}
-                    </svg>
-                  ) : isFavorite ? (
+                  disabled={loading}>
+                  {isFavorite ? (
                     <svg className={css.icon}>
                       <use href={`${iconSprite}#trash`}></use>
                     </svg>

@@ -40,10 +40,6 @@ const noticesSlice = createSlice({
       state.filters = action.payload;
       state.currentPage = 1;
     },
-    // setNoticesSearchQuery(state, action) {
-    //   state.filters.search = action.payload;
-    //   state.currentPage = 1;
-    // },
     setNoticesPage: (state, action) => {
       if (action.payload > 0 && action.payload <= state.totalPages) {
         state.currentPage = action.payload;
@@ -71,7 +67,6 @@ const noticesSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        console.log('categories', action.payload);
         state.categories = action.payload;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
@@ -81,10 +76,8 @@ const noticesSlice = createSlice({
 
       .addCase(fetchSexOptions.fulfilled, (state, action) => {
         state.sexOptions = action.payload;
-        console.log('sexOptions', action.payload);
       })
       .addCase(fetchSpeciesOptions.fulfilled, (state, action) => {
-        console.log('speciesOptions', action.payload);
         state.speciesOptions = action.payload;
       })
       .addCase(addToFavorites.pending, state => {

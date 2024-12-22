@@ -68,16 +68,59 @@ export const checkAuth = createAsyncThunk(
     } catch (error) {
       clearAuthHeader();
       localStorage.removeItem('authToken');
-      return thunkAPI.rejectWithValue(error.response?.data.message || 'Authorization failed');
+      return thunkAPI.rejectWithValue(
+        error.response?.data.message || 'Authorization failed'
+      );
+    }
+  },
+
+  {
+    condition: (_, { getState }) => {
+      const { users } = getState();
+      if (users.token === null) {
+        return false;
+      }
+    },
+  }
+);
+
+export const getCurrentUserFullInfo = createAsyncThunk(
+  'users/getCurrentUserFullInfo',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/users/current/full');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-//   {
-//     condition: (_, { getState }) => {
-//       const { users } = getState();
-//       if (users.token === null) {
-//         return false;
-//       }
-//     },
-//   }
-// );
+
+export const addPet = createAsyncThunk(
+  'pets/addPet',
+  async (petData, thunkAPI) => {
+    try {
+      const response = await axios.post('/users/current/pets/add', petData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removePet = createAsyncThunk(
+  'pets/removePet',
+  async (petId, thunkAPI) => {
+
+    try {
+      const response = await axios.delete(`/users/current/pets/remove/${petId}`);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.data) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      } else {
+        return thunkAPI.rejectWithValue({ message: 'Something went wrong!' });
+      }
+    }
+  }
+);

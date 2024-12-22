@@ -1,18 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { checkAuth, logIn, logOut, register } from './operations';
+import {
+  addPet,
+  checkAuth,
+  getCurrentUserFullInfo,
+  logIn,
+  logOut,
+  register,
+  removePet,
+} from './operations';
 
 const initialState = {
-    user: {
-      name: null,
-      email: null,
-    },
-    token: localStorage.getItem('authToken') || null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    isLoading: false,
-    error: null, 
-    favorites: [],
-  };
+  user: {
+    name: null,
+    email: null,
+    phone: null,
+    avatar: null,
+  },
+  token: localStorage.getItem('authToken') || null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  isLoading: false,
+  error: null,
+  favorites: [],
+  pets: [],
+  noticesViewed: [],
+};
 
 const usersSlice = createSlice({
   name: 'users',
@@ -68,11 +80,54 @@ const usersSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(checkAuth.rejected, (state, action) => {
-        state.user = { name: null, email: null }; 
+        state.user = { name: null, email: null };
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = action.payload;
-   
+      })
+      .addCase(getCurrentUserFullInfo.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getCurrentUserFullInfo.fulfilled, (state, action) => {
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          phone: action.payload.phone,
+          avatar: action.payload.avatar,
+        };
+        state.favorites = action.payload.noticesFavorites;
+        state.pets = action.payload.pets;
+        state.noticesViewed = action.payload.noticesViewed;
+        state.isLoading = false;
+      })
+      .addCase(getCurrentUserFullInfo.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(addPet.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.pets.push(...action.payload.pets);
+      })
+      .addCase(addPet.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(removePet.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(removePet.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.pets = state.pets.filter(pet => pet._id !== action.meta.arg);
+      })
+      .addCase(removePet.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload?.message || 'Failed to remove pet';
       });
   },
 });

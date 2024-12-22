@@ -24,6 +24,18 @@
   background: #fff;
 }
 
+.description {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: #262626;
+  text-align: left;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
 .textLink {
   font-family: var(--font-family);
   font-weight: 500;
@@ -63,6 +75,12 @@
   .formWrapper {
     border-radius: 60px;
     padding: 71px 140px;
+  }
+
+  .description {
+    font-size: 18px;
+    margin-top: 16px;
+    margin-bottom: 32px;
   }
 
   .textLink {

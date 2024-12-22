@@ -1,15 +1,17 @@
 import EditUserBtn from '../EditUserBtn/EditUserBtn';
 import LogOutBtn from '../LogOutBtn/LogOutBtn';
+import PetsBlock from '../PetsBlock/PetsBlock';
 
 import UserBlock from '../UserBlock/UserBlock';
 import css from './UserCard.module.css';
 
-const UserCard = props => {
+const UserCard = ({pets, user, onDeletePet}) => {
   return (
-    <div>
+    <div className={css.userCard}>
       <EditUserBtn />
-      <UserBlock />
-      <PetsBlock />
+      <UserBlock user={user} />
+   
+     { pets && <PetsBlock pets={pets} onDeletePet={onDeletePet} />}
       <LogOutBtn />
     </div>
   );
@@ -17,21 +19,4 @@ const UserCard = props => {
 
 export default UserCard;
 
-// UserCard
-// Рендерит карточку с информацией о пользователе и его питомцах. Содержит:
 
-// EditUserBtn
-/// Кнопка для редактирования данных пользователя.
-/// Действие: Открывает модальное окно ModalEditUser.
-
-// UserBlock
-/// Отображает аватар пользователя (или кнопку редактирования, если аватар отсутствует), имя, email и номер телефона.
-
-// PetsBlock
-// Содержит:
-/// AddPet: Кнопка для перехода на маршрут /add-pet.
-/// PetsList: Список питомцев пользователя.
-
-// LogOutBtn
-/// Кнопка для выхода из аккаунта.
-/// Действие: Открывает модальное окно ModalApproveAction.

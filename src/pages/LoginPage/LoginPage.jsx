@@ -39,8 +39,10 @@ const LoginPage = () => {
         <div className={css.formWrapper}>
           <Title
             title='Log in'
-            description='Welcome! Please enter your credentials to login to the platform:'
           />
+          <p className={css.description}>
+            Welcome! Please enter your credentials to login to the platform:
+          </p>
           <LoginForm onSubmit={handleFormSubmit} />
           <p className={css.textLink}>
             Don’t have an account?{' '}
