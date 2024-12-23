@@ -20,7 +20,6 @@ const AddPetPage = () => {
 
 
   const handleFormSubmit = async (data) => {
-    console.log(data);
     const { name, title, imgURL, species, birthday, sex } = data;
     try {
       await dispatch(addPet({ name, title, imgURL, species, birthday, sex }));

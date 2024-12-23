@@ -109,13 +109,13 @@
 
 .buttonWrapper {
   display: flex;
-  justify-content: space-between;
+gap: 10px;
 }
 
 .learnMoreBtn {
   border-radius: 30px;
   padding: 14px 14px;
-  width: 231px;
+  width: 100%;
   height: 46px;
   background: #f6b83d;
   font-family: var(--font-family);
@@ -147,12 +147,12 @@
 
 @media screen and (min-width: 768px) {
   .cardItem {
-    width: 342px;
+    width: 100%;
   }
 
   .learnMoreBtn {
     padding: 14px 14px;
-    width: 236px;
+    width: 100%;
     height: 48px;
     font-size: 16px;
     line-height: 125%;
@@ -164,9 +164,9 @@
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .cardItem {
-    width: 363px;
+    width: 100%;
   }
 
   .cardTitle {

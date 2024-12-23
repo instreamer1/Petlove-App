@@ -88,7 +88,6 @@ export const fetchFavorites = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/users/current');
-      console.log(response.data);
       return response.data;
     } catch (error) {
       localStorage.removeItem('authToken');

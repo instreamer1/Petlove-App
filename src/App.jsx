@@ -16,10 +16,12 @@ import FriendsPage from './pages/FriendsPage/FriendsPage';
 import AddPetPage from './pages/AddPetPage/AddPetPage';
 import {
   fetchCategories,
+  fetchNotices,
   fetchSexOptions,
   fetchSpeciesOptions,
 } from './redux/notices/operations';
 import { fetchCitiesWithLocations } from './redux/cities/operations';
+import { selectFilters, selectNoticesCurrentPage } from './redux/notices/selectors';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -28,6 +30,9 @@ const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
+ const currentPage = useSelector(selectNoticesCurrentPage);
+ const itemsPerPage = 6;
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -40,6 +45,12 @@ const App = () => {
   useEffect(() => {
     dispatch(getCurrentUserFullInfo());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchNotices({ ...filters, page: currentPage, limit: itemsPerPage })
+  //   );
+  // }, [dispatch, filters, currentPage]);
 
   if (isLoading) {
     return <p>Loading...</p>;

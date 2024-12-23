@@ -16,7 +16,6 @@ const clearAuthHeader = () => {
 export const register = createAsyncThunk(
   'users/signup',
   async (newUser, thunkAPI) => {
-    console.log(newUser);
     try {
       const response = await axios.post('/users/signup', newUser);
 
@@ -32,7 +31,6 @@ export const register = createAsyncThunk(
 export const logIn = createAsyncThunk(
   'users/signin',
   async (credentials, thunkAPI) => {
-    console.log(credentials);
     try {
       const response = await axios.post('/users/signin', credentials);
       setAuthHeader(response.data.token);
@@ -111,9 +109,10 @@ export const addPet = createAsyncThunk(
 export const removePet = createAsyncThunk(
   'pets/removePet',
   async (petId, thunkAPI) => {
-
     try {
-      const response = await axios.delete(`/users/current/pets/remove/${petId}`);
+      const response = await axios.delete(
+        `/users/current/pets/remove/${petId}`
+      );
       return response.data;
     } catch (error) {
       if (error.response && error.response.data) {
@@ -121,6 +120,22 @@ export const removePet = createAsyncThunk(
       } else {
         return thunkAPI.rejectWithValue({ message: 'Something went wrong!' });
       }
+    }
+  }
+);
+
+export const editUser = createAsyncThunk(
+  'user/editUser',
+  async (editData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/users/current/edit', editData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

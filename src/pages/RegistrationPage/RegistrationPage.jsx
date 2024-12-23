@@ -19,7 +19,7 @@ const RegistrationPage = () => {
   const dispatch = useDispatch();
 
   const handleFormSubmit = async data => {
-    console.log(data);
+ 
     const { name, email, password } = data;
     try {
       await dispatch(register({ name, email, password })).unwrap();

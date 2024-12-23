@@ -7,3 +7,4 @@ export const selectPets = state => state.users.pets;
 export const selectNoticesViewed = state => state.users.noticesViewed;
 export const selectIsRefreshing = state => state.users.isRefreshing;
 export const selectIsLoading = state => state.users.isLoading;
+export const selectError = state => state.users.error;

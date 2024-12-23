@@ -29,14 +29,29 @@
 }
 
 .imgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 100px;
-  padding: 10px;
-  width: 80px;
-  height: 80px;
+  width: 94px;
+  height: 94px;
+  background-color: #fff4df;
+  justify-self: center;
   margin-bottom: 12px;
 }
 
 .image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.iconUser {
+  border-radius: 1px;
+  fill: #f6b83d;
+  stroke-width: 2px;
+  stroke: #f6b83d;
+  width: 40px;
+  height: 40px;
 }
 
 .upload {
@@ -44,8 +59,6 @@
   width: 295px;
   gap: 8px;
 }
-
-
 
 .avatarInput {
   outline: none;
@@ -78,11 +91,10 @@
   justify-content: space-between;
 }
 
-.icon{
+.icon {
   width: 18px;
   height: 18px;
-  fill:none;
-
+  fill: none;
 }
 
 .form {

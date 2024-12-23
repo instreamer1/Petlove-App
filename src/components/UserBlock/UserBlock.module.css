@@ -1,3 +1,36 @@
+.userBlockHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userLogo {
+  display: flex;
+  border-radius: 30px;
+  padding: 10px 14px;
+  width: 80px;
+  height: 38px;
+  background: #f6b83d;
+}
+
+.userLogoText {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-right: 4px;
+}
+
+.iconUserLogo {
+  border-radius: 1px;
+  fill: #fff;
+  stroke-width: 2px;
+  stroke: #fff;
+  width: 16px;
+  height: 16px;
+}
+
 .userTitle {
   font-family: var(--font-family);
   font-weight: 700;
@@ -7,10 +40,59 @@
   margin-bottom: 20px;
 }
 
+.userAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  width: 94px;
+  height: 94px;
+  background-color: #fff4df;
+  justify-self: center;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 100%;
+  object-fit: cover;
+}
+
+.iconUserAvatar {
+  border-radius: 1px;
+  fill: #f6b83d;
+  stroke-width: 2px;
+  stroke: #f6b83d;
+  width: 40px;
+  height: 40px;
+}
+
+.linkToEdit {
+  display: block;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #262626;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
 .userInfo {
   display: flex;
   flex-direction: column;
 }
+
+.userTitle {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #2b2b2a;
+}
+
 .userName,
 .userEmail,
 .userPhone {
@@ -28,10 +110,9 @@
 }
 .userName:disabled,
 .userEmail:disabled,
-.userPhone:disabled{
-    background: #fff;
+.userPhone:disabled {
+  background: #fff;
 }
-
 
 .userName,
 .userEmail {

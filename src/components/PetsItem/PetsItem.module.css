@@ -4,8 +4,8 @@
   background: #fff;
   border: 1px solid rgba(38, 38, 38, 0.1);
   border-radius: 20px;
-  /* width: 295px;
-    height: 132px; */
+  width: 295px;
+  height: 132px;
 
   height: 100%;
   border-radius: 16px;
@@ -43,6 +43,7 @@
 .buttonWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 30px;
 
   width: 30px;
@@ -105,7 +106,7 @@
 
 @media screen and (min-width: 768px) {
   .cardItem {
-    width: 342px;
+    width: 305px;
   }
 
   .learnMoreBtn {
@@ -121,9 +122,9 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
   .cardItem {
-    width: 363px;
+    width: 440px;
   }
 
   .cardTitle {

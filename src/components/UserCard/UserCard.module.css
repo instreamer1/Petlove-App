@@ -6,3 +6,16 @@
   background: #fff;
   margin-bottom: 40px;
 }
+
+@media screen and (min-width: 768px) {
+  .userCard {
+    padding: 40px;
+  }
+}
+
+
+@media screen and (min-width: 1280px) {
+  .userCard {
+   width: 520px;
+  }
+}

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addPet,
   checkAuth,
+  editUser,
   getCurrentUserFullInfo,
   logIn,
   logOut,
@@ -105,16 +106,17 @@ const usersSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addPet.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
 
-        state.pets.push(...action.payload.pets);
+        // state.pets.push(...action.payload.pets);
+        state.pets = action.payload.pets;
       })
       .addCase(addPet.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(removePet.pending, state => {
@@ -123,11 +125,29 @@ const usersSlice = createSlice({
       })
       .addCase(removePet.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.pets = state.pets.filter(pet => pet._id !== action.meta.arg);
+        // state.pets = state.pets.filter(pet => pet._id !== action.meta.arg);
+        state.pets = action.payload.pets;
       })
       .addCase(removePet.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload?.message || 'Failed to remove pet';
+      })
+      .addCase(editUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(editUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+          phone: action.payload.phone,
+          avatar: action.payload.avatar,
+        };
+      })
+      .addCase(editUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || 'Something went wrong';
       });
   },
 });

@@ -67,6 +67,7 @@ const NoticesItem = ({ notice }) => {
   };
 
   const handleFavoriteClick = async () => {
+    console.log('ddddddddddddddddddd');
     if (!isLoggedIn) {
       setAttentionOpen(true);
       return;

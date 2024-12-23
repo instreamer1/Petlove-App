@@ -1,19 +1,7 @@
-import { useState } from 'react';
 import css from './EditUserBtn.module.css';
-import ModalEditUser from '../ModalEditUser/ModalEditUser';
 import iconSprite from '../../assets/sprite.svg';
 
-const EditUserBtn = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+const EditUserBtn = ({ openModal }) => {
   return (
     <>
       <button className={css.editButton} onClick={openModal}>
@@ -21,7 +9,6 @@ const EditUserBtn = () => {
           <use href={`${iconSprite}#edit`}></use>
         </svg>
       </button>
-      <ModalEditUser isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
 };
