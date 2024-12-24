@@ -23,14 +23,98 @@
 
 .radioGroup {
   margin-bottom: 8px;
+  display: flex;
+}
+
+.radioWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.radioInput {
+  display: none; /* Скрываем стандартное отображение */
+}
+
+.radioLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 50%;
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  /* background: rgba(244, 63, 94, 0.1); */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.femaleRadioLabel {
+  background: rgba(244, 63, 94, 0.1);
+}
+
+.maleRadioLabel {
+  background: rgba(84, 173, 255, 0.1);
+}
+
+.multipleRadioLabel {
+  background: #fff4df;
+}
+
+.femaleRadioLabel {
+  background: rgba(244, 63, 94, 0.1);
+}
+
+.maleRadioLabel {
+  background: rgba(84, 173, 255, 0.1);
+}
+
+.multipleRadioLabel {
+  background: #fff4df;
+}
+
+.radioLabel:hover {
+  transform: scale(1.1);
+}
+
+.radioInput:checked + .femaleRadioLabel {
+  background: #f43f5e;
+}
+
+.radioInput:checked + .maleRadioLabel {
+  background: #54adff;
+}
+
+.radioInput:checked + .multipleRadioLabel {
+  background: #f6b83d;
 }
 
 .iconFame {
-  border-radius: 30px;
-  padding: 6px;
   width: 32px;
   height: 32px;
-  background: #f43f5e;
+  fill: none;
+  stroke-width: 1.5px;
+  /* color: #f43f5e; */
+  transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+.femaleIconFame {
+  color: #f43f5e;
+}
+.maleIconFame {
+  color: #54adff;
+}
+.multipleIconFame {
+  stroke-width: 1.5px;
+  stroke: #f6b83d;
+}
+
+
+
+.radioInput:checked + .radioLabel .iconFame {
+  stroke: #fff;
+  color: white;
 }
 
 .imgWrapper {
@@ -132,13 +216,6 @@
   width: 144px;
   height: 42px;
 }
-/* .typeFormSelect {
-  border: 1px solid rgba(38, 38, 38, 0.15);
-  border-radius: 30px;
-  padding: 12px 12px 12px 12px;
-  width: 143px;
-  height: 42px;
-} */
 
 .buttons {
   margin-top: 31px;

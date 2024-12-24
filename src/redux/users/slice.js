@@ -63,6 +63,7 @@ const usersSlice = createSlice({
       .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
+        state.favorites = [],
         state.isLoggedIn = false;
       })
       .addCase(logOut.rejected, (state, action) => {

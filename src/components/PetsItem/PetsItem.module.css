@@ -1,6 +1,5 @@
 .cardItem {
   display: flex;
-  /* flex-direction: column; */
   background: #fff;
   border: 1px solid rgba(38, 38, 38, 0.1);
   border-radius: 20px;
@@ -100,14 +99,13 @@
   text-align: left;
 }
 
-.cardFooter {
-  margin-top: auto;
-}
+
 
 @media screen and (min-width: 768px) {
   .cardItem {
     width: 305px;
   }
+
 
   .learnMoreBtn {
     padding: 14px 14px;
@@ -127,10 +125,7 @@
     width: 440px;
   }
 
-  .cardTitle {
-    font-size: 18px;
-    line-height: 133%;
-  }
+ 
 
   .cardPrice {
     font-size: 18px;

@@ -9,7 +9,7 @@ const UserCard = ({ pets, user, onDeletePet }) => {
     <div className={css.userCard}>
       <UserBlock user={user} />
 
-      {pets && <PetsBlock pets={pets} onDeletePet={onDeletePet} />}
+      <PetsBlock pets={pets} onDeletePet={onDeletePet} />
       <LogOutBtn />
     </div>
   );

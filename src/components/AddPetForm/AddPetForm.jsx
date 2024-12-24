@@ -56,18 +56,26 @@ const AddPetForm = ({ onSubmit }) => {
       </h2>
 
       <div className={css.radioGroup}>
-        <label>
-          <input type='radio' value='female' {...register('sex')} />{' '}
-          <svg className={css.iconFame}>
-            <use href={`${iconSprite}#heart`}></use>
-          </svg>
-        </label>
-        <label>
-          <input type='radio' value='male' {...register('sex')} /> Male
-        </label>
-        <label>
-          <input type='radio' value='other' {...register('sex')} /> Other
-        </label>
+        {['female', 'male', 'multiple'].map(sex => (
+          <div key={sex} className={css.radioWrapper}>
+            <input
+              type='radio'
+              id={sex}
+              value={sex}
+              {...register('sex')}
+              className={css.radioInput}
+            />
+            <label
+              htmlFor={sex}
+              className={`${css.radioLabel} ${css[`${sex}RadioLabel`]}`}>
+              <svg
+                className={`${css.iconFame} ${css[`${sex}IconFame`]}`}
+                aria-hidden='true'>
+                <use href={`${iconSprite}#${sex}`}></use>
+              </svg>
+            </label>
+          </div>
+        ))}
       </div>
       <div className={css.imgWrapper}>
         {avatar !== null ? (
@@ -121,13 +129,7 @@ const AddPetForm = ({ onSubmit }) => {
             {...register('birthday')}
             className={`${css.input} ${css.inputDate}`}
           />
-          {/* 
-        <svg className={css.icon}>
-          <use href={`${iconSprite}#calendar`}></use>
-        </svg> */}
         </label>
-
-        {/* <div className={css.frameType}> */}
         <select
           className={`${css.input} ${css.inputDate}`}
           {...register('species')}>
@@ -138,10 +140,6 @@ const AddPetForm = ({ onSubmit }) => {
             </option>
           ))}
         </select>
-        {/* <svg className={css.icon}>
-          <use href={`${iconSprite}#arrowDown`}></use>
-        </svg> */}
-        {/* </div> */}
       </div>
 
       <div className={css.buttons}>

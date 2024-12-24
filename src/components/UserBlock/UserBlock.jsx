@@ -60,25 +60,26 @@ const UserBlock = ({ user }) => {
 
       <div className={css.userInfo}>
         <h3 className={css.userTitle}>My information</h3>
-
-        <input
-          type='text'
-          defaultValue={name || ''}
-          className={css.userName}
-          disabled
-        />
-        <input
-          type='text'
-          defaultValue={email || ''}
-          className={css.userEmail}
-          disabled
-        />
-        <input
-          type='text'
-          defaultValue={phone || ''}
-          className={css.userPhone}
-          disabled
-        />
+        <div className={css.userInputsGroup}>
+          <input
+            type='text'
+            defaultValue={name || ''}
+            className={css.userName}
+            disabled
+          />
+          <input
+            type='text'
+            defaultValue={email || ''}
+            className={css.userEmail}
+            disabled
+          />
+          <input
+            type='text'
+            defaultValue={phone || ''}
+            className={css.userPhone}
+            disabled
+          />
+        </div>
       </div>
       <ModalEditUser isOpen={isModalOpen} onClose={closeModal} />
     </div>

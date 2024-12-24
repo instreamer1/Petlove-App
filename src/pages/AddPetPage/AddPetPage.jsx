@@ -9,7 +9,6 @@ import loginDesktop2x from '../../assets/images/loginDesktop2x.png';
 import { addPet} from '../../redux/users/operations';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import { useEffect } from 'react';
 
 const AddPetPage = () => {
 

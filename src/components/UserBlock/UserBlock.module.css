@@ -118,3 +118,61 @@
 .userEmail {
   margin-bottom: 10px;
 }
+
+@media screen and (min-width: 768px) {
+  .userAvatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .userLogoText {
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .iconUserLogo {
+    width: 18px;
+    height: 18px;
+  }
+
+  .userInputsGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .userTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .userName,
+  .userEmail,
+  .userPhone {
+    width: 305px;
+    height: 52px;
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .linkToEdit {
+    font-size: 14px;
+    line-height: 129%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .userInputsGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .userName,
+  .userEmail,
+  .userPhone {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    line-height: 125%;
+  }
+}

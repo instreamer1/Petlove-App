@@ -1,9 +1,9 @@
 .addPet {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .addPetTitle {
@@ -26,4 +26,18 @@
   line-height: 129%;
   letter-spacing: -0.03em;
   color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .addPetTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+
+  .addPetLink {
+    width: 118px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 125%;
+  }
 }
