@@ -88,22 +88,16 @@ const NoticesFilters = ({
     }
   };
 
-  const handleOptionChange = (key, value) => {
-    setSelectedOption({ key, value }); // Устанавливаем выбранный вариант
-    handleInputChange(key, value); // Вызываем обработчик с нужным значением
-  };
 
-  // const handleClearOption = optionKey => {
-  //   // Обновляем состояние, сбрасывая выбранную опцию
-  //   setSelectedOption(prevState => ({
-  //     ...prevState,
-  //     [optionKey]: { key: null, value: null }, // сбрасываем значение
-  //   }));
-  // };
-
-  const handleClearOption = key => {
-    setSelectedOption(null); // Сбрасываем выбор
-    handleInputChange(key, 'null'); // Устанавливаем значение как "false"
+  const handleFilterChange = (key, value) => {
+    // setFiltersOptions(prevFilters => {
+    //   const updatedFilters = { ...prevFilters, [key]: value };
+  
+      // Передача значения фильтра в родительский компонент
+      onFilterChange({ ...filters, [key]: value });
+  
+    //   return updatedFilters;
+    // });
   };
 
   return (
@@ -201,132 +195,79 @@ const NoticesFilters = ({
 
       <hr className={css.horizontalLine} />
       {/* radio-button  */}
-      <div className={css.filtersRadioGroup}>
-        {/** Кнопка "Popular" */}
-        <label
-          className={`sort-option ${
-            selectedOption?.key === 'byPopularity' &&
-            selectedOption?.value === 'true'
-              ? 'active'
-              : ''
-          }`}>
-          <input
-            type='radio'
-            name='Popular'
-            value='null'
-            checked={
-              selectedOption?.key === 'byPopularity' &&
-              selectedOption?.value === 'true'
-            }
-            onChange={() => handleOptionChange('byPopularity', 'true')}
-          />
-          Popular
-          {selectedOption?.key === 'byPopularity' &&
-            selectedOption?.value === 'true' && (
-              <input
-                className='reset2'
-                type='button'
-                value='✖' // Крестик как текст
-                onClick={e => {
-                  e.stopPropagation();
-                  handleClearOption('byPopularity');
-                }}
-              />
-            )}
-        </label>
+      <div className={css.filtersContainer}>
+        {/* Фильтр по популярности */}
+        <div className={css.filterGroup}>
+          <span className={css.filterLabel}>Filter by Popularity:</span>
+          <div className={css.radioGroup}>
+            {[
+              { label: 'Popular', value: false },
+              { label: 'Unpopular', value: true },
+            ].map(option => (
+              <label key={option.label} className={css.radioWrapper}>
+                <input
+                  type='radio'
+                  name='byPopularity'
+                  value={option.value}
+                  checked={filters.byPopularity === option.value}
+                
+                  onChange={() =>
+                    handleFilterChange('byPopularity', option.value)
+                  }
+                  className={css.radioInput}
+                />
+                {option.label}
+                {filters.byPopularity === option.value && (
+                  <button
+                    type='button'
+                    className={css.resetButton}
+                    onClick={() => {
+                      handleFilterChange('byPopularity', null);
+                    }}>
+                    <svg className={css.iconClose} aria-hidden='true'>
+                      <use href={`${iconSprite}#closeModal`} />
+                    </svg>
+                  </button>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
 
-        {/** Кнопка "Unpopular" */}
-        <label
-          className={`sort-option ${
-            selectedOption?.key === 'byPopularity' &&
-            selectedOption?.value === 'false'
-              ? 'active'
-              : ''
-          }`}>
-          <input
-            type='radio'
-            name='Unpopular'
-            value='false'
-            checked={
-              selectedOption?.key === 'byPopularity' &&
-              selectedOption?.value === 'false'
-            }
-            onChange={() => handleOptionChange('byPopularity', 'false')}
-          />
-          Unpopular
-          {selectedOption?.key === 'byPopularity' && (
-            <span
-              className='clear-button'
-              onClick={e => {
-                e.stopPropagation();
-                handleClearOption('byPopularity');
-              }}>
-              ✖
-            </span>
-          )}
-        </label>
+        {/* Фильтр по цене */}
+        <div className={css.filterGroup}>
+          <span className={css.filterLabel}>Filter by Price:</span>
+          <div className={css.radioGroup}>
+            {[
+              { label: 'Cheap', value: false },
+              { label: 'Expensive', value: false },
+            ].map(option => (
+              <label key={option.label} className={css.radioWrapper}>
+                <input
+                  type='radio'
+                  name='byPrice'
+                  value={option.value}
+                  checked={filters.byPrice === option.value}
+                  // checked={false}
+                  onChange={() => handleFilterChange('byPrice', option.value)}
+                  className={css.radioInput}
+                />
+                {option.label}
 
-        {/** Кнопка "Cheap" */}
-        <label
-          className={`sort-option ${
-            selectedOption?.key === 'byPrice' &&
-            selectedOption?.value === 'true'
-              ? 'active'
-              : ''
-          }`}>
-          <input
-            type='radio'
-            name='byPrice'
-            value='true'
-            checked={
-              selectedOption?.key === 'byPrice' &&
-              selectedOption?.value === 'true'
-            }
-            onChange={() => handleOptionChange('byPrice', 'true')}
-          />
-          Cheap
-          {selectedOption?.key === 'byPrice' && (
-            <span
-              className='clear-button'
-              onClick={e => {
-                e.stopPropagation();
-                handleClearOption('byPrice');
-              }}>
-              ✖
-            </span>
-          )}
-        </label>
-
-        {/** Кнопка "Expensive" */}
-        <label
-          className={`sort-option ${
-            selectedOption?.key === 'byPrice' &&
-            selectedOption?.value === 'false'
-              ? 'active'
-              : ''
-          }`}>
-          <input
-            type='radio'
-            name='byPrice'
-            value='false'
-            checked={
-              selectedOption?.key === 'byPrice' &&
-              selectedOption?.value === 'false'
-            }
-            onChange={() => handleOptionChange('byPrice', 'false')}
-          />
-          Expensive
-          {selectedOption?.key === 'byPrice' && (
-            <span
-              className='clear-button'
-              onClick={e => {
-                e.stopPropagation();
-                handleClearOption('byPrice');
-              }}>
-              ✖
-            </span>
-          )}
-        </label>
+                {filters.byPrice === option.value && (
+                  <button
+                    type='button'
+                    className={css.resetButton}
+                    onClick={() => handleInputChange('byPrice', null)}>
+                    <svg className={css.iconClose} aria-hidden='true'>
+                      <use href={`${iconSprite}#closeModal`} />
+                    </svg>
+                  </button>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

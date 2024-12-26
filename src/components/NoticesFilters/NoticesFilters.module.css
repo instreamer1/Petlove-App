@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  /* width: 335px;
-    height: 378px; */
   background: #fff4df;
   padding: 20px;
 }
@@ -12,8 +10,6 @@
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  /* width: 335px;
-    height: 378px; */
 }
 .filtersFormFrame {
   display: grid;
@@ -42,10 +38,10 @@
   color: #262626;
   outline: none;
   border: none;
-  appearance: none; /* Скрывает стандартную стрелку */
-  -webkit-appearance: none; /* Для Safari */
-  -moz-appearance: none; /* Для Firefox */
-  padding-right: 30px; /* Место для собственной стрелки */
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  padding-right: 30px; 
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
@@ -55,10 +51,10 @@
 
 .icon {
   position: absolute;
-  right: 12px; /* Размещение стрелки справа */
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* Стрелка не блокирует клик по селекту */
+  pointer-events: none; 
   width: 18px;
   height: 18px;
   fill: none;
@@ -92,10 +88,10 @@
   color: #262626;
   outline: none;
   border: none;
-  appearance: none; /* Скрывает стандартную стрелку */
-  -webkit-appearance: none; /* Для Safari */
-  -moz-appearance: none; /* Для Firefox */
-  padding-right: 30px; /* Место для собственной стрелки */
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  padding-right: 30px; 
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
@@ -192,6 +188,11 @@
 }
 
 /*  */
+
+.iconClose{
+  width: 18px;
+  height: 18px;
+}
 
 
 @media screen and (min-width: 768px) {
