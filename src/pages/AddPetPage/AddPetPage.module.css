@@ -17,6 +17,7 @@
   margin-bottom: 10px;
   background: url('../../assets/images/image_bg_mob.png') center center / cover
     no-repeat;
+    overflow: hidden;
 }
 
 .formWrapper {

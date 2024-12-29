@@ -1,6 +1,6 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import css from './Header.module.css';
-import useResponsive from "../hooks/useResponsive.js"
+import useResponsive from '../hooks/useResponsive.js';
 
 import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
@@ -47,6 +47,10 @@ const Header = ({ isHomePage }) => {
           className={`${css.wrapper} ${isHomePage ? css.wrapperHomePage : ''}`}>
           <Logo isHomePage={isHomePage} />
           <div className={css.navWrapperTablet}>
+            {!isTablet && !isMobile && (
+              <Nav isHomePage={isHomePage} variant='desktop' />
+            )}
+
             {isLoggedIn ? (
               <UserNav isHomePage={isHomePage} />
             ) : (
@@ -67,7 +71,11 @@ const Header = ({ isHomePage }) => {
           isSidebarOpen ? css.open : ''
         }`}>
         <div className={css.navWrapper}>
-          <Nav closeSidebar={closeSidebar} isHomePage={isHomePage} />
+          <Nav
+            closeSidebar={closeSidebar}
+            isHomePage={isHomePage}
+            variant='sidebar'
+          />
           {isLoggedIn ? (
             <LogOutBtn closeSidebar={closeSidebar} isHomePage={isHomePage} />
           ) : (

@@ -4,8 +4,8 @@
   align-items: center;
   gap: 10px;
 }
-.linkHome
- {
+
+.linkHome {
   display: inline-block;
   font-family: var(--font-family);
   font-weight: 500;
@@ -15,8 +15,8 @@
   color: #262626;
   border: 1px solid rgba(38, 38, 38, 0.4);
   border-radius: 30px;
-  padding: 15px ;
- text-align: center;
+  padding: 15px;
+  text-align: center;
   width: 119px;
   height: 48px;
 }
@@ -36,11 +36,55 @@
   border-radius: 30px;
   width: 119px;
   height: 48px;
-  padding: 15px ;
+  padding: 15px;
   text-align: center;
 }
 
 .link:hover,
-.link:focus{
+.link:focus {
   border: 1px solid #fff;
+}
+
+@media screen and (min-width: 1280px) {
+  .image {
+    width: 512px;
+    height: 654px;
+  }
+
+  .navWrapperDesktop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .linkHome {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 15px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: #fff;
+    z-index: 1;
+  }
+
+  .linkDesktop {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 15px 20px;
+    min-width: 80px;
+    height: 50px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 125%;
+    letter-spacing: -0.03em;
+    color: #262626;
+  }
+
+  .linkDesktop:hover,
+  .linkDesktop:focus {
+    border: 1px solid #f6b83d;
+  }
 }

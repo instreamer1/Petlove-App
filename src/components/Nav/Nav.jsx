@@ -1,25 +1,52 @@
 import { NavLink } from 'react-router-dom';
 import css from './Nav.module.css';
 
-const Nav = ({ closeSidebar, isHomePage }) => {
+const Nav = ({ closeSidebar, isHomePage, variant="sidebar" }) => {
   return (
-    <div className={css.navWrapper}>
+    <div
+    className={
+      variant === "desktop"
+        ? css.navWrapperDesktop
+        : css.navWrapper
+    }
+  >
       <NavLink
-        className={`${isHomePage ? css.linkHome : css.link}`}
-        to='/news'
-        onClick={closeSidebar}>
+        className={
+          isHomePage
+            ? css.linkHome
+            : variant === "desktop"
+            ? css.linkDesktop
+            : css.link
+        }
+        to="/news"
+        onClick={closeSidebar}
+      >
         News
       </NavLink>
       <NavLink
-        className={`${isHomePage ? css.linkHome : css.link}`}
-        to='/notices'
-        onClick={closeSidebar}>
+        className={
+          isHomePage
+            ? css.linkHome
+            : variant === "desktop"
+            ? css.linkDesktop
+            : css.link
+        }
+        to="/notices"
+        onClick={closeSidebar}
+      >
         Find pet
       </NavLink>
       <NavLink
-        className={`${isHomePage ? css.linkHome : css.link}`}
-        to='/friends'
-        onClick={closeSidebar}>
+        className={
+          isHomePage
+            ? css.linkHome
+            : variant === "desktop"
+            ? css.linkDesktop
+            : css.link
+        }
+        to="/friends"
+        onClick={closeSidebar}
+      >
         Our friends
       </NavLink>
     </div>

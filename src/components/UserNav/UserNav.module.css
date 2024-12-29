@@ -15,5 +15,7 @@
 
 @media screen and (min-width: 1280px) {
 
-
+  .userNav.userNavOther {
+    margin-left: 0;
+  }
 }

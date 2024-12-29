@@ -13,6 +13,7 @@
 
 .navWrapperTablet {
   margin-left: auto;
+  /* z-index: 1; */
 }
 
 .burgerWrapper {
@@ -69,7 +70,7 @@
 
 @media screen and (min-width: 1280px) {
   .wrapper {
-    justify-content: space-between;
+ 
   }
 
   .wrapperHomePage {
@@ -86,4 +87,13 @@
   .sidebar.open {
     display: none;
   }
+
+  .navWrapperTablet {
+   display: flex;
+   flex-grow: 1;
+   margin-left: 313px;
+   flex-direction: row;
+   justify-content: space-between;
+  }
 }
+
