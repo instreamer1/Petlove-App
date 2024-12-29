@@ -9,19 +9,21 @@
 }
 
 .imageWrapper {
-    width: 100%;
-    height: auto;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    background: url('../../assets/images/image_bg_mob.png') center center / cover
-      no-repeat;
-  }
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 213px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  background: url('../../assets/images/image_bg_mob.png') center center / cover
+    no-repeat;
+}
 
-  .formWrapper {
-    border-radius: 30px;
-    padding: 28px 20px;
-    background: #fff;
-  }
+.formWrapper {
+  border-radius: 30px;
+  padding: 28px 20px;
+  background: #fff;
+}
 
 @media screen and (min-width: 768px) {
   .addPetPage {
@@ -38,30 +40,31 @@
       cover no-repeat;
     background-size: auto;
     border-radius: 60px;
-    padding-left: 250px;
-    height: 302px;
+    height: 248px;
     margin-bottom: 16px;
   }
 
   .formWrapper {
     border-radius: 60px;
-    padding: 71px 140px;
+    padding: 40px 136px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
+    display: flex;
   }
 
   .imageWrapper {
     background: url('../../assets/images/image_bg_desk.png') center center /
       cover no-repeat;
     height: 654px;
+    width: 592px;
     margin-bottom: 0;
-    padding-left: 40px;
+    margin-right: 32px;
   }
 
   .formWrapper {
-    padding: 118px 84px;
+    padding: 60px 80px;
   }
 }

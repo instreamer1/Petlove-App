@@ -66,7 +66,7 @@
 </symbol>
 
 <symbol id="closeModal" viewBox="0 0 32 32">
-  <path stroke="#262626" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M24 8 8 24M8 8l16 16"/>
+  <path  stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M24 8 8 24M8 8l16 16"/>
 </symbol>
 
 <symbol id="closeModalWhite" viewBox="0 0 32 32">

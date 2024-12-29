@@ -38,10 +38,10 @@
   color: #262626;
   outline: none;
   border: none;
-  appearance: none; 
-  -webkit-appearance: none; 
-  -moz-appearance: none; 
-  padding-right: 30px; 
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px;
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
@@ -54,7 +54,7 @@
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; 
+  pointer-events: none;
   width: 18px;
   height: 18px;
   fill: none;
@@ -88,10 +88,10 @@
   color: #262626;
   outline: none;
   border: none;
-  appearance: none; 
-  -webkit-appearance: none; 
-  -moz-appearance: none; 
-  padding-right: 30px; 
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 30px;
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
@@ -121,79 +121,70 @@
   margin: 20px 0;
 }
 
-.filtersRadioGroup {
+.radioGroupContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-/* .input {
-  display: none;
+.radioGroup {
+  min-width: 66px;
+  height: 42px;
 }
 
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  cursor: default;
+}
 
-.input:checked + .popular {
-  background-color: #f6b83d;
-  color: white;
-} */
-
-/* .inputLabel {
-  cursor: pointer;
+.radioLabel {
+  display: flex;
+  align-items: center;
   border-radius: 30px;
   padding: 12px;
-  width: 90px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 100%;
   background: #fff;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
-  line-height: 125%;
+  line-height: 129%;
   letter-spacing: -0.03em;
   color: #262626;
-} */
-/*  */
-
-
-.sort-options {
-  display: flex;
-  gap: 10px;
-}
-
-.sort-option {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  position: relative;
 }
 
-.sort-option.active {
-  background-color: #007bff;
-  color: white;
+.radioInput:checked + .radioLabel {
+  cursor: default;
+  color: #fff;
+  background: #f6b83d;
 }
 
-.clear-button {
-  margin-left: 10px;
-  cursor: pointer;
-  color: red;
+.resetButton {
+  margin-left: 8px;
 }
 
-.clear-button:hover {
-  color: darkred;
-}
-
-/*  */
-
-.iconClose{
+.iconClose {
+  stroke-width: 1.5px;
+  stroke: #fff;
   width: 18px;
   height: 18px;
 }
 
+.resetAllButton {
+  border-radius: 30px;
+  padding: 12px;
+  min-width: 66px;
+  height: 42px;
+  background: #fff;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #262626;
+}
 
 @media screen and (min-width: 768px) {
   .filtersForm {
@@ -242,6 +233,26 @@
 
   .input {
     font-size: 16px;
+  }
+
+  .radioGroupContainer {
+    gap: 8px;
+  }
+
+  .radioLabel {
+    height: 48px;
+    padding: 14px;
+    font-size: 16px;
+    line-height: 125%;
+    cursor: pointer;
+  }
+
+  .resetAllButton {
+    padding: 14px;
+
+    height: 48px;
+    font-size: 16px;
+    line-height: 125%;
   }
 }
 

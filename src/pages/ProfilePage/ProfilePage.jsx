@@ -8,7 +8,8 @@ import {
   selectUserFavorites,
   selectNoticesViewed,
 } from '../../redux/users/selectors.js';
-import { removePet } from '../../redux/users/operations.js';
+import { getCurrentUserFullInfo, removePet } from '../../redux/users/operations.js';
+import { useEffect } from 'react';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const ProfilePage = () => {
   const pets = useSelector(selectPets);
   const noticesViewed = useSelector(selectNoticesViewed);
 
- 
+  // useEffect(() => {
+  //   dispatch(getCurrentUserFullInfo());
+  // }, [dispatch]);
 
   const onDeletePet = id => {
     dispatch(removePet(id ));

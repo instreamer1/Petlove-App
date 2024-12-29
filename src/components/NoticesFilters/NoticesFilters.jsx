@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from './NoticesFilters.module.css';
 
 import Select from 'react-select';
@@ -44,14 +44,6 @@ const NoticesFilters = ({
   const [isChoosingCity, setIsChoosingCity] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  // const sortValues = {
-  //   popular: false,
-  //   unpopular: true,
-  //   cheap: true,
-  //   expensive: false,
-  // };
 
   const formatOptions = list =>
     list.map(item => ({
@@ -62,7 +54,8 @@ const NoticesFilters = ({
     }));
 
   const handleInputChange = (key, value) => {
-    onFilterChange({ ...filters, [key]: value });
+    const updatedFilters = { ...filters, [key]: value };
+    onFilterChange(updatedFilters);
   };
 
   const handleChange = option => {
@@ -88,16 +81,12 @@ const NoticesFilters = ({
     }
   };
 
-
   const handleFilterChange = (key, value) => {
-    // setFiltersOptions(prevFilters => {
-    //   const updatedFilters = { ...prevFilters, [key]: value };
-  
-      // Передача значения фильтра в родительский компонент
-      onFilterChange({ ...filters, [key]: value });
-  
-    //   return updatedFilters;
-    // });
+    onFilterChange({ ...filters, [key]: value });
+  };
+
+  const resetSortOptions = key => {
+    onFilterChange({ ...filters, [key]: null });
   };
 
   return (
@@ -195,110 +184,119 @@ const NoticesFilters = ({
 
       <hr className={css.horizontalLine} />
       {/* radio-button  */}
-      <div className={css.filtersContainer}>
-        {/* Фильтр по популярности */}
-        <div className={css.filterGroup}>
-          <span className={css.filterLabel}>Filter by Popularity:</span>
-          <div className={css.radioGroup}>
-            {[
-              { label: 'Popular', value: false },
-              { label: 'Unpopular', value: true },
-            ].map(option => (
-              <label key={option.label} className={css.radioWrapper}>
-                <input
-                  type='radio'
-                  name='byPopularity'
-                  value={option.value}
-                  checked={filters.byPopularity === option.value}
-                
-                  onChange={() =>
-                    handleFilterChange('byPopularity', option.value)
-                  }
-                  className={css.radioInput}
-                />
-                {option.label}
-                {filters.byPopularity === option.value && (
-                  <button
-                    type='button'
-                    className={css.resetButton}
-                    onClick={() => {
-                      handleFilterChange('byPopularity', null);
-                    }}>
-                    <svg className={css.iconClose} aria-hidden='true'>
-                      <use href={`${iconSprite}#closeModal`} />
-                    </svg>
-                  </button>
-                )}
-              </label>
-            ))}
-          </div>
-        </div>
+      <div className={css.radioGroupContainer}>
+        {[
+          { label: 'Popular', value: false },
+          { label: 'Unpopular', value: true },
+        ].map(option => (
+          <div key={option.label} className={css.radioGroup}>
+            <input
+              id={option.label}
+              type='radio'
+              name='byPopularity'
+              value={option.value}
+              checked={filters.byPopularity === option.value}
+              onChange={() => handleFilterChange('byPopularity', option.value)}
+              className={css.radioInput}
+            />
 
-        {/* Фильтр по цене */}
-        <div className={css.filterGroup}>
-          <span className={css.filterLabel}>Filter by Price:</span>
-          <div className={css.radioGroup}>
-            {[
-              { label: 'Cheap', value: false },
-              { label: 'Expensive', value: false },
-            ].map(option => (
-              <label key={option.label} className={css.radioWrapper}>
-                <input
-                  type='radio'
-                  name='byPrice'
-                  value={option.value}
-                  checked={filters.byPrice === option.value}
-                  // checked={false}
-                  onChange={() => handleFilterChange('byPrice', option.value)}
-                  className={css.radioInput}
-                />
-                {option.label}
+            <label htmlFor={option.label} className={css.radioLabel}>
+              {option.label}
 
-                {filters.byPrice === option.value && (
-                  <button
-                    type='button'
-                    className={css.resetButton}
-                    onClick={() => handleInputChange('byPrice', null)}>
-                    <svg className={css.iconClose} aria-hidden='true'>
-                      <use href={`${iconSprite}#closeModal`} />
-                    </svg>
-                  </button>
-                )}
-              </label>
-            ))}
+              {filters.byPopularity === option.value && (
+                <button
+                  type='button'
+                  className={css.resetButton}
+                  onClick={event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    resetSortOptions('byPopularity');
+                  }}>
+                  <svg className={css.iconClose} aria-hidden='true'>
+                    <use href={`${iconSprite}#closeModal`} />
+                  </svg>
+                </button>
+              )}
+            </label>
           </div>
-        </div>
+        ))}
+        {[
+          { label: 'Cheap', value: false },
+          { label: 'Expensive', value: true },
+        ].map(option => (
+          <div key={option.label} className={css.radioGroup}>
+            <input
+              id={option.label}
+              type='radio'
+              name='byPrice'
+              value={option.value}
+              checked={filters.byPrice === option.value}
+              onChange={() => handleFilterChange('byPrice', option.value)}
+              className={css.radioInput}
+            />
+
+            <label htmlFor={option.label} className={css.radioLabel}>
+              {option.label}
+
+              {filters.byPrice === option.value && (
+                <button
+                  type='button'
+                  className={css.resetButton}
+                  onClick={event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    resetSortOptions('byPrice');
+                  }}>
+                  <svg className={css.iconClose} aria-hidden='true'>
+                    <use href={`${iconSprite}#closeModal`} />
+                  </svg>
+                </button>
+              )}
+            </label>
+          </div>
+        ))}
+        <button
+          type='button'
+          className={css.resetAllButton}
+          onClick={onResetFilters}>
+          Reset All Filters
+        </button>
       </div>
     </div>
   );
 };
 
 export default NoticesFilters;
-// NoticesFilters.propTypes = {
-//   categories: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   sexOptions: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   speciesOptions: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   locations: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       value: PropTypes.string.isRequired,
-//       label: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   onFilterChange: PropTypes.func.isRequired,
-//   onResetFilters: PropTypes.func.isRequired,
-// };
+
+
+NoticesFilters.propTypes = {
+  filters: PropTypes.shape({
+    keyword: PropTypes.string,
+    category: PropTypes.string,
+    sex: PropTypes.string,
+    species: PropTypes.string,
+    byPopularity: PropTypes.bool,
+    byPrice: PropTypes.bool,
+    locationId: PropTypes.string,
+  }).isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onFilterCitiesChange: PropTypes.func.isRequired,
+  onResetFilters: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sexOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  speciesOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  locationsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      cityEn: PropTypes.string.isRequired,
+      stateEn: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  citiesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      cityEn: PropTypes.string.isRequired,
+      stateEn: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

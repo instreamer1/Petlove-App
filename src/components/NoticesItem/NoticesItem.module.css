@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  height: 100%;
+  height: auto;
   border-radius: 16px;
   padding: 24px;
 }
@@ -16,6 +16,10 @@
 }
 
 .cardContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+ 
 }
 
 .cardContentWrapper {
@@ -52,7 +56,6 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-height: 204px;
 }
 
 .cardInfoWrapper {
@@ -95,7 +98,11 @@
 
 .cardFooter {
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+
 }
+
 
 .cardPrice {
   font-family: var(--font-family);
@@ -110,6 +117,7 @@
 .buttonWrapper {
   display: flex;
 gap: 10px;
+
 }
 
 .learnMoreBtn {
@@ -133,9 +141,7 @@ gap: 10px;
   height: 46px;
   background: #fff4df;
 }
-/* .favoriteActive {
-  background: #fbe7c1;
-} */
+
 
 .icon {
   height: 18px;

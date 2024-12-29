@@ -22,8 +22,9 @@
 }
 
 .radioGroup {
-  margin-bottom: 8px;
   display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .radioWrapper {
@@ -32,7 +33,7 @@
 }
 
 .radioInput {
-  display: none; /* Скрываем стандартное отображение */
+  display: none;
 }
 
 .radioLabel {
@@ -43,9 +44,8 @@
   gap: 5px;
   border-radius: 50%;
   padding: 10px;
-  width: 60px;
-  height: 60px;
-  /* background: rgba(244, 63, 94, 0.1); */
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -95,7 +95,6 @@
   height: 32px;
   fill: none;
   stroke-width: 1.5px;
-  /* color: #f43f5e; */
   transition: stroke 0.3s ease, fill 0.3s ease;
 }
 
@@ -110,8 +109,6 @@
   stroke: #f6b83d;
 }
 
-
-
 .radioInput:checked + .radioLabel .iconFame {
   stroke: #fff;
   color: white;
@@ -122,12 +119,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  padding: 10px;
   width: 68px;
   height: 68px;
   background: #fff4df;
   margin-bottom: 16px;
-  margin-top: 8px;
   align-self: center;
 }
 
@@ -152,6 +147,12 @@
   padding: 9px 20px 9px 10px;
   width: 170px;
   height: 36px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: -0.02em;
+  color: #262626;
 }
 
 .inputUpload:hover,
@@ -184,10 +185,9 @@
 
 .input {
   outline: none;
-
   border: 1px solid rgba(38, 38, 38, 0.15);
   border-radius: 30px;
-  padding: 12px 126px 12px 12px;
+  padding: 12px;
   width: 295px;
   height: 42px;
   font-family: var(--font-family);
@@ -209,12 +209,22 @@
   gap: 8px;
 }
 
+.birthdayLabel {
+  position: relative;
+}
 .inputDate {
   border: 1px solid rgba(38, 38, 38, 0.15);
   border-radius: 30px;
   padding: 10px 20px 10px 12px;
   width: 144px;
   height: 42px;
+}
+
+.iconCalendar {
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
 }
 
 .buttons {
@@ -224,14 +234,18 @@
   justify-content: end;
 }
 
-.backButton {
+.button {
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.03em;
-  color: #262626;
   border-radius: 30px;
+  height: 42px;
+}
+
+.backButton {
+  color: #262626;
   padding: 12px 34px;
   width: 100px;
   height: 42px;
@@ -239,15 +253,134 @@
 }
 
 .submitButton {
-  border-radius: 30px;
   padding: 12px 26px;
   width: 100px;
-  height: 42px;
   background: #f6b83d;
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.03em;
   color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .title > span {
+    font-size: 16px;
+    line-height: 125%;
+  }
+
+  .radioGroup {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  .radioLabel {
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .imgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    width: 86px;
+    height: 86px;
+    background: #fff4df;
+    margin-top: -16px;
+    margin-bottom: 12px;
+    align-self: center;
+  }
+
+  .iconFootWrapper {
+  }
+
+  .iconFoot {
+    width: 44px;
+    height: 44px;
+  }
+
+  .upload {
+    display: flex;
+    width: 432px;
+    gap: 8px;
+  }
+
+  .inputUpload {
+    padding: 9px 20px 9px 10px;
+    width: 278px;
+    height: 42px;
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .uploadButton {
+    border-radius: 30px;
+    padding: 10px;
+    width: 146px;
+    height: 42px;
+    font-size: 14px;
+    line-height: 129%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .input {
+    padding: 16px;
+    width: 432px;
+    height: 52px;
+    font-size: 16px;
+    line-height: 125%;
+    margin-top: 18px;
+  }
+
+  .dateTypeWrapper {
+    display: flex;
+    gap: 12px;
+  }
+
+  .inputDate {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 10px 20px 10px 12px;
+    width: 210px;
+    height: 52px;
+  }
+
+  .buttons {
+    margin-top: 46px;
+  }
+
+  .button {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.03em;
+    border-radius: 30px;
+    height: 42px;
+  }
+  
+  .backButton {
+    color: #262626;
+    padding: 12px 34px;
+    width: 100px;
+    height: 42px;
+    background: rgba(38, 38, 38, 0.05);
+  }
+  
+  .submitButton {
+    padding: 12px 26px;
+    width: 100px;
+    background: #f6b83d;
+    color: #fff;
+  }
 }

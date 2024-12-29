@@ -19,7 +19,6 @@ const RegistrationPage = () => {
   const dispatch = useDispatch();
 
   const handleFormSubmit = async data => {
- 
     const { name, email, password } = data;
     try {
       await dispatch(register({ name, email, password })).unwrap();
@@ -37,6 +36,8 @@ const RegistrationPage = () => {
             imageSrc={registration}
             imageSrc1x={registrationMobile}
             imageSrc2x={registrationMobile2x}
+            imageSrcTab1x={registrationMobile}
+            imageSrcTab2x={registrationMobile2x}
             imageSrcDesk1x={registrationDesktop}
             imageSrcDesk2x={registrationDesktop2x}
             altText='Registration Cat'

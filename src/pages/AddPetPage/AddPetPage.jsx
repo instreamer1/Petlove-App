@@ -2,10 +2,12 @@ import AddPetForm from '../../components/AddPetForm/AddPetForm';
 import PetBlock from '../../components/PetBlock/PetBlock';
 import css from './AddPetPage.module.css';
 
-import login from '../../assets/images/login_img.png';
-import loginMobile2x from '../../assets/images/login_img2x.png';
-import loginDesktop from '../../assets/images/loginDesktop.png';
-import loginDesktop2x from '../../assets/images/loginDesktop2x.png';
+import login from '../../assets/images/add_my_pet_mob.png';
+import loginMobile2x from '../../assets/images/add_my_pet_mob2x.png';
+import imageSrcTab1x from "../../assets/images/add_ pet_tab1.png"
+import imageSrcTab2x from "../../assets/images/add_ pet_tab2x.png"
+import loginDesktop from '../../assets/images/add_pet_Desc1.png';
+import loginDesktop2x from '../../assets/images/add_pet_Desc2x.png';
 import { addPet} from '../../redux/users/operations';
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -35,6 +37,8 @@ const AddPetPage = () => {
             imageSrc={login}
             imageSrc1x={login}
             imageSrc2x={loginMobile2x}
+            imageSrcTab1x={imageSrcTab1x}
+            imageSrcTab2x={imageSrcTab2x}
             imageSrcDesk1x={loginDesktop}
             imageSrcDesk2x={loginDesktop2x}
             altText='dog'

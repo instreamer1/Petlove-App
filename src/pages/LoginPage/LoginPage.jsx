@@ -31,6 +31,8 @@ const LoginPage = () => {
             imageSrc={login}
             imageSrc1x={login}
             imageSrc2x={loginMobile2x}
+            imageSrcTab1x={login}
+            imageSrcTab2x={loginMobile2x}
             imageSrcDesk1x={loginDesktop}
             imageSrcDesk2x={loginDesktop2x}
             altText='Registration Cat'

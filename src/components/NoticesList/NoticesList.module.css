@@ -8,13 +8,14 @@
 @media screen and (min-width: 768px) {
   .noticesList {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 342px);
+    gap: 20px;
   }
 }
 @media screen and (min-width: 1280px) {
   .noticesList {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 363px);
     row-gap: 40px;
     column-gap: 32px;
   }
