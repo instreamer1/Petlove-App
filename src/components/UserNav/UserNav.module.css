@@ -3,14 +3,12 @@
   gap: 8px;
 }
 
-@media screen and (min-width: 768px) {
-  .userNav.userNavHome {
-    margin-left: 296px;
-  }
+.userNav.userNavOther {
+  margin-left: 0;
+}
 
-  .userNav.userNavOther {
-    margin-left: 296px;
-  }
+
+@media screen and (min-width: 768px) {
 }
 
 @media screen and (min-width: 1280px) {

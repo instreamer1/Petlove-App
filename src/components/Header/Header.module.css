@@ -13,7 +13,10 @@
 
 .navWrapperTablet {
   margin-left: auto;
-  /* z-index: 1; */
+}
+
+.navWrapperTabletHome {
+  margin-left: auto;
 }
 
 .burgerWrapper {
@@ -94,6 +97,14 @@
    margin-left: 313px;
    flex-direction: row;
    justify-content: space-between;
+  }
+
+  .navWrapperTabletHome {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 280px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 

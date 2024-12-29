@@ -61,7 +61,8 @@ const usersSlice = createSlice({
       })
 
       .addCase(logOut.fulfilled, (state, action) => {
-        state.user = { name: null, email: null };
+        state.user = { name: null, email: null,  phone: null,
+          avatar: null };
         state.token = null;
         state.favorites = [],
         state.isLoggedIn = false;

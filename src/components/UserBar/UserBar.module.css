@@ -1,7 +1,8 @@
-.userBar{
-
+.userBar {
+  z-index: 1;
+  display: flex;
+  align-items: center;
 }
-
 
 .userIcon {
   display: flex;
@@ -10,22 +11,42 @@
   border-radius: 100%;
   background: #fff4df;
   width: 40px;
-  height: 40px;;
+  height: 40px;
+  margin-right: 8px;
 }
 
 .icon {
   width: 24px;
   height: 24px;
+  fill: #f6b83d;
+  stroke-width: 2px;
+  stroke: #f6b83d;
 }
 
-.nameUser{
-  
+.nameUser {
+  display: none;
 }
-
 
 @media screen and (min-width: 768px) {
   .userIcon {
     height: 50px;
     width: 50px;
+  }
+
+  .nameUser {
+    display: block;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.03em;
+  }
+
+  .nameUserHome {
+    color: #fff;
+  }
+
+  .nameUserOther {
+    color: #262626;
   }
 }

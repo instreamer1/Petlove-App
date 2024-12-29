@@ -18,20 +18,6 @@ const Header = ({ isHomePage }) => {
 
   const { isMobile, isTablet } = useResponsive();
 
-  // const [isMobile, setIsMobile] = useState(false);
-  // const [isTablet, setIsTablet] = useState(false);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     const width = window.innerWidth;
-  //     setIsMobile(width < 768);
-  //     setIsTablet(width >= 768 && width < 1280);
-  //   };
-  //   handleResize();
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(prevState => !prevState);
   };
@@ -46,7 +32,7 @@ const Header = ({ isHomePage }) => {
         <div
           className={`${css.wrapper} ${isHomePage ? css.wrapperHomePage : ''}`}>
           <Logo isHomePage={isHomePage} />
-          <div className={css.navWrapperTablet}>
+          <div className={isHomePage ? css.navWrapperTabletHome : css.navWrapperTablet}>
             {!isTablet && !isMobile && (
               <Nav isHomePage={isHomePage} variant='desktop' />
             )}
