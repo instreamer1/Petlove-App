@@ -39,6 +39,8 @@ const RegistrationForm = ({ onSubmit }) => {
     resolver: yupResolver(registrationSchema),
   });
 
+  const passwordValue = watch('password');
+
   const handleFormSubmit = data => {
     onSubmit(data);
     reset();
@@ -96,11 +98,23 @@ const RegistrationForm = ({ onSubmit }) => {
           className={`${css.input} ${
             errors.password
               ? css.inputError
-              : watch('password')?.length >= 7
+              : passwordValue?.length >= 7
               ? css.inputValid
               : ''
           }`}
         />
+        <div className={css.iconWrapper}>
+          {errors.password && (
+            <svg className={css.iconError}>
+              <use href={`${iconSprite}#shape`}></use>
+            </svg>
+          )}
+          {!errors.password && passwordValue?.length >= 7 && (
+            <svg className={css.iconValid}>
+              <use href={`${iconSprite}#check`}></use>
+            </svg>
+          )}
+        </div>
         <button
           type='button'
           onClick={() => setShowPassword(!showPassword)}
@@ -118,6 +132,10 @@ const RegistrationForm = ({ onSubmit }) => {
         {errors.password && (
           <p className={css.error}>{errors.password.message}</p>
         )}
+
+        {!errors.password && passwordValue?.length >= 7 && (
+          <p className={css.success}>Password is secure</p>
+        )}
       </div>
       <div className={css.inputGroup}>
         <input
@@ -127,11 +145,38 @@ const RegistrationForm = ({ onSubmit }) => {
           className={`${css.input} ${
             errors.confirmPassword
               ? css.inputError
-              : watch('confirmPassword')?.length >= 7
+              : watch('confirmPassword') === watch('password') &&
+                watch('confirmPassword')?.length >= 7
               ? css.inputValid
               : ''
           }`}
         />
+        <div className={css.iconWrapper}>
+          {(() => {
+            const password = watch('password');
+            const confirmPassword = watch('confirmPassword');
+            const isMatching = confirmPassword === password;
+            const hasLength = confirmPassword?.length >= 7;
+
+            if (isMatching && hasLength) {
+              return (
+                <svg className={css.iconValid}>
+                  <use href={`${iconSprite}#check`}></use>
+                </svg>
+              );
+            }
+
+            if (confirmPassword?.length >= 1 && !isMatching) {
+              return (
+                <svg className={css.iconError}>
+                  <use href={`${iconSprite}#shape`}></use>
+                </svg>
+              );
+            }
+
+            return null;
+          })()}
+        </div>
         <button
           type='button'
           onClick={() => setShowConfirmPassword(!showConfirmPassword)}

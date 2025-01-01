@@ -87,6 +87,7 @@ const noticesSlice = createSlice({
 
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.favorites.push(action.payload);
+        console.log(action.payload);
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.loading = false;
@@ -98,9 +99,13 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.favorites = state.favorites.filter(
-          fav => fav.id !== action.payload.id
-        );
+        console.log(action.payload);
+
+        // state.favorites = state.favorites.filter(
+        //   fav => fav.id !== action.payload
+        // );
+
+        state.favorites.push(action.payload);
       })
 
       .addCase(removeFromFavorites.rejected, (state, action) => {

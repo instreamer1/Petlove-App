@@ -30,7 +30,10 @@ const ProfilePage = () => {
     <section className={css.profile}>
       <div className={css.container}>
         <UserCard pets={pets} user={user} onDeletePet={onDeletePet} />
-        <MyNotices notices={favoritesPets} />
+        <MyNotices notices={favoritesPets} 
+        viewedNotices={noticesViewed} 
+        // onDeleteNotice={}
+        />
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import css from './NoticesItem.module.css';
 import iconSprite from '../../assets/sprite.svg';
 import ModalAttention from '../ModalAttention/ModalAttention';
 import ModalNotice from '../ModalNotice/ModalNotice';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsFavorite,
@@ -16,17 +16,19 @@ import {
 } from '../../redux/notices/operations';
 import {
   selectCurrentNotice,
+  selectFavorites,
   selectNoticesError,
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
 import { capitalizeFirstLetter, formatDate } from '../constants';
 import { checkAuth } from '../../redux/users/operations';
 
-const NoticesItem = ({ notice }) => {
+const NoticesItem = ({ notice, onDelete}) => {
   const dispatch = useDispatch();
   const [isAttentionOpen, setAttentionOpen] = useState(false);
   const [isNoticeOpen, setNoticeOpen] = useState(false);
 
+  const favorites = useSelector(selectFavorites);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const currentNotice = useSelector(selectCurrentNotice);
 
@@ -52,7 +54,13 @@ const NoticesItem = ({ notice }) => {
     updatedAt,
   } = notice;
 
-  const isFavorite = useSelector(state => selectIsFavorite(state, notice._id));
+
+   // Определяем isFavorite на основе текущего состояния favorites
+   const isFavorite = useMemo(() => favorites.includes(_id), [favorites, _id]);
+  // const isFavorite = favorites.includes(_id);
+  // const isFavorite = (id, favorites) => favorites.includes(id);
+ // const isFavorite = useSelector(state => selectIsFavorite(state, notice._id));
+  
   const handleLearnMore = async () => {
     if (!isLoggedIn) {
       setAttentionOpen(true);
@@ -67,7 +75,6 @@ const NoticesItem = ({ notice }) => {
   };
 
   const handleFavoriteClick = async () => {
-    console.log('ddddddddddddddddddd');
     if (!isLoggedIn) {
       setAttentionOpen(true);
       return;
@@ -76,11 +83,27 @@ const NoticesItem = ({ notice }) => {
     const action = isFavorite ? removeFromFavorites : addToFavorites;
     try {
       await dispatch(action(_id)).unwrap();
-      await dispatch(checkAuth());
+      // await dispatch(checkAuth());
     } catch (error) {
       console.error(error);
     }
   };
+
+
+  // const handleDeleteClick = async () => {
+  //   if (!isLoggedIn) {
+  //     setAttentionOpen(true);
+  //     return;
+  //   }
+
+  //   try {
+  //     await dispatch(removeFromFavorites(_id)).unwrap();
+  //     // Удаляем объявление из локального состояния (если передается onDelete)
+  //     onDelete(_id);
+  //   } catch (error) {
+  //     console.error('Ошибка при удалении объявления:', error);
+  //   }
+  // };
 
   return (
     <>
@@ -105,7 +128,7 @@ const NoticesItem = ({ notice }) => {
             <div className={css.cardInfoWrapper}>
               <div className={css.cardInfo}>
                 <p className={css.cardInfoText}>Name:</p>
-                <p className={css.cardInfoValue}>{name ? name : 'Unknown'}</p>
+                <p className={css.cardInfoValue}>{name || 'Unknown'}</p>
               </div>
               <div className={css.cardInfo}>
                 <p className={css.cardInfoText}>Birthday:</p>
@@ -146,18 +169,19 @@ const NoticesItem = ({ notice }) => {
                 </button>
                 <button
                   type='button'
+                  aria-label={
+                    isFavorite ? 'Remove from favorites' : 'Add to favorites'
+                  }
                   className={css.favoriteBtn}
                   onClick={handleFavoriteClick}
                   disabled={loading}>
-                  {isFavorite ? (
-                    <svg className={css.icon}>
-                      <use href={`${iconSprite}#trash`}></use>
-                    </svg>
-                  ) : (
-                    <svg className={css.icon}>
-                      <use href={`${iconSprite}#heart`}></use>
-                    </svg>
-                  )}
+
+                  <svg className={css.icon}>
+                    <use
+                      href={`${iconSprite}#${
+                        isFavorite ? 'trash' : 'heart'
+                      }`}></use>
+                  </svg>
                 </button>
               </div>
             </div>

@@ -1,3 +1,42 @@
+.tabs {
+  margin-bottom: 20px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.tabButton {
+  border-radius: 30px;
+  padding: 12px;
+  height: 42px;
+  background: #fff;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.03em;
+  color: #262626;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.tabButton.active {
+  background: #f6b83d;
+  color: #fff;
+}
+
+.tabButton:hover {
+  background: #f0f0f0;
+  transform: scale(1.05); 
+}
+
+.tabButton.active:hover {
+  background: #e5a832; 
+  transform: scale(1.05);
+}
+
 .noticesList {
   display: flex;
   flex-direction: column;
@@ -13,10 +52,10 @@
   }
 }
 @media screen and (min-width: 1280px) {
-    .noticesList {
+  .noticesList {
     display: grid;
     grid-template-columns: 320px 320px;
-    
+
     width: 520px;
     column-gap: 24px;
     row-gap: 24px;

@@ -1,5 +1,6 @@
 .hero {
   margin-top: -58px;
+  padding-bottom: 20px;
 }
 
 .container {
@@ -54,6 +55,7 @@
 @media screen and (min-width: 768px) {
   .hero {
     margin-top: -66px;
+    padding-bottom: 32px;
   }
 
   .container {

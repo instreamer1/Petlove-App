@@ -28,30 +28,32 @@ const Header = ({ isHomePage }) => {
 
   return (
     <>
-      <div>
+      <div
+        className={`${css.wrapper} ${isHomePage ? css.wrapperHomePage : ''}`}>
+        <Logo isHomePage={isHomePage} />
         <div
-          className={`${css.wrapper} ${isHomePage ? css.wrapperHomePage : ''}`}>
-          <Logo isHomePage={isHomePage} />
-          <div className={isHomePage ? css.navWrapperTabletHome : css.navWrapperTablet}>
-            {!isTablet && !isMobile && (
-              <Nav isHomePage={isHomePage} variant='desktop' />
-            )}
+          className={
+            isHomePage ? css.navWrapperTabletHome : css.navWrapperTablet
+          }>
+          {!isTablet && !isMobile && (
+            <Nav isHomePage={isHomePage} variant='desktop' />
+          )}
 
-            {isLoggedIn ? (
-              <UserNav isHomePage={isHomePage} />
-            ) : (
-              (isTablet || !isMobile) && <AuthNav />
-            )}
-          </div>
-          <div className={css.burgerWrapper}>
-            <BurgerMenu
-              isOpen={isSidebarOpen}
-              onClick={toggleSidebar}
-              isHomePage={isHomePage}
-            />
-          </div>
+          {isLoggedIn ? (
+            <UserNav isHomePage={isHomePage} />
+          ) : (
+            (isTablet || !isMobile) && <AuthNav />
+          )}
+        </div>
+        <div className={css.burgerWrapper}>
+          <BurgerMenu
+            isOpen={isSidebarOpen}
+            onClick={toggleSidebar}
+            isHomePage={isHomePage}
+          />
         </div>
       </div>
+
       <div
         className={`${css.sidebar} ${!isHomePage && css.sidebarYellow} ${
           isSidebarOpen ? css.open : ''
