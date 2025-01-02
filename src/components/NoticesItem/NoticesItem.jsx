@@ -23,7 +23,11 @@ import {
 import { capitalizeFirstLetter, formatDate } from '../constants';
 import { checkAuth } from '../../redux/users/operations';
 
-const NoticesItem = ({ notice, onDelete}) => {
+const NoticesItem = ({ notice,  
+  onAddToFavorites, 
+  onRemoveFromFavorites }) => {
+
+
   const dispatch = useDispatch();
   const [isAttentionOpen, setAttentionOpen] = useState(false);
   const [isNoticeOpen, setNoticeOpen] = useState(false);
@@ -55,12 +59,12 @@ const NoticesItem = ({ notice, onDelete}) => {
   } = notice;
 
 
-   // Определяем isFavorite на основе текущего состояния favorites
-   const isFavorite = useMemo(() => favorites.includes(_id), [favorites, _id]);
-  // const isFavorite = favorites.includes(_id);
-  // const isFavorite = (id, favorites) => favorites.includes(id);
- // const isFavorite = useSelector(state => selectIsFavorite(state, notice._id));
-  
+  const isButtonDisabled = loading || loadingProfile;
+    const isFavorite = useMemo(() => favorites.includes(_id), [favorites, _id]);
+
+   
+
+
   const handleLearnMore = async () => {
     if (!isLoggedIn) {
       setAttentionOpen(true);
@@ -74,36 +78,29 @@ const NoticesItem = ({ notice, onDelete}) => {
     }
   };
 
+  
+  // const handleFavoriteClick = () => {
+  //   if (isFavorite) {
+  //     onRemoveFromFavorites(_id); 
+  //   } else {
+  //     onAddToFavorites(_id); 
+  //   }
+  // };
+
   const handleFavoriteClick = async () => {
     if (!isLoggedIn) {
       setAttentionOpen(true);
       return;
     }
 
-    const action = isFavorite ? removeFromFavorites : addToFavorites;
+    const action = isFavorite ? onRemoveFromFavorites : onAddToFavorites;
     try {
       await dispatch(action(_id)).unwrap();
-      // await dispatch(checkAuth());
+  //     // await dispatch(checkAuth());
     } catch (error) {
       console.error(error);
     }
   };
-
-
-  // const handleDeleteClick = async () => {
-  //   if (!isLoggedIn) {
-  //     setAttentionOpen(true);
-  //     return;
-  //   }
-
-  //   try {
-  //     await dispatch(removeFromFavorites(_id)).unwrap();
-  //     // Удаляем объявление из локального состояния (если передается onDelete)
-  //     onDelete(_id);
-  //   } catch (error) {
-  //     console.error('Ошибка при удалении объявления:', error);
-  //   }
-  // };
 
   return (
     <>

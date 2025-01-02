@@ -76,6 +76,16 @@ const NoticesPage = () => {
     dispatch(setNoticesPage(page));
   };
 
+
+    // Функции для работы с избранным
+    const handleAddToFavorites = async (id) => {
+      await dispatch(addToFavorites(id)); // Операция для добавления
+    };
+  
+    const handleRemoveFromFavorites = async (id) => {
+      await dispatch(removeFromFavorites(id)); // Операция для удаления
+    };
+
   return (
     <section className={css.notices}>
       <div className={css.container}>
@@ -93,7 +103,8 @@ const NoticesPage = () => {
             citiesList={citiesList}
           />
         </div>
-        <NoticesList notices={notices} />
+        <NoticesList notices={notices}          onAddToFavorites={handleAddToFavorites}
+          onRemoveFromFavorites={handleRemoveFromFavorites} />
         {totalPages > 1 && (
           <Pagination
             currentPage={currentPage}
