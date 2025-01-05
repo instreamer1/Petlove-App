@@ -2,7 +2,7 @@ import { useState } from 'react';
 import NoticesItem from '../NoticesItem/NoticesItem';
 import css from './MyNotices.module.css';
 
-const MyNotices = ({ notices, viewedNotices, onDeleteNotice }) => {
+const MyNotices = ({ notices, viewedNotices, onAddToFavorites, onRemoveFromFavorites }) => {
 
   const [activeTab, setActiveTab] = useState('favorites');
 
@@ -38,7 +38,8 @@ const MyNotices = ({ notices, viewedNotices, onDeleteNotice }) => {
             <NoticesItem
               key={notice._id}
               notice={notice}
-              onDelete={activeTab === 'favorites' ? () => onDeleteNotice(notice._id) : null}
+              onAddToFavorites={onAddToFavorites}
+              onRemoveFromFavorites={onRemoveFromFavorites}
             />
           ))
         ) : (

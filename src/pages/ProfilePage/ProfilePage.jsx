@@ -5,34 +5,71 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectUser,
   selectPets,
-  selectUserFavorites,
   selectNoticesViewed,
+  selectNoticesFavorites,
+  selectIsLoggedIn,
+  selectIsLoading,
 } from '../../redux/users/selectors.js';
-import { getCurrentUserFullInfo, removePet } from '../../redux/users/operations.js';
+import {
+  addToFavorites,
+  getCurrentUserFullInfo,
+  removeFromFavorites,
+  removePet,
+} from '../../redux/users/operations.js';
 import { useEffect } from 'react';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const favoritesPets = useSelector(selectUserFavorites);
+  const isLoading = useSelector(selectIsLoading);
+  const noticesFavorites = useSelector(selectNoticesFavorites);
   const pets = useSelector(selectPets);
   const noticesViewed = useSelector(selectNoticesViewed);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
 
   // useEffect(() => {
-  //   dispatch(getCurrentUserFullInfo());
-  // }, [dispatch]);
+  //   if (isLoggedIn && !isLoading) {
+      // dispatch(getCurrentUserFullInfo());
+  //   }
+  // }, [dispatch, isLoggedIn, isLoading, noticesFavorites, pets]);
 
-  const onDeletePet = id => {
-    dispatch(removePet(id ));
+
+  useEffect(() => {
+    console.log('Fetching user full info:', { isLoggedIn, isLoading, noticesFavorites });
+    if (isLoggedIn && !isLoading && (!noticesFavorites || noticesFavorites.length === 0)) {
+      // dispatch(getCurrentUserFullInfo());
+    }
+  }, [dispatch, isLoading, noticesFavorites, isLoggedIn]);
+
+
+  
+  const handleDeletePet = id => {
+    dispatch(removePet(id));
   };
+
+  const handleAddToFavorites = async id => {
+    await dispatch(addToFavorites(id));
+  };
+
+  const handleRemoveFromFavorites = async id => {
+    await dispatch(removeFromFavorites(id));
+  };
+
+
+  if (isLoading || !user) {
+    return <p>Loading...</p>; 
+  }
 
   return (
     <section className={css.profile}>
       <div className={css.container}>
-        <UserCard pets={pets} user={user} onDeletePet={onDeletePet} />
-        <MyNotices notices={favoritesPets} 
-        viewedNotices={noticesViewed} 
-        // onDeleteNotice={}
+        <UserCard pets={pets} user={user} onDeletePet={handleDeletePet} />
+        <MyNotices
+          notices={noticesFavorites}
+          viewedNotices={noticesViewed}
+          onAddToFavorites={handleAddToFavorites}
+          onRemoveFromFavorites={handleRemoveFromFavorites}
         />
       </div>
     </section>

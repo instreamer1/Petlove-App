@@ -17,17 +17,27 @@ import {
   selectSexOptions,
   selectSpeciesOptions,
 } from '../../redux/notices/selectors';
-import { fetchNotices } from '../../redux/notices/operations';
+import {
+  // addToFavorites,
+  fetchCategories,
+  fetchNotices,
+  fetchSexOptions,
+  fetchSpeciesOptions,
+  // removeFromFavorites,
+} from '../../redux/notices/operations';
 import { setNoticesFilters, setNoticesPage } from '../../redux/notices/slice';
 import {
   selectCitiesList,
   selectLocationsList,
 } from '../../redux/cities/selectors';
-import { fetchCitiesByKeyword } from '../../redux/cities/operations';
+import { fetchCitiesByKeyword, fetchCitiesWithLocations } from '../../redux/cities/operations';
+import { selectIsLoading, selectIsLoggedIn } from '../../redux/users/selectors';
+import { addToFavorites, checkAuth, getCurrentUserFullInfo, removeFromFavorites } from '../../redux/users/operations';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+ const isLoading = useSelector(selectIsLoading);
   const notices = useSelector(selectNotices);
   const currentPage = useSelector(selectNoticesCurrentPage);
   const totalPages = useSelector(selectNoticesTotalPages);
@@ -43,9 +53,22 @@ const NoticesPage = () => {
 
   const itemsPerPage = 6;
 
+ 
+
+
+  
+  useEffect(() => {
+    console.log('Fetching user full info:', { isLoggedIn, isLoading, notices });
+    if (isLoggedIn && !isLoading && (!notices || notices.length === 0)) {
+      dispatch(getCurrentUserFullInfo());
+    }
+  }, [dispatch, isLoading, notices, isLoggedIn]);
+
+
 
   useEffect(() => {
     dispatch(
+      
       fetchNotices({ ...filters, page: currentPage, limit: itemsPerPage })
     );
   }, [dispatch, filters, currentPage]);
@@ -77,14 +100,13 @@ const NoticesPage = () => {
   };
 
 
-    // Функции для работы с избранным
-    const handleAddToFavorites = async (id) => {
-      await dispatch(addToFavorites(id)); // Операция для добавления
-    };
-  
-    const handleRemoveFromFavorites = async (id) => {
-      await dispatch(removeFromFavorites(id)); // Операция для удаления
-    };
+  const handleAddToFavorites = async id => {
+    await dispatch(addToFavorites(id));
+  };
+
+  const handleRemoveFromFavorites = async id => {
+    await dispatch(removeFromFavorites(id)); 
+  };
 
   return (
     <section className={css.notices}>
@@ -103,8 +125,11 @@ const NoticesPage = () => {
             citiesList={citiesList}
           />
         </div>
-        <NoticesList notices={notices}          onAddToFavorites={handleAddToFavorites}
-          onRemoveFromFavorites={handleRemoveFromFavorites} />
+        <NoticesList
+          notices={notices}
+          onAddToFavorites={handleAddToFavorites}
+          onRemoveFromFavorites={handleRemoveFromFavorites}
+        />
         {totalPages > 1 && (
           <Pagination
             currentPage={currentPage}

@@ -139,3 +139,27 @@ export const editUser = createAsyncThunk(
     }
   }
 );
+
+export const addToFavorites = createAsyncThunk(
+  'notices/addToFavorites',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.post(`/notices/favorites/add/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const removeFromFavorites = createAsyncThunk(
+  'notices/removeFromFavorites',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.delete(`/notices/favorites/remove/${id}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

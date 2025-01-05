@@ -50,11 +50,17 @@ const App = () => {
     dispatch(fetchCitiesWithLocations());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getCurrentUserFullInfo());
-    }
-  }, [dispatch, isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     dispatch(getCurrentUserFullInfo());
+  //   }
+  // }, [dispatch, isLoggedIn]);
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchNotices({ ...filters, page: currentPage, limit: itemsPerPage })
+  //   );
+  // }, [dispatch, filters, currentPage]);
+
 
   if (isLoading) {
     return <Loader />;

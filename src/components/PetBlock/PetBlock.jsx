@@ -10,10 +10,8 @@ const PetBlock = ({
   imageSrcDesk1x,
   imageSrcDesk2x,
   altText,
+  width,
 }) => {
-
-
-  
   return (
     <picture className={css.picture}>
       <source
@@ -29,7 +27,13 @@ const PetBlock = ({
         srcSet={`${imageSrc1x} 1x, ${imageSrc2x} 2x`}
         media='(min-width: 320px)'
       />
-      <img className={css.image} src={imageSrc} alt={altText} loading='lazy' />
+      <img
+        className={css.image}
+        src={imageSrc}
+        alt={altText}
+        loading='lazy'
+        width={width}
+      />
     </picture>
   );
 };

@@ -7,7 +7,7 @@ import {
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorites, removeFromFavorites } from '../../redux/notices/operations';
+// import { addToFavorites, removeFromFavorites } from '../../redux/notices/operations';
 
 const ModalNotice = ({ isOpen, onClose, notice, isFavorite, handleFavoriteClick }) => {
   const dispatch = useDispatch();

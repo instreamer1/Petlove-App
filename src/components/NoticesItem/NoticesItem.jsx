@@ -5,34 +5,36 @@ import ModalNotice from '../ModalNotice/ModalNotice';
 import { useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIsFavorite,
+  selectFavorites,
+  // selectIsFavorite,
   selectIsLoading,
   selectIsLoggedIn,
+  selectNoticesFavorites,
+  // selectUserFavorites,
 } from '../../redux/users/selectors';
 import {
-  addToFavorites,
+  // addToFavorites,
   fetchNoticeById,
-  removeFromFavorites,
+  // removeFromFavorites,
 } from '../../redux/notices/operations';
 import {
   selectCurrentNotice,
-  selectFavorites,
+  // selectFavorites,
+  // selectFavorites,
   selectNoticesError,
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
 import { capitalizeFirstLetter, formatDate } from '../constants';
-import { checkAuth } from '../../redux/users/operations';
+// import { addToFavorites, checkAuth, removeFromFavorites } from '../../redux/users/operations';
 
-const NoticesItem = ({ notice,  
-  onAddToFavorites, 
-  onRemoveFromFavorites }) => {
-
-
+const NoticesItem = ({ notice, onAddToFavorites, onRemoveFromFavorites }) => {
   const dispatch = useDispatch();
   const [isAttentionOpen, setAttentionOpen] = useState(false);
   const [isNoticeOpen, setNoticeOpen] = useState(false);
 
-  const favorites = useSelector(selectFavorites);
+  const noticesFavorites = useSelector(selectNoticesFavorites);
+  const favorites = useSelector(selectFavorites)
+  // const favorites = useSelector(selectFavorites);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const currentNotice = useSelector(selectCurrentNotice);
 
@@ -57,12 +59,31 @@ const NoticesItem = ({ notice,
     popularity,
     updatedAt,
   } = notice;
-
-
+  // console.log(typeof _id)
   const isButtonDisabled = loading || loadingProfile;
-    const isFavorite = useMemo(() => favorites.includes(_id), [favorites, _id]);
+  // const isFavorite = () => favorites.includes(_id);
 
-   
+
+
+//   const isFavorite = favorites.some((favorite) => {
+//     console.log(favorite);
+//     console.log('Favorite ID:', favorite._id); // Проверяем значение _id в массиве
+//     console.log('Type of Favorite ID:', typeof favorite._id); // Тип _id
+//     console.log('Target ID:', _id); // Значение, с которым сравниваем
+//     console.log('Type of Target ID:', typeof _id); // Тип значения для сравнения
+//     return favorite._id === _id;
+// });
+
+// const favoritesIds = useMemo(() => noticesFavorites.map((favorite) => favorite._id), [noticesFavorites]);
+// const isFavorite = favoritesIds.includes(_id);
+const isFavorite = favorites.includes(_id);
+
+
+  // const isFavorite = () => favorites.includes(_id);
+  // console.log("favorites", favorites);
+  // console.log("_id", _id);
+  // console.log("isFavorite", isFavorite);
+
 
 
   const handleLearnMore = async () => {
@@ -78,15 +99,6 @@ const NoticesItem = ({ notice,
     }
   };
 
-  
-  // const handleFavoriteClick = () => {
-  //   if (isFavorite) {
-  //     onRemoveFromFavorites(_id); 
-  //   } else {
-  //     onAddToFavorites(_id); 
-  //   }
-  // };
-
   const handleFavoriteClick = async () => {
     if (!isLoggedIn) {
       setAttentionOpen(true);
@@ -95,12 +107,30 @@ const NoticesItem = ({ notice,
 
     const action = isFavorite ? onRemoveFromFavorites : onAddToFavorites;
     try {
-      await dispatch(action(_id)).unwrap();
-  //     // await dispatch(checkAuth());
+   
+       await dispatch(action(_id)).unwrap();
+  
     } catch (error) {
       console.error(error);
     }
   };
+
+  // const handleFavoriteClick = async () => {
+  //   if (!isLoggedIn) {
+  //     setAttentionOpen(true);
+  //     return;
+  //   }
+
+  //  console.log(isFavorite);
+
+  //   const action = isFavorite ? onRemoveFromFavorites : onAddToFavorites;
+  //   try {
+  //     await dispatch(action(_id)).unwrap();
+  //     //     // await dispatch(checkAuth());
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <>
@@ -160,6 +190,7 @@ const NoticesItem = ({ notice,
               <div className={css.buttonWrapper}>
                 <button
                   type='button'
+                  aria-label='Learn more'
                   className={css.learnMoreBtn}
                   onClick={handleLearnMore}>
                   Learn more
@@ -171,8 +202,8 @@ const NoticesItem = ({ notice,
                   }
                   className={css.favoriteBtn}
                   onClick={handleFavoriteClick}
-                  disabled={loading}>
-
+                  // disabled={isButtonDisabled}
+                  >
                   <svg className={css.icon}>
                     <use
                       href={`${iconSprite}#${

@@ -14,6 +14,7 @@ const store = configureStore({
     friends: friendsReducer,
     cities: citiesReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;

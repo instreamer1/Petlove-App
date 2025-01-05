@@ -5,6 +5,9 @@ import RegistrationForm from '../../components/RegistrationForm/RegistrationForm
 
 import registrationMobile from '../../assets/images/img_register_tab.png';
 import registrationMobile2x from '../../assets/images/img_register_tab2x.png';
+import registrationTab1x from '../../assets/images/imgRegTab1.webp';
+import registrationTab2x from '../../assets/images/imgRegTab2x.webp';
+
 import registrationDesktop from '../../assets/images/img_register_desk.png';
 import registrationDesktop2x from '../../assets/images/img_register_desk2x.png';
 
@@ -36,11 +39,12 @@ const RegistrationPage = () => {
             imageSrc={registration}
             imageSrc1x={registrationMobile}
             imageSrc2x={registrationMobile2x}
-            imageSrcTab1x={registrationMobile}
-            imageSrcTab2x={registrationMobile2x}
+            imageSrcTab1x={registrationTab1x}
+            imageSrcTab2x={registrationTab2x}
             imageSrcDesk1x={registrationDesktop}
             imageSrcDesk2x={registrationDesktop2x}
             altText='Registration Cat'
+            width="364px"
           />
         </div>
         <div className={css.formWrapper}>

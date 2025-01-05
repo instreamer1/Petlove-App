@@ -37,6 +37,7 @@ const AddPetForm = ({ onSubmit }) => {
     register,
     handleSubmit,
     reset,
+    isSubmitting,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -49,7 +50,6 @@ const AddPetForm = ({ onSubmit }) => {
   const handleFormSubmit = data => {
     onSubmit(data);
     reset();
-    navigate('/profile');
   };
 
   const avatar = null;
@@ -81,6 +81,7 @@ const AddPetForm = ({ onSubmit }) => {
             </div>
           ))}
         </div>
+        {errors.sex && <p className={css.error}>{errors.sex.message}</p>}
         <div className={css.imgWrapper}>
           {avatar !== null ? (
             <img src='' alt='' className={css.image} />
@@ -107,7 +108,7 @@ const AddPetForm = ({ onSubmit }) => {
             </svg>
           </button>
         </div>
-
+        {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}
         <input
           type='text'
           placeholder='Title'
@@ -125,37 +126,53 @@ const AddPetForm = ({ onSubmit }) => {
         {errors.name && <p className={css.error}>{errors.name.message}</p>}
 
         <div className={css.dateTypeWrapper}>
-          <label htmlFor='birthday' className={css.birthdayLabel}>
-            <input
-              type='text'
-              name='birthday'
-              placeholder='00.00.0000'
-              lang='en'
-              {...register('birthday')}
+          <div>
+            <label htmlFor='birthday' className={css.birthdayLabel}>
+              <input
+                type='text'
+                name='birthday'
+                placeholder='0000-00-00'
+                lang='en'
+                {...register('birthday')}
+                className={`${css.input} ${css.inputDate}`}
+              />
+              <svg className={`${css.icon} ${css.iconCalendar}`}>
+                <use href={`${iconSprite}#calendar`}></use>
+              </svg>
+            </label>
+            {errors.birthday && (
+              <p className={css.error}>{errors.birthday.message}</p>
+            )}
+          </div>
+          <div>
+            <select
               className={`${css.input} ${css.inputDate}`}
-            />
-            <svg className={`${css.icon} ${css.iconCalendar}`}>
-              <use href={`${iconSprite}#calendar`}></use>
-            </svg>
-          </label>
-          <select
-            className={`${css.input} ${css.inputDate}`}
-            {...register('species')}>
-            <option value=''>Type of pet</option>
-            {speciesOptions.map(option => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+              {...register('species')}>
+              <option value=''>Type of pet</option>
+              {speciesOptions.map(option => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            {errors.species && (
+              <p className={css.error}>{errors.species.message}</p>
+            )}
+          </div>
         </div>
-
         <div className={css.buttons}>
-          <button type='button' onClick={handleBack} className={`${css.button} ${css.backButton}`}>
+          <button
+            type='button'
+            onClick={handleBack}
+            className={`${css.button} ${css.backButton}`}>
             Back
           </button>
-          <button type='submit' className={`${css.button} ${css.submitButton}`} disabled={loading}>
-            Submit
+          <button
+            type='submit'
+            aria-label='Submit'
+            className={`${css.button} ${css.submitButton}`}
+            disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
         </div>
       </form>

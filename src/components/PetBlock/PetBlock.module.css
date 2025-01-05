@@ -1,7 +1,7 @@
 
 .picture{
   display: block;
-  width: 100%;
+  object-fit: cover;
 }
 
 .image {
@@ -14,7 +14,7 @@
 
   .image {
     object-fit: cover;
-    width: 100%;
+    /* width: 297px; */
   }
 }
 

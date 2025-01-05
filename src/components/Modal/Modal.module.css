@@ -1,10 +1,9 @@
 .modal {
- position: relative;
+  position: relative;
   margin: 80px auto auto;
   border-radius: 30px;
   background-color: #ffffff;
 }
-
 
 .overlay {
   position: fixed;
@@ -25,7 +24,6 @@
   transform: translate(-50%, -50%);
 }
 
-
 .closeIcon {
   cursor: pointer;
   position: absolute;
@@ -33,12 +31,12 @@
   right: 20px;
 }
 
-.icon{
-  width: 20px;
-  height: 20px;
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+  stroke: #262626;
 }
 
 @media screen and (min-width: 768px) {
-
-  
 }
