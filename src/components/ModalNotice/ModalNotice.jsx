@@ -6,13 +6,21 @@ import {
   selectNoticesError,
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-// import { addToFavorites, removeFromFavorites } from '../../redux/notices/operations';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../redux/users/selectors';
 
-const ModalNotice = ({ isOpen, onClose, notice, isFavorite, handleFavoriteClick }) => {
-  const dispatch = useDispatch();
-  const loading = useSelector(selectNoticesLoading);
+const ModalNotice = ({
+  isOpen,
+  onClose,
+  notice,
+  isFavorite,
+  onAddToFavorites,
+  onRemoveFromFavorites,
+}) => {
+  const isNoticesLoading = useSelector(selectNoticesLoading);
+  const loadingProfile = useSelector(selectIsLoading);
   const error = useSelector(selectNoticesError);
+
   if (!notice) {
     return null;
   }
@@ -26,26 +34,27 @@ const ModalNotice = ({ isOpen, onClose, notice, isFavorite, handleFavoriteClick 
     birthday,
     comment,
     sex,
-    location,
     imgURL,
-    createdAt,
     user,
     popularity,
-    updatedAt,
   } = notice;
 
-  // const handleFavoriteInModal = async () => {
-  //   const action = isFavorite ? removeFromFavorites : addToFavorites;
-  //   try {
-  //     await dispatch(action(notice._id)).unwrap();
-  //   } catch (error) {
-  //     console.error('Ошибка изменения избранного в модальном окне:', error);
-  //   }
-  // };
+  const isButtonDisabled = isNoticesLoading || loadingProfile;
+
+  const handleFavoriteInModal = async () => {
+    const action = isFavorite ? onRemoveFromFavorites : onAddToFavorites;
+    try {
+      await action(notice._id);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={css.modalNotice}>
+        {error && <div className={css.error}>Error: {error}</div>}
+        {isNoticesLoading && <div className={css.loader}>Loading...</div>}
         <div className={css.imgWrap}>
           <img
             src={imgURL ? imgURL : ''}
@@ -109,7 +118,8 @@ const ModalNotice = ({ isOpen, onClose, notice, isFavorite, handleFavoriteClick 
                 <button
                   type='button'
                   className={css.addToBtn}
-                  onClick={handleFavoriteClick}>
+                  onClick={handleFavoriteInModal}
+                  disabled={isButtonDisabled}>
                   {isFavorite ? 'Remove from ' : 'Add to '}
 
                   <svg className={css.icon}>

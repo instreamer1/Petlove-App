@@ -8,6 +8,7 @@ const MyNotices = ({ notices, viewedNotices, onAddToFavorites, onRemoveFromFavor
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    
   };
 
   const noticesToDisplay = activeTab === 'favorites' ? notices : viewedNotices;

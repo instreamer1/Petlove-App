@@ -146,6 +146,7 @@
 }
 
 .addToBtn {
+  outline: none;
   border-radius: 30px;
   padding: 12px 12px;
   width: 135px;
@@ -172,6 +173,7 @@
 }
 
 .contactBtn {
+  outline: none;
   border-radius: 30px;
   padding: 12px 12px;
   width: 134px;

@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  // addToFavorites,
   fetchCategories,
   fetchNoticeById,
   fetchNotices,
   fetchSexOptions,
   fetchSpeciesOptions,
-  // removeFromFavorites,
 } from './operations';
 
 const initialState = {
@@ -24,7 +22,6 @@ const initialState = {
   sexOptions: [],
   speciesOptions: [],
   currentNotice: null,
-  // favorites: [],
   totalPages: 0,
   currentPage: 1,
   page: null,
@@ -80,38 +77,6 @@ const noticesSlice = createSlice({
       .addCase(fetchSpeciesOptions.fulfilled, (state, action) => {
         state.speciesOptions = action.payload;
       })
-      // .addCase(addToFavorites.pending, state => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-
-      // .addCase(addToFavorites.fulfilled, (state, action) => {
-      //   state.favorites.push(action.payload);
-      //   console.log(action.payload);
-      // })
-      // .addCase(addToFavorites.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.error.message;
-      // })
-
-      // .addCase(removeFromFavorites.pending, state => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(removeFromFavorites.fulfilled, (state, action) => {
-      //   console.log(action.payload);
-
-      //   // state.favorites = state.favorites.filter(
-      //   //   fav => fav.id !== action.payload
-      //   // );
-
-      //   state.favorites.push(action.payload);
-      // })
-
-      // .addCase(removeFromFavorites.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.error.message;
-      // })
       .addCase(fetchNoticeById.fulfilled, (state, action) => {
         state.currentNotice = action.payload;
       });

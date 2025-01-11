@@ -27,20 +27,28 @@ const ProfilePage = () => {
   const noticesViewed = useSelector(selectNoticesViewed);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  useEffect(() => {
+    console.log('isLoggedIn changed:', isLoggedIn);
+    if (isLoggedIn) {
+      console.log('Dispatching getCurrentUserFullInfo');
+      dispatch(getCurrentUserFullInfo());
+    }
+  }, [dispatch, isLoggedIn]);
+  
+// useEffect(() => {
+//   console.log('Fetching user isLoading info:',  isLoading);
+
+// }, [dispatch, isLoading]);
+
+// useEffect(() => {
+//   console.log("Effect triggered:", { isLoggedIn, isLoading });
+// }, [isLoggedIn, isLoading]);
+
 
   // useEffect(() => {
-  //   if (isLoggedIn && !isLoading) {
-      // dispatch(getCurrentUserFullInfo());
-  //   }
-  // }, [dispatch, isLoggedIn, isLoading, noticesFavorites, pets]);
-
-
-  useEffect(() => {
-    console.log('Fetching user full info:', { isLoggedIn, isLoading, noticesFavorites });
-    if (isLoggedIn && !isLoading && (!noticesFavorites || noticesFavorites.length === 0)) {
-      // dispatch(getCurrentUserFullInfo());
-    }
-  }, [dispatch, isLoading, noticesFavorites, isLoggedIn]);
+  //   console.log('Fetching user full info:', { isLoggedIn, isLoading, noticesFavorites });
+  
+  // }, [dispatch, isLoading, noticesFavorites, isLoggedIn]);
 
 
   
@@ -57,14 +65,16 @@ const ProfilePage = () => {
   };
 
 
-  if (isLoading || !user) {
-    return <p>Loading...</p>; 
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>; 
+  // }
 
   return (
     <section className={css.profile}>
       <div className={css.container}>
-        <UserCard pets={pets} user={user} onDeletePet={handleDeletePet} />
+        <UserCard pets={pets}
+         user={user} 
+         onDeletePet={handleDeletePet} />
         <MyNotices
           notices={noticesFavorites}
           viewedNotices={noticesViewed}

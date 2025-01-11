@@ -8,6 +8,8 @@ import ModalEditUser from '../ModalEditUser/ModalEditUser';
 import defaultImage from '../../assets/images/defaultImage.png';
 
 const UserBlock = ({ user }) => {
+
+  
   const { avatar, name, email, phone } = user;
 
   const [isModalOpen, setIsModalOpen] = useState(false);

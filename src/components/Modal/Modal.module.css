@@ -25,6 +25,7 @@
 }
 
 .closeIcon {
+  outline: none;
   cursor: pointer;
   position: absolute;
   top: 20px;

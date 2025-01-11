@@ -53,26 +53,6 @@ export const fetchSpeciesOptions = createAsyncThunk(
   }
 );
 
-// export const addToFavorites = createAsyncThunk(
-//   'notices/addToFavorites',
-//   async (id, thunkAPI) => {
-//     return handleAsyncThunkError(async () => {
-//       const { data } = await axios.post(`/notices/favorites/add/${id}`);
-//       return data;
-//     }, thunkAPI);
-//   }
-// );
-
-// export const removeFromFavorites = createAsyncThunk(
-//   'notices/removeFromFavorites',
-//   async (id, thunkAPI) => {
-//     return handleAsyncThunkError(async () => {
-//       const { data } = await axios.delete(`/notices/favorites/remove/${id}`);
-//       return data;
-//     }, thunkAPI);
-//   }
-// );
-
 export const fetchNoticeById = createAsyncThunk(
   'notices/fetchNoticeById',
   async (id, thunkAPI) => {

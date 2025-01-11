@@ -52,13 +52,14 @@ const usersSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
-        state.token = action.payload.token;
+        const { name, email, token } = action.payload;
+        state.user = { ...state.user, name, email };
+        state.token = token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(logIn.rejected, (state, action) => {
+        console.log('LogIn Successful:', action.payload);
         state.error = action.payload;
         state.isLoading = false;
       })
@@ -69,7 +70,7 @@ const usersSlice = createSlice({
         state.favorites = [];
         state.noticesFavorites = [];
         state.pets = [];
-        state.noticesViewed = []; 
+        state.noticesViewed = [];
         state.isLoggedIn = false;
       })
       .addCase(logOut.rejected, (state, action) => {
@@ -80,10 +81,9 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
-        state.token = action.payload.token;
-        // state.noticesFavorites = action.payload.noticesFavorites;
+        const { name, email, token } = action.payload;
+        state.user = { ...state.user, name, email };
+        state.token = token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -98,13 +98,12 @@ const usersSlice = createSlice({
       })
       .addCase(getCurrentUserFullInfo.fulfilled, (state, action) => {
         state.user = {
-          name: action.payload.name,
-          email: action.payload.email,
+          ...state.user,
           phone: action.payload.phone,
           avatar: action.payload.avatar,
         };
-        state.noticesFavorites = action.payload.noticesFavorites;
         state.favorites = action.payload.noticesFavorites.map(item => item._id);
+        state.noticesFavorites = action.payload.noticesFavorites;
         state.pets = action.payload.pets;
         state.noticesViewed = action.payload.noticesViewed;
         state.isLoading = false;
@@ -118,10 +117,8 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {
-        state.isLoading = false;
-
-        // state.pets.push(...action.payload.pets);
         state.pets = action.payload.pets;
+        state.isLoading = false;
       })
       .addCase(addPet.rejected, (state, action) => {
         state.isLoading = false;
@@ -132,9 +129,8 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(removePet.fulfilled, (state, action) => {
-        state.isLoading = false;
-        // state.pets = state.pets.filter(pet => pet._id !== action.meta.arg);
         state.pets = action.payload.pets;
+        state.isLoading = false;
       })
       .addCase(removePet.rejected, (state, action) => {
         state.isLoading = false;
@@ -157,43 +153,33 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload || 'Something went wrong';
       })
-      // Add to Favorites
       .addCase(addToFavorites.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.favorites.push(action.payload._id);
-
         state.favorites = action.payload;
-        console.log(action.payload);
-        // state.noticesFavorites.push(action.payload); // Добавление объекта
-        state.loading = false;
+
+        state.isLoading = false;
       })
       .addCase(addToFavorites.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
-      // Remove from Favorites
       .addCase(removeFromFavorites.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
-  
         state.favorites = action.payload;
-        console.log(action.payload);
-        // state.favorites = state.favorites.filter(
-        //   id => id !== action.payload._id
-        // );
-
-        state.noticesFavorites = state.noticesFavorites.filter(
-          item => action.payload.includes(item._id)
+        state.noticesFavorites = state.noticesFavorites.filter(item =>
+          action.payload.includes(item._id)
         );
-        state.loading = false;
+        state.isLoading = false;
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       });
   },

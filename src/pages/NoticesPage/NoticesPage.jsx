@@ -38,6 +38,7 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
  const isLoading = useSelector(selectIsLoading);
+ const isNoticesLoading = useSelector(selectNoticesLoading)
   const notices = useSelector(selectNotices);
   const currentPage = useSelector(selectNoticesCurrentPage);
   const totalPages = useSelector(selectNoticesTotalPages);
@@ -47,22 +48,18 @@ const NoticesPage = () => {
   const locationsList = useSelector(selectLocationsList);
   const citiesList = useSelector(selectCitiesList);
 
-  const loading = useSelector(selectNoticesLoading);
+  
   const error = useSelector(selectNoticesError);
   const filters = useSelector(selectFilters);
 
   const itemsPerPage = 6;
-
- 
-
-
-  
-  useEffect(() => {
-    console.log('Fetching user full info:', { isLoggedIn, isLoading, notices });
-    if (isLoggedIn && !isLoading && (!notices || notices.length === 0)) {
+console.log(isLoading );
+   useEffect(() => {
+    if (isLoggedIn && !isNoticesLoading  ) {
       dispatch(getCurrentUserFullInfo());
     }
-  }, [dispatch, isLoading, notices, isLoggedIn]);
+  }, [dispatch, isNoticesLoading, isLoggedIn]);
+
 
 
 
