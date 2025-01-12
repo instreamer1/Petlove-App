@@ -4,6 +4,8 @@ import { newsReducer } from './news/slice';
 import { noticesReducer } from './notices/slice';
 import { friendsReducer } from './friends/slice';
 import { citiesReducer } from './cities/slice';
+import { loadingReducer } from './loadingSlice/slice';
+
 
 
 const store = configureStore({
@@ -13,6 +15,7 @@ const store = configureStore({
     notices: noticesReducer,
     friends: friendsReducer,
     cities: citiesReducer,
+    loading: loadingReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

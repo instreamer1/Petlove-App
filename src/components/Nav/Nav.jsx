@@ -2,6 +2,11 @@ import { NavLink } from 'react-router-dom';
 import css from './Nav.module.css';
 
 const Nav = ({ closeSidebar, isHomePage, variant="sidebar" }) => {
+
+  const buildLinkClass = ({ isActive }) => {
+    return `${css.linkDesktop} ${isActive ? css.active : ""}`;
+  };
+  
   return (
     <div
     className={
@@ -15,7 +20,7 @@ const Nav = ({ closeSidebar, isHomePage, variant="sidebar" }) => {
           isHomePage
             ? css.linkHome
             : variant === "desktop"
-            ? css.linkDesktop
+            ? buildLinkClass
             : css.link
         }
         to="/news"
@@ -28,7 +33,7 @@ const Nav = ({ closeSidebar, isHomePage, variant="sidebar" }) => {
           isHomePage
             ? css.linkHome
             : variant === "desktop"
-            ? css.linkDesktop
+            ? buildLinkClass
             : css.link
         }
         to="/notices"
@@ -41,7 +46,7 @@ const Nav = ({ closeSidebar, isHomePage, variant="sidebar" }) => {
           isHomePage
             ? css.linkHome
             : variant === "desktop"
-            ? css.linkDesktop
+            ? buildLinkClass
             : css.link
         }
         to="/friends"

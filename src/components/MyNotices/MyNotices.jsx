@@ -15,7 +15,7 @@ const MyNotices = ({ notices, viewedNotices, onAddToFavorites, onRemoveFromFavor
 
   return (
     <div className={css.container}>
-      {/* Tabs */}
+ 
       <div className={css.tabs}>
         <button
           className={`${css.tabButton} ${
@@ -32,7 +32,7 @@ const MyNotices = ({ notices, viewedNotices, onAddToFavorites, onRemoveFromFavor
           Viewed
         </button>
       </div>
-        {/* Notices List */}
+       
         <ul className={css.noticesList}>
         {noticesToDisplay.length > 0 ? (
           noticesToDisplay.map((notice) => (

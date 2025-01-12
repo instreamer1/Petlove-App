@@ -65,7 +65,7 @@ const Header = ({ isHomePage }) => {
             variant='sidebar'
           />
           {isLoggedIn ? (
-            <LogOutBtn closeSidebar={closeSidebar} isHomePage={isHomePage} />
+            <LogOutBtn closeSidebar={closeSidebar} isHomePage={isHomePage} isSidebarOpen={isSidebarOpen} />
           ) : (
             <AuthNav closeSidebar={closeSidebar} isHomePage={isHomePage} />
           )}

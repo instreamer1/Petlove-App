@@ -50,10 +50,11 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchNotices.fulfilled, (state, action) => {
-        state.loading = false;
+       
         state.notices = action.payload.results;
         state.totalPages = action.payload.totalPages || 1;
         state.page = action.payload.page;
+        state.loading = false;
       })
       .addCase(fetchNotices.rejected, (state, action) => {
         state.loading = false;
@@ -65,6 +66,7 @@ const noticesSlice = createSlice({
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
+        state.loading = false
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;

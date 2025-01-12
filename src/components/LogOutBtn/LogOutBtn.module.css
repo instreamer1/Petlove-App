@@ -1,5 +1,4 @@
-.logOutBtn{
-
+.logOutBtn {
 }
 
 .button {
@@ -16,16 +15,19 @@
   color: #f6b83d;
   background: #fff4df;
 }
-.buttonHome{
- 
+
+.button:hover {
+  transform: scale(1.1);
+}
+.buttonHome {
   color: #f6b83d;
   background: #fff4df;
 }
-.buttonHeader{ 
-  background: #f6b83d;
-    color: #fff;
-}
 
+.buttonHeader {
+  background: #f6b83d;
+  color: #fff;
+}
 
 @media screen and (min-width: 768px) {
   .button {
@@ -33,7 +35,7 @@
     padding: 15px 15px;
     width: 136px;
     height: 50px;
-  
+
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 16px;
@@ -42,19 +44,16 @@
     text-transform: uppercase;
   }
 
-  .button.buttonHeader{
-
- 
+  .button.buttonHeader {
     background: #f6b83d;
     color: #fff;
-
+    border: solid 1px;
   }
 
-  .button.buttonHome{
+  .button.buttonHome {
     background: #f6b83d;
     color: #fff;
-       color: #f6b83d;
+    color: #f6b83d;
     background: #fff4df;
   }
-  
 }

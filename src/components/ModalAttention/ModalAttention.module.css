@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
-  width: 335px;
-  height: 394px;
+  max-width: 335px;
+  min-height: 394px;
   padding: 40px 20px;
   background: #fff;
 }
@@ -43,8 +43,8 @@
 
 @media screen and (min-width: 768px) {
   .modalAttention {
-    width: 466px;
-    height: 434px;
+    max-width: 466px;
+    min-height: 434px;
     padding: 60px;
     background: #fff;
   }

@@ -17,28 +17,25 @@ import {
   selectSexOptions,
   selectSpeciesOptions,
 } from '../../redux/notices/selectors';
-import {
-  // addToFavorites,
-  fetchCategories,
-  fetchNotices,
-  fetchSexOptions,
-  fetchSpeciesOptions,
-  // removeFromFavorites,
-} from '../../redux/notices/operations';
+import { fetchNotices } from '../../redux/notices/operations';
 import { setNoticesFilters, setNoticesPage } from '../../redux/notices/slice';
 import {
   selectCitiesList,
   selectLocationsList,
 } from '../../redux/cities/selectors';
-import { fetchCitiesByKeyword, fetchCitiesWithLocations } from '../../redux/cities/operations';
+import { fetchCitiesByKeyword } from '../../redux/cities/operations';
 import { selectIsLoading, selectIsLoggedIn } from '../../redux/users/selectors';
-import { addToFavorites, checkAuth, getCurrentUserFullInfo, removeFromFavorites } from '../../redux/users/operations';
+import {
+  addToFavorites,
+  getCurrentUserFullInfo,
+  removeFromFavorites,
+} from '../../redux/users/operations';
 
 const NoticesPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
- const isLoading = useSelector(selectIsLoading);
- const isNoticesLoading = useSelector(selectNoticesLoading)
+  const isLoading = useSelector(selectIsLoading);
+  const isNoticesLoading = useSelector(selectNoticesLoading);
   const notices = useSelector(selectNotices);
   const currentPage = useSelector(selectNoticesCurrentPage);
   const totalPages = useSelector(selectNoticesTotalPages);
@@ -48,24 +45,19 @@ const NoticesPage = () => {
   const locationsList = useSelector(selectLocationsList);
   const citiesList = useSelector(selectCitiesList);
 
-  
   const error = useSelector(selectNoticesError);
   const filters = useSelector(selectFilters);
 
   const itemsPerPage = 6;
-console.log(isLoading );
-   useEffect(() => {
-    if (isLoggedIn && !isNoticesLoading  ) {
+
+  useEffect(() => {
+    if (isLoggedIn && !isNoticesLoading) {
       dispatch(getCurrentUserFullInfo());
     }
   }, [dispatch, isNoticesLoading, isLoggedIn]);
 
-
-
-
   useEffect(() => {
     dispatch(
-      
       fetchNotices({ ...filters, page: currentPage, limit: itemsPerPage })
     );
   }, [dispatch, filters, currentPage]);
@@ -96,13 +88,12 @@ console.log(isLoading );
     dispatch(setNoticesPage(page));
   };
 
-
   const handleAddToFavorites = async id => {
     await dispatch(addToFavorites(id));
   };
 
   const handleRemoveFromFavorites = async id => {
-    await dispatch(removeFromFavorites(id)); 
+    await dispatch(removeFromFavorites(id));
   };
 
   return (

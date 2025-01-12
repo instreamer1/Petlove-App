@@ -28,29 +28,11 @@ const ProfilePage = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    console.log('isLoggedIn changed:', isLoggedIn);
     if (isLoggedIn) {
-      console.log('Dispatching getCurrentUserFullInfo');
       dispatch(getCurrentUserFullInfo());
     }
   }, [dispatch, isLoggedIn]);
   
-// useEffect(() => {
-//   console.log('Fetching user isLoading info:',  isLoading);
-
-// }, [dispatch, isLoading]);
-
-// useEffect(() => {
-//   console.log("Effect triggered:", { isLoggedIn, isLoading });
-// }, [isLoggedIn, isLoading]);
-
-
-  // useEffect(() => {
-  //   console.log('Fetching user full info:', { isLoggedIn, isLoading, noticesFavorites });
-  
-  // }, [dispatch, isLoading, noticesFavorites, isLoggedIn]);
-
-
   
   const handleDeletePet = id => {
     dispatch(removePet(id));
@@ -65,9 +47,6 @@ const ProfilePage = () => {
   };
 
 
-  // if (isLoading) {
-  //   return <p>Loading...</p>; 
-  // }
 
   return (
     <section className={css.profile}>

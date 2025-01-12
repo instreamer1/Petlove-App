@@ -102,12 +102,6 @@ const ModalNotice = ({
                   {species ? capitalizeFirstLetter(species) : 'Unknown'}
                 </p>
               </div>
-              <div className={css.cardInfo}>
-                <p className={css.cardInfoText}>Category: </p>
-                <p className={css.cardInfoValue}>
-                  {category ? capitalizeFirstLetter(category) : 'Unknown'}
-                </p>
-              </div>
             </div>
             <p className={css.cardDescription}>
               {comment ? comment : 'No comment'}

@@ -92,6 +92,11 @@
   margin-bottom: 16px;
 }
 .cardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
 }
 
 .cardInfoText {
@@ -143,13 +148,14 @@
 .buttonWrapper {
   display: flex;
   width: 100%;
+  justify-content: space-between;
 }
 
 .addToBtn {
   outline: none;
   border-radius: 30px;
   padding: 12px 12px;
-  width: 135px;
+  max-width: 135px;
   height: 44px;
   background: #f6b83d;
   font-family: var(--font-family);
@@ -176,7 +182,7 @@
   outline: none;
   border-radius: 30px;
   padding: 12px 12px;
-  width: 134px;
+  max-width: 134px;
   height: 44px;
   background: #fff4df;
   font-family: var(--font-family);
@@ -187,7 +193,7 @@
   color: #f6b83d;
   text-align: center;
   cursor: pointer;
-  margin-left: auto;
+  flex-grow: 1;
 }
 
 @media screen and (min-width: 768px) {
@@ -221,19 +227,29 @@
     margin-bottom: 20px;
   }
 
+  .cardInfoWrapper {
+ 
+    gap: 27px;
+
+  }
+
+  .cardInfoText {
+    margin-bottom: 4px;
+  }
+
   .cardDescription {
     margin-bottom: 28px;
   }
 
   .addToBtn {
     padding: 14px 14px;
-    width: 160px;
+    max-width: 160px;
     height: 48px;
   }
 
   .contactBtn {
     padding: 14px 14px;
-    width: 160px;
+    max-width: 160px;
     height: 48px;
   }
 }

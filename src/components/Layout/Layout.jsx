@@ -12,7 +12,7 @@ const Layout = () => {
       <header className={css.header}>
         <div className={css.container}>
           <Header isHomePage={isHomePage}/>
-          {/* <Loader /> */}
+          <Loader />
         </div>
       </header>
 

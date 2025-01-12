@@ -2,43 +2,31 @@ import css from './NoticesItem.module.css';
 import iconSprite from '../../assets/sprite.svg';
 import ModalAttention from '../ModalAttention/ModalAttention';
 import ModalNotice from '../ModalNotice/ModalNotice';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectFavorites,
-  // selectIsFavorite,
   selectIsLoading,
   selectIsLoggedIn,
-  selectNoticesFavorites,
-  // selectUserFavorites,
 } from '../../redux/users/selectors';
-import {
-  // addToFavorites,
-  fetchNoticeById,
-  // removeFromFavorites,
-} from '../../redux/notices/operations';
+import { fetchNoticeById } from '../../redux/notices/operations';
 import {
   selectCurrentNotice,
-  // selectFavorites,
-  // selectFavorites,
   selectNoticesError,
   selectNoticesLoading,
 } from '../../redux/notices/selectors';
 import { capitalizeFirstLetter, formatDate } from '../constants';
-// import { addToFavorites, checkAuth, removeFromFavorites } from '../../redux/users/operations';
 
 const NoticesItem = ({ notice, onAddToFavorites, onRemoveFromFavorites }) => {
   const dispatch = useDispatch();
   const [isAttentionOpen, setAttentionOpen] = useState(false);
   const [isNoticeOpen, setNoticeOpen] = useState(false);
 
-  const noticesFavorites = useSelector(selectNoticesFavorites);
   const favorites = useSelector(selectFavorites);
-  // const favorites = useSelector(selectFavorites);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const currentNotice = useSelector(selectCurrentNotice);
 
-  const isNoticesLoading = useSelector(selectNoticesLoading)
+  const isNoticesLoading = useSelector(selectNoticesLoading);
   const loadingProfile = useSelector(selectIsLoading);
   const error = useSelector(selectNoticesError);
 
@@ -52,34 +40,14 @@ const NoticesItem = ({ notice, onAddToFavorites, onRemoveFromFavorites }) => {
     birthday,
     comment,
     sex,
-    location,
     imgURL,
-    createdAt,
     user,
     popularity,
-    updatedAt,
   } = notice;
 
   const isButtonDisabled = isNoticesLoading || loadingProfile;
-  // const isFavorite = () => favorites.includes(_id);
 
-  //   const isFavorite = favorites.some((favorite) => {
-  //     console.log(favorite);
-  //     console.log('Favorite ID:', favorite._id); // Проверяем значение _id в массиве
-  //     console.log('Type of Favorite ID:', typeof favorite._id); // Тип _id
-  //     console.log('Target ID:', _id); // Значение, с которым сравниваем
-  //     console.log('Type of Target ID:', typeof _id); // Тип значения для сравнения
-  //     return favorite._id === _id;
-  // });
-
-  // const favoritesIds = useMemo(() => noticesFavorites.map((favorite) => favorite._id), [noticesFavorites]);
-  // const isFavorite = favoritesIds.includes(_id);
   const isFavorite = favorites.includes(_id);
-
-  // const isFavorite = () => favorites.includes(_id);
-  // console.log("favorites", favorites);
-  // console.log("_id", _id);
-  // console.log("isFavorite", isFavorite);
 
   const handleLearnMore = async () => {
     if (!isLoggedIn) {
@@ -108,11 +76,10 @@ const NoticesItem = ({ notice, onAddToFavorites, onRemoveFromFavorites }) => {
     }
   };
 
-
-
   return (
     <>
       <li className={css.cardItem}>
+         {error && <div className={css.error}>Error: {error}</div>}
         <img
           src={imgURL ? imgURL : ''}
           alt={name ? name : 'Unknown'}
@@ -180,8 +147,7 @@ const NoticesItem = ({ notice, onAddToFavorites, onRemoveFromFavorites }) => {
                   }
                   className={css.favoriteBtn}
                   onClick={handleFavoriteClick}
-                  disabled={isButtonDisabled}
-                >
+                  disabled={isButtonDisabled}>
                   <svg className={css.icon}>
                     <use
                       href={`${iconSprite}#${

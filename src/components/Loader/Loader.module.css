@@ -28,6 +28,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.loader span {
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
+
 .container {
   display: flex;
   justify-content: center;

@@ -28,6 +28,7 @@
 .link:hover,
 .link:focus {
   background: #e6a92f;
+  transform: scale(1.1);
 }
 
 .link.loginLinkHome:hover,
@@ -54,6 +55,7 @@
 .registerLink:hover,
 .registerLink:focus {
   background: #fbe7c1;
+  transform: scale(1.1);
 }
 
 @media screen and (min-width: 768px) {
