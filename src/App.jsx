@@ -10,6 +10,7 @@ import {
   fetchSpeciesOptions,
 } from './redux/notices/operations';
 import { fetchCitiesWithLocations } from './redux/cities/operations';
+import Loader from './components/Loader/Loader';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -44,7 +45,7 @@ const App = () => {
 
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Navigate to='/home' replace />} />

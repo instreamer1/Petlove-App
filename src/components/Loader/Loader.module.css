@@ -1,14 +1,20 @@
+.loaderSection {
+}
+
 .overlay {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: -21px;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  width: 375px;
+  height: 100vh;
+  height: 812px;
+  /* background: rgba(0, 0, 0, 0.5); */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  background: url('../../assets/images/loadingMobile.jpg') center center / cover
+    no-repeat;
 }
 
 .loader {
@@ -29,8 +35,6 @@
   }
 }
 
-
-
 .loader span {
   display: block;
   margin-top: 10px;
@@ -38,16 +42,15 @@
   font-size: 18px;
 }
 
-
 .container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url('../../assets/images/loadingMobile.jpg');
-  background-size: cover;
+  height: 100vh; */
+  /* background-image: url('../../assets/images/loadingMobile.jpg'); */
+  /* background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 }
 
 .logo {
@@ -74,4 +77,23 @@
   width: 36px;
   height: 32px;
   fill: #f6b83d;
+}
+
+@media screen and (min-width: 768px) {
+  .overlay {
+    top: -28px;
+    width: 768px;
+    height: 1024px;
+    background: url('../../assets/images/loadingTablet.jpg') center center /
+      cover no-repeat;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .overlay {
+    width: 1280px;
+    height: 800px;
+    background: url('../../assets/images/loadingDesktop.jpg') center center /
+      cover no-repeat;
+  }
 }

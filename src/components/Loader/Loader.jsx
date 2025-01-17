@@ -6,11 +6,12 @@ import { selectIsLoading } from '../../redux/loadingSlice/selectors';
 const Loader = () => {
   const isLoading = useSelector(selectIsLoading);
 
-  if (!isLoading) return null;
+  // if (!isLoading) return null;
 
   return (
+    // <section className={css.loaderSection}>
     <div className={css.overlay}>
-      <div className={css.loader}></div>
+     
 
       <div className={css.logo}>
         <h2 className={css.text}>
@@ -21,11 +22,12 @@ const Loader = () => {
           ve
         </h2>
       </div>
-      <div className='loader'>
-        <div className='circle'></div>
-        <span>Loading...</span>
+      <div className={css.loader}>
+        <div className={css.circle}></div>
+        {/* <span>Loading...</span> */}
       </div>
     </div>
+    // </section>
   );
 };
 

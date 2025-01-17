@@ -8,6 +8,8 @@ import homeTablet2x from '../../assets/images/homeTablet@2x.jpg';
 import imageHome from '../../assets/images/imageHome.jpg'
 
 const HomePage = () => {
+
+  
   return (
     <section className={css.hero}>
       <div className={css.container}>

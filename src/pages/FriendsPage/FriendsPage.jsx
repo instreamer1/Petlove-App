@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Title from '../../components/Title/Title';
 import FriendsList from '../../components/FriendsList/FriendsList';
 import { fetchFriends } from '../../redux/friends/operations';
-import { selectError, selectFriends, selectLoading } from '../../redux/friends/selectors';
+import { selectError, selectFriends,  selectLoadingFriends } from '../../redux/friends/selectors';
 
 const FriendsPage = () => {
   const dispatch = useDispatch();
 
   const friends = useSelector(selectFriends);
-  const loading = useSelector(selectLoading);
+  const loading = useSelector(selectLoadingFriends);
   const error = useSelector(selectError);
 
 
