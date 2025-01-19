@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import css from './NotFoundPage.module.css';
 import catNotFound from '../../assets/images/catNotFoundDesktop.png';
-const NotFoundPage = props => {
-
-    const navigate = useNavigate(); 
+const NotFoundPage = () => {
+  const navigate = useNavigate();
 
   return (
     <section className={css.notFoundPage}>
@@ -19,8 +18,12 @@ const NotFoundPage = props => {
           <h4 className={css.notFoundDescription}>
             Ooops! This page not found :(
           </h4>
-          <button type="button"   onClick={() => navigate('/')}  className={css.notFondButton} >
-            To home page</button>
+          <button
+            type='button'
+            onClick={() => navigate('/')}
+            className={css.notFondButton}>
+            To home page
+          </button>
         </div>
       </div>
     </section>

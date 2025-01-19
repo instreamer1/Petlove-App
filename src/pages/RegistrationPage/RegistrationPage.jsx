@@ -50,7 +50,6 @@ const RegistrationPage = () => {
         <div className={css.formWrapper}>
           <Title
             title='Registration'
-            // description='Thank you for your interest in our platform.'
           />
           <p className={css.description}>
             Thank you for your interest in our platform.

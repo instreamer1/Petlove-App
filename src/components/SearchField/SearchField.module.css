@@ -8,7 +8,6 @@
 
 .input {
   outline: none;
-  /* border: 1px solid rgba(38, 38, 38, 0.15); */
   border: none;
   border-radius: 30px;
   padding: 12px 12px 12px 12px;
@@ -32,6 +31,7 @@
   width: 18px;
   height: 18px;
   fill: none;
+  stroke: black;
 }
 
 .input::placeholder {
@@ -40,7 +40,6 @@
   font-size: 16px;
   line-height: 125%;
   letter-spacing: -0.03em;
-  /* color: rgba(38, 38, 38, 0.5); */
   color: #262626;
 }
 

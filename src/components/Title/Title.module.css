@@ -18,13 +18,9 @@
   line-height: 129%;
   letter-spacing: -0.02em;
   color: #262626;
-
 }
 
 @media screen and (min-width: 768px) {
-  .titleWrapper {
- 
-  }
   .title {
     font-size: 54px;
   }
@@ -35,7 +31,4 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .titleWrapper {
- 
-  }
 }

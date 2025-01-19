@@ -54,7 +54,6 @@ const ModalEditUser = ({ isOpen, onClose }) => {
       onClose();
     } catch (error) {
       toast.error(error.message || 'Something went wrong');
-    } finally {
     }
   };
 

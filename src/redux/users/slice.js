@@ -153,21 +153,21 @@ const usersSlice = createSlice({
         state.error = action.payload || 'Something went wrong';
       })
       .addCase(addToFavorites.pending, state => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(addToFavorites.fulfilled, (state, action) => {
         state.favorites.push(action.payload._id);
         state.favorites = action.payload;
 
-        state.isLoading = false;
+        // state.isLoading = false;
       })
       .addCase(addToFavorites.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(removeFromFavorites.pending, state => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
@@ -175,10 +175,10 @@ const usersSlice = createSlice({
         state.noticesFavorites = state.noticesFavorites.filter(item =>
           action.payload.includes(item._id)
         );
-        state.isLoading = false;
+        // state.isLoading = false;
       })
       .addCase(removeFromFavorites.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.payload;
       });
   },

@@ -54,7 +54,6 @@ const ModalNotice = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={css.modalNotice}>
         {error && <div className={css.error}>Error: {error}</div>}
-        {/* {isNoticesLoading && <div className={css.loader}>Loading...</div>} */}
         <div className={css.imgWrap}>
           <img
             src={imgURL ? imgURL : ''}

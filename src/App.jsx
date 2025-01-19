@@ -1,7 +1,7 @@
 import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { checkAuth } from './redux/users/operations';
 import { Toaster } from 'react-hot-toast';
 import {
@@ -10,7 +10,6 @@ import {
   fetchSpeciesOptions,
 } from './redux/notices/operations';
 import { fetchCitiesWithLocations } from './redux/cities/operations';
-import Loader from './components/Loader/Loader';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -27,13 +26,9 @@ const PrivateRoute = lazy(() => import('./pages/PrivateRoute'));
 const RestrictedRoute = lazy(() => import('./pages/RestrictedRoute'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
-const Loading = () => <div className='loader'>Loading...</div>;
 
 const App = () => {
-
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -43,9 +38,8 @@ const App = () => {
     dispatch(fetchCitiesWithLocations());
   }, [dispatch]);
 
-
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense>
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Navigate to='/home' replace />} />

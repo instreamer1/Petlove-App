@@ -34,7 +34,8 @@ const noticesSlice = createSlice({
   initialState,
   reducers: {
     setNoticesFilters(state, action) {
-      state.filters = action.payload;
+      // state.filters = action.payload;
+      state.filters = { ...state.filters, ...action.payload };
       state.currentPage = 1;
     },
     setNoticesPage: (state, action) => {
@@ -55,6 +56,7 @@ const noticesSlice = createSlice({
         state.totalPages = action.payload.totalPages || 1;
         state.page = action.payload.page;
         state.loading = false;
+        state.error = null;
       })
       .addCase(fetchNotices.rejected, (state, action) => {
         state.loading = false;
@@ -63,24 +65,53 @@ const noticesSlice = createSlice({
 
       .addCase(fetchCategories.pending, state => {
         state.loading = true;
+        state.error = null
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
         state.loading = false
+        state.error = null
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-
+      .addCase(fetchSexOptions.pending, state => {
+        state.loading = true;
+        state.error = null; 
+      })
       .addCase(fetchSexOptions.fulfilled, (state, action) => {
         state.sexOptions = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchSexOptions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchSpeciesOptions.pending, state => {
+        state.loading = true;
+        state.error = null; 
       })
       .addCase(fetchSpeciesOptions.fulfilled, (state, action) => {
         state.speciesOptions = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchSpeciesOptions.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      .addCase(fetchNoticeById.pending, state => {
+        state.loading = true;
+        state.error = null; 
       })
       .addCase(fetchNoticeById.fulfilled, (state, action) => {
         state.currentNotice = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchNoticeById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });
