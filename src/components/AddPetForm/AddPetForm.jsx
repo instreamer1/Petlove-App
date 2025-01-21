@@ -4,11 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import iconSprite from '../../assets/sprite.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectNoticesLoading,
   selectSpeciesOptions,
 } from '../../redux/notices/selectors';
+import { useEffect, useState } from 'react';
+import { fetchSpeciesOptions } from '../../redux/notices/operations';
 
 const schema = yup.object().shape({
   title: yup.string().required('Title is required'),
@@ -29,9 +31,73 @@ const schema = yup.object().shape({
 });
 
 const AddPetForm = ({ onSubmit }) => {
+  const dispatch = useDispatch();
   const speciesOptions = useSelector(selectSpeciesOptions);
   const loading = useSelector(selectNoticesLoading);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(fetchSpeciesOptions());
+  }, [dispatch]);
+
+  const [imageUrl, setImageUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+ 
+
+  const handleUrlChange = event => {
+    setImageUrl(event.target.value);
+  };
+
+  const handleFileChange = async event => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setUploading(true);
+      try {
+        const uploadedUrl = await uploadFile(selectedFile);
+
+        if (uploadedUrl) {
+          setImageUrl(uploadedUrl);
+        }
+      } catch (error) {
+        console.error('File upload error:', error);
+      } finally {
+        setUploading(false);
+      }
+    }
+  };
+
+  const uploadFile = async file => {
+    try {
+      console.log('Uploading file:', file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'pets_images');
+
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/ddfdrl27n/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('File upload failed');
+      }
+
+      const data = await response.json();
+
+      if (data.url) {
+        setImageUrl(data.url);
+        return data.url;
+      } else {
+        throw new Error('Unable to get image URL');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      return null;
+    }
+  };
 
   const {
     register,
@@ -52,7 +118,6 @@ const AddPetForm = ({ onSubmit }) => {
     reset();
   };
 
-  const avatar = null;
   return (
     <>
       <h2 className={css.title}>
@@ -82,9 +147,12 @@ const AddPetForm = ({ onSubmit }) => {
           ))}
         </div>
         {errors.sex && <p className={css.error}>{errors.sex.message}</p>}
+
         <div className={css.imgWrapper}>
-          {avatar !== null ? (
-            <img src='' alt='' className={css.image} />
+          {uploading ? (
+            <p>loading...</p>
+          ) : imageUrl ? (
+            <img src={imageUrl} alt='Uploaded' className={css.image} />
           ) : (
             <div className={css.iconFootWrapper}>
               <svg className={css.iconFoot}>
@@ -97,16 +165,25 @@ const AddPetForm = ({ onSubmit }) => {
         <div className={css.upload}>
           <input
             type='text'
+            // value={watch('imgURL')}
+            // onChange={handleUrlChange}
             placeholder='Enter URL'
             {...register('imgURL')}
             className={css.inputUpload}
           />
-          <button type='button' className={css.uploadButton}>
-            Upload photo{' '}
+
+          <label className={css.uploadButton}>
+            <input
+              type='file'
+              accept='image/*'
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            Upload photo
             <svg className={css.icon}>
               <use href={`${iconSprite}#cloud`}></use>
             </svg>
-          </button>
+          </label>
         </div>
         {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}
         <input

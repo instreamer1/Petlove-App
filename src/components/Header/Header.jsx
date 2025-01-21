@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './Header.module.css';
 import useResponsive from '../hooks/useResponsive.js';
 
@@ -25,6 +25,10 @@ const Header = ({ isHomePage }) => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+
+  useEffect(() => {
+    closeSidebar();
+  }, [isMobile, isTablet]);
 
   return (
     <>

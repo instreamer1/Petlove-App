@@ -17,13 +17,21 @@ import {
   selectSexOptions,
   selectSpeciesOptions,
 } from '../../redux/notices/selectors';
-import { fetchNotices } from '../../redux/notices/operations';
+import {
+  fetchCategories,
+  fetchNotices,
+  fetchSexOptions,
+  fetchSpeciesOptions,
+} from '../../redux/notices/operations';
 import { setNoticesFilters, setNoticesPage } from '../../redux/notices/slice';
 import {
   selectCitiesList,
   selectLocationsList,
 } from '../../redux/cities/selectors';
-import { fetchCitiesByKeyword } from '../../redux/cities/operations';
+import {
+  fetchCitiesByKeyword,
+  fetchCitiesWithLocations,
+} from '../../redux/cities/operations';
 import { selectIsLoading, selectIsLoggedIn } from '../../redux/users/selectors';
 import {
   addToFavorites,
@@ -61,6 +69,13 @@ const NoticesPage = () => {
       fetchNotices({ ...filters, page: currentPage, limit: itemsPerPage })
     );
   }, [dispatch, filters, currentPage]);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchSexOptions());
+    dispatch(fetchSpeciesOptions());
+    dispatch(fetchCitiesWithLocations());
+  }, [dispatch]);
 
   const handleFilterChange = updatedFilters => {
     dispatch(setNoticesFilters(updatedFilters));

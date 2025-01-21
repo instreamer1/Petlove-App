@@ -112,7 +112,7 @@ const usersSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addPet.pending, state => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(addPet.fulfilled, (state, action) => {

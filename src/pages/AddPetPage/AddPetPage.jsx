@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 const AddPetPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  
   const handleFormSubmit = async data => {
     const { name, title, imgURL, species, birthday, sex } = data;
     try {
@@ -34,6 +36,13 @@ const AddPetPage = () => {
       }
     }
   };
+
+
+
+
+
+
+
 
   return (
     <section className={css.addPetPage}>

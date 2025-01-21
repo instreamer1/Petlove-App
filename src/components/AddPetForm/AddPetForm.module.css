@@ -124,6 +124,11 @@
   background: #fff4df;
   margin-bottom: 16px;
   align-self: center;
+  overflow: hidden;
+}
+
+.image{
+  width: 100%;
 }
 
 .iconFootWrapper {

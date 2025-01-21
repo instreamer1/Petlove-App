@@ -4,12 +4,6 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './redux/users/operations';
 import { Toaster } from 'react-hot-toast';
-import {
-  fetchCategories,
-  fetchSexOptions,
-  fetchSpeciesOptions,
-} from './redux/notices/operations';
-import { fetchCitiesWithLocations } from './redux/cities/operations';
 
 const Layout = lazy(() => import('./components/Layout/Layout'));
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -32,10 +26,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(fetchCategories());
-    dispatch(fetchSexOptions());
-    dispatch(fetchSpeciesOptions());
-    dispatch(fetchCitiesWithLocations());
   }, [dispatch]);
 
   return (

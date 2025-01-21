@@ -16,13 +16,15 @@ const Layout = () => {
   const isNoticesLoading = useSelector(selectNoticesLoading);
   const isLoading = useSelector(selectIsLoading);
   const loadingFriends = useSelector(selectLoadingFriends);
-  const isHomePage = location.pathname === "/home"; 
+  const isHomePage = location.pathname === '/home';
   return (
     <>
       <header className={css.header}>
         <div className={css.container}>
-          <Header isHomePage={isHomePage}/>
-       { (loadingNews || isNoticesLoading || isLoading || loadingFriends) && <Loader />}
+          <Header isHomePage={isHomePage} />
+          {(loadingNews || isNoticesLoading || isLoading || loadingFriends) && (
+            <Loader />
+          )}
         </div>
       </header>
 
