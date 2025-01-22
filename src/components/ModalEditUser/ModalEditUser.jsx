@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './ModalEditUser.module.css';
@@ -13,6 +13,7 @@ import {
 } from '../../redux/users/selectors';
 import { editUser } from '../../redux/users/operations';
 import defaultImage from '../../assets/images/defaultImage.png';
+import { useState } from 'react';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
@@ -35,18 +36,27 @@ const validationSchema = Yup.object().shape({
 
 const ModalEditUser = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
+
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const user = useSelector(selectUser);
   const {
     register,
     handleSubmit,
+    reset,
+    isSubmitting,
+    setValue,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = async data => {
+  const handleFormSubmit = async data => {
+    console.log('Submitted data:', data);
     try {
       await dispatch(editUser(data));
 
@@ -57,11 +67,70 @@ const ModalEditUser = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleUrlChange = event => {
+    const value = event.target.value;
+    setAvatarUrl(value);
+    setValue('avatar', value);
+  };
+
+  const handleFileChange = async event => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setUploading(true);
+      try {
+        const uploadedUrl = await uploadFile(selectedFile);
+
+        if (uploadedUrl) {
+          setAvatarUrl(uploadedUrl);
+          setValue('avatar', uploadedUrl);
+        }
+      } catch (error) {
+        console.error('File upload error:', error);
+      } finally {
+        setUploading(false);
+      }
+    }
+  };
+
+  const uploadFile = async file => {
+    try {
+      console.log('Uploading file:', file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'pets_images');
+
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/ddfdrl27n/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('File upload failed');
+      }
+
+      const data = await response.json();
+
+      if (data.url) {
+        setAvatarUrl(data.url);
+        return data.url;
+      } else {
+        throw new Error('Unable to get image URL');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      return null;
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={css.modalBackdrop}>
         <div className={css.modalContent} onClick={e => e.stopPropagation()}>
           <h2 className={css.title}>Edit information</h2>
+
           <div className={css.imgWrapper}>
             {user.avatar ? (
               <img
@@ -81,30 +150,49 @@ const ModalEditUser = ({ isOpen, onClose }) => {
             )}
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+          <form onSubmit={handleSubmit(handleFormSubmit)} className={css.form}>
             <div className={css.upload}>
-              <label>
+              <Controller
+                name='avatar'
+                control={control}
+                defaultValue={avatarUrl}
+                render={({ field }) => (
+                  <input
+                    type='text'
+                    value={avatarUrl}
+                    onInput={e => {
+                      handleUrlChange(e);
+                      field.onChange(e);
+                    }}
+                    placeholder='Enter URL'
+                    className={css.avatarInput}
+                  />
+                )}
+              />
+
+              <label className={css.uploadButton}>
                 <input
-                  type='text'
-                  {...register('avatar')}
-                  className={css.avatarInput}
-                  placeholder='Avatar URL'
+                  type='file'
+                  accept='image/*'
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                  disabled={uploading}
                 />
-                {errors.avatar && (
-                  <p className={css.error}>{errors.avatar.message}</p>
+                {uploading ? (
+                  <span>Loading...</span>
+                ) : (
+                  <>
+                    Upload photo
+                    <svg className={css.icon}>
+                      <use href={`${iconSprite}#cloud`}></use>
+                    </svg>
+                  </>
                 )}
               </label>
-              <button
-                type='button'
-                onClick={onClose}
-                className={css.uploadButton}>
-                Upload photo{' '}
-                <svg className={css.icon}>
-                  <use href={`${iconSprite}#cloud`}></use>
-                </svg>
-              </button>
             </div>
-
+            {errors.avatar && (
+              <p className={css.error}>{errors.avatar.message}</p>
+            )}
             <label>
               <input
                 type='text'
@@ -142,8 +230,9 @@ const ModalEditUser = ({ isOpen, onClose }) => {
             <div className={css.buttons}>
               <button
                 type='submit'
+                aria-label='Submit'
                 className={css.saveButton}
-                disabled={isLoading}>
+                disabled={isSubmitting}>
                 Go to profile
               </button>
             </div>

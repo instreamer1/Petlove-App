@@ -1,5 +1,5 @@
 import css from './AddPetForm.module.css';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -32,20 +32,33 @@ const schema = yup.object().shape({
 
 const AddPetForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
+  const [imageUrl, setImageUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
+
   const speciesOptions = useSelector(selectSpeciesOptions);
   const loading = useSelector(selectNoticesLoading);
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    isSubmitting,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     dispatch(fetchSpeciesOptions());
   }, [dispatch]);
 
-  const [imageUrl, setImageUrl] = useState('');
-  const [uploading, setUploading] = useState(false);
- 
-
   const handleUrlChange = event => {
-    setImageUrl(event.target.value);
+    const value = event.target.value;
+    setImageUrl(value);
+    setValue('imgURL', value);
   };
 
   const handleFileChange = async event => {
@@ -57,6 +70,7 @@ const AddPetForm = ({ onSubmit }) => {
 
         if (uploadedUrl) {
           setImageUrl(uploadedUrl);
+          setValue('imgURL', uploadedUrl);
         }
       } catch (error) {
         console.error('File upload error:', error);
@@ -98,16 +112,6 @@ const AddPetForm = ({ onSubmit }) => {
       return null;
     }
   };
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    isSubmitting,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   const handleBack = () => {
     navigate('/profile');
@@ -163,13 +167,22 @@ const AddPetForm = ({ onSubmit }) => {
         </div>
 
         <div className={css.upload}>
-          <input
-            type='text'
-            // value={watch('imgURL')}
-            // onChange={handleUrlChange}
-            placeholder='Enter URL'
-            {...register('imgURL')}
-            className={css.inputUpload}
+          <Controller
+            name='imgURL'
+            control={control}
+            defaultValue={imageUrl}
+            render={({ field }) => (
+              <input
+                type='text'
+                value={imageUrl}
+                onInput={e => {
+                  handleUrlChange(e);
+                  field.onChange(e);
+                }}
+                placeholder='Enter URL'
+                className={css.inputUpload}
+              />
+            )}
           />
 
           <label className={css.uploadButton}>
@@ -178,11 +191,18 @@ const AddPetForm = ({ onSubmit }) => {
               accept='image/*'
               onChange={handleFileChange}
               style={{ display: 'none' }}
+              disabled={uploading}
             />
-            Upload photo
-            <svg className={css.icon}>
-              <use href={`${iconSprite}#cloud`}></use>
-            </svg>
+            {uploading ? (
+              <span>Loading...</span> 
+            ) : (
+              <>
+                Upload photo
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#cloud`}></use>
+                </svg>
+              </>
+            )}
           </label>
         </div>
         {errors.imgURL && <p className={css.error}>{errors.imgURL.message}</p>}

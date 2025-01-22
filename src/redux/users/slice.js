@@ -124,15 +124,15 @@ const usersSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(removePet.pending, state => {
-        state.isLoading = true;
+        // state.isLoading = true;
         state.error = null;
       })
       .addCase(removePet.fulfilled, (state, action) => {
         state.pets = action.payload.pets;
-        state.isLoading = false;
+        // state.isLoading = false;
       })
       .addCase(removePet.rejected, (state, action) => {
-        state.isLoading = false;
+        // state.isLoading = false;
         state.error = action.payload?.message || 'Failed to remove pet';
       })
       .addCase(editUser.pending, state => {

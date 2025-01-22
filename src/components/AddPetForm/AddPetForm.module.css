@@ -127,7 +127,7 @@
   overflow: hidden;
 }
 
-.image{
+.image {
   width: 100%;
 }
 
@@ -378,7 +378,7 @@
     border-radius: 30px;
     height: 42px;
   }
-  
+
   .backButton {
     color: #262626;
     padding: 12px 34px;
@@ -386,7 +386,7 @@
     height: 42px;
     background: rgba(38, 38, 38, 0.05);
   }
-  
+
   .submitButton {
     padding: 12px 26px;
     width: 100px;

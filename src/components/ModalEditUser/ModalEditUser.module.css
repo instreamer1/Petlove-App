@@ -15,6 +15,7 @@
 }
 
 .modalContent {
+  width: 100%;
 }
 
 .title {
@@ -36,6 +37,7 @@
   background-color: #fff4df;
   justify-self: center;
   margin-bottom: 12px;
+  overflow: hidden;
 }
 
 .image {
@@ -54,7 +56,6 @@
 
 .upload {
   display: flex;
-  width: 295px;
   gap: 8px;
 }
 
@@ -129,7 +130,7 @@
   margin-top: 21px;
   border-radius: 30px;
   padding: 12px 10px;
-  width: 295px;
+  width: 100%;
   height: 42px;
   background: #f6b83d;
   font-family: var(--font-family);
@@ -141,5 +142,34 @@
 }
 
 .saveButton:hover {
-  background-color: #0056b3;
+  background-color: #c09746;;
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+  .modalBackdrop {
+    width: 480px;
+    padding: 50px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .avatarInput {
+    outline: none;
+    border: 1px solid rgba(38, 38, 38, 0.15);
+    border-radius: 30px;
+    padding: 13px 13px 13px 12px;
+    width: 226px;
+    height: 42px;
+  }
+
+  .uploadButton {
+    padding: 12px;
+    width: 146px;
+
+    font-size: 14px;
+    line-height: 129%;
+  }
 }
